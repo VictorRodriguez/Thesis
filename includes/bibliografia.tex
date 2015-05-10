@@ -1,0 +1,21 @@
+%Empieza configuracion
+\setstretch{1.0}
+\titleformat{\chapter}{\Huge\bfseries}{\thechapter}{0 pt}{\rule{340 pt}{3 pt}\\}
+\titlespacing{\chapter}{100 pt}{-25 pt}{40 pt}[10 pt]	
+\pagestyle{fancy}
+\fancyhead[RO,RE]{\thepage}
+\fancyfoot[CO,CE]{}
+%Termina configuracion
+
+\setstretch{1.5}
+\nocite{Demo:manualMTY}
+\nocite{Demo:digitalComm}
+
+\nocite{IEEEexample:conf_typical}
+\nocite{IEEEexample:book_typical}
+\nocite{IEEEexample:TBParticle}
+
+
+\bibliographystyle{includes/IEEEtranBST/IEEEtran}
+\bibliography{includes/tesis}
+\addcontentsline{toc}{chapter}{Bibliograf'ia}
