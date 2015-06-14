@@ -1,6 +1,8 @@
 %Empieza configuracion de capitulo
+
 \setstretch{1.0}
-\titleformat{\chapter}[block]{\Large\bfseries}{CAP'ITULO \Huge\thechapter\vspace{25 pt}}{0 pt}{\\\fontsize{26}{36}\selectfont}
+\titleformat{\chapter}[block]{\Large\bfseries}{CAP'ITULO 
+\Huge\thechapter\vspace{25 pt}}{0 pt}{\\\fontsize{26}{36}\selectfont}
 \titlespacing{\chapter}{0 pt}{30 pt}{50 pt}[0 pt]
 \titleformat{\section}{\Large\bfseries}{\thesection}{0 pt}{\hspace{30 pt}}
 \titleformat{\subsection}{\large\bfseries}{\thesubsection}{0 pt}{\hspace{30 pt}}
@@ -18,34 +20,172 @@
 \section{Antecedentes}
 \vspace{30 pt}
 \noindent
-Imaginamos que, en estos momentos, usted ya lleva muchas horas estudiando y consultando documentos sobre su tema de tesis de maestr'ia. Ya defini'o un 'area de trabajo y ha le'ido cuando menos diez o quince art'iculos t'ecnicos relacionados con su tema. En este manual se le va a dar informaci'on importante sobre la forma en que usted debe redactar la propuesta de tesis que representar'a el rubro m'as importante en su calificaci'on del Seminario de Innovaci'on y Creatividad.\\
+The Internet of Things (Iot) is defined as the interconnection via the Internet 
+of computing devices embedded in everyday objects, enabling them to send and 
+receive data (Oxford Dictionary). 
 
-Este manual ha sido dise'nado siguiendo un formato similar al que deber'a usted presentar en su propuesta de tesis. La tesis de maestr'ia ser'a redactada, con algunas variaciones, de la misma forma que la propuesta de tesis, por lo que la realizaci'on de este documento representar'a una buena pr'actica. En esta secci'on se redactan los antecedentes de su proyecto. Los antecedentes son el primer contacto con el lector, por lo que es importante explicar los motivos que despertaron su inter'es en la investigaci'on. Describa la necesidad que lo llev'o a realizar la investigaci'on sobre el tema, c'omo se interes'o en ella, d'onde, cu'ando y qu'e o qui'en lo estimul'o para que lo llevara a cabo \cite{Demo:tesis_autor}.
+But the entire picture of an IoT solution is quite bigger. A full solution has 
+the following parts:
+
+\begin{itemize}
+\item The Thing (computing devices):  in the Internet 
+of Things, can be a person with a heart monitor implant, a farm animal with a 
+biochip transponder, an automobile that has built-in sensors to alert the driver 
+when tire pressure is low or any other natural or man-made object that can be 
+assigned an IP address and provided with the ability to transfer data over a 
+network
+\item Network Conection: Network Connections provides connectivity between your 
+computing devices  and the Internet, a network, or another compute device 
+
+\item Cloud computing Data centers for storage and Big Data analysis: The data 
+by itself is not useful to the end user. An alarm or recomendation is all that 
+the end user will matter. After the data is sentand stored into the Cloud 
+Computting Data Centers is necesary to run Big Data solutions that presnet 
+meaningfull imformation to the users. \ldots
+\end{itemize}
+
+We have to understand that the rise of the internet of things is real. Acording 
+to a study by the International Data Corporation (IDC), a market research 
+analysis and advisory firm specialized in nformation technology stimate the 
+number of IoT devices is aproaching  200 billion. And the number of sensors 
+(e.g., the accelerometer in your smart phone) that track, monitor, or feed data 
+to those things is already more than 50 billion, with scientists talking about 
+trillion-sensor networks within 10 years.
+
+Of course, not all of those 200 billion things are actually wired and 
+communicating on the Internet, but some 20 billion are. And, by 2020, this 
+number will grow by 50\% to 30 billion connected devices.
+
+But the rise of the internet of things means the rize of data. The impact of the 
+IoT is already visible in the digital universe. Data just from embedded systems 
+(the sensors and systems that monitor the physical universe) already accounts 
+for 2\% of the digital universe. By 2020 that will rise to 10\%.
+
+There is one final way to look at : the load they will put on the IoT in terms 
+of management. Computers don't just have to manage megabytes, they also have 
+to manage the containers, or software-based digital "files" that the megabytes 
+come in. Some containers are big, like a digital camera image . But some are 
+small. RFID tags and sensor "containers" may contain as few as 32 bytes. Because 
+of this small signal size, the number of containers that must be managed from 
+these embedded systems will dominate the digital universe in 2020. We’re 
+talking 99\% of all "files" in the digital universe.
+
+Besides that, the power consumption of these  IoT’s Cloud Data Centers is a key
+part to considerate. If current trends continue, a petaflop system will require 
+100 megawatts to manage the IoT data. 
+
+Like many booming areas of technology before it, the internet of things
+revolution is plagued by a lack of industry standards. Right now exist two main 
+projects that are compiing to stablish standards for the IoT communications: 
+
+\begin{itemize}
+\item Open Interconnect Consortium (OIC): OIC is an industry group whose stated 
+mission is to develop standards and certification for devices involved in the 
+Internet of Things based around CoAP. OIC was created in July 2014 by Intel, 
+Broadcom, and Samsung Electronics.
+\item AllJoyn : AllJoyn is an open, universal, secure and programmable software 
+connectivity and services framework that enables companies and enterprises to 
+create interoperable products that can discover, connect and interact directly 
+with other AllJoyn-enabled products.\ldots
+\end{itemize}
+
+Despite the efforts to develop standard, certifications and frameworks for 
+interconection among IoT systems there is no effor to make self sustanable 
+networks. All the current solution send all the data to Cloud Data centers to be 
+analyzed. 
 
 \section{Definici'on del problema}
 \noindent
-As'i como la primera secci'on del primer cap'itulo trata los antecedentes del proyecto de investigaci'on, la segunda secci'on de este cap'itulo proporciona la definici'on del problema. Despu'es de haber le'ido suficiente bibliograf'ia sobre el tema, ser'a m'as f'acil definir el problema de su investigaci'on.
 
-Lo primero que se debe lograr es definir correctamente el problema pues exponerlo de manera vaga origina cuestionamientos irrelevantes que nos desv'ian de los objetivos de la investigaci'on \cite{Demo:tesis_autor}. Considere que su problema surge de una idea, una dificultad, una necesidad o una duda. En esta secci'on es importante establecer la delimitaci'on o alcance del mismo ya sea en funci'on de tiempo, espacio o recursos.
+The rise of IoT will lead to an explosion in the volume of data collected, 
+transmitted and processed.This will require novel and optimized solutions. 
+How can we make the IoT networks self sustainable? Make them solve their own compute problems 
+without the need to send millions of data to the HPC data centers . 
+
+Imagine the current 200 billion IoT divices sending data to the cloud data 
+centers at the same time. Adding more systems to the data center will increase 
+the power consumtion to the data center as well as the costs
+
 
 \section{Objetivos}
 \noindent
-Sea claro y cuidadoso en la redacci'on de su objetivo u objetivos. Recuerde que lo que escriba aqu'i debe ser razonablemente ambicioso pues es una tesis de posgrado, pero al mismo tiempo debe ser realizable. Se recomienda comenzar con un peque'no pre'ambulo explicando qu'e es importante del problema, antes de proceder a describir, en lenguaje sencillo, cu'ales son los objetivos del proyecto. Los objetivos deben tratar sobre ``qu'e es lo que usted va a ofrecer'' durante su investigaci'on, es decir, los resultados que pretende obtener durante su trabajo.
 
-En la redacci'on de su documento, procure ser lo m'as consistente posible, usando siempre la misma notaci'on para los mismos conceptos. Se puede escribir en negritas o it'alicas en el texto, tablas y figuras pero procure usar siempre el mismo tipo de letra para los mismos tipos de conceptos. Los pies de figura van, como es de esperar, debajo de la figura correspondiente. Utilice una numeraci'on doble punteada para identificar a cada dibujo, con el primer n'umero identificando al cap'itulo y el segundo n'umero identificando al dibujo particular en ese cap'itulo (es decir, 1.4, 1.5, etc.).
+The main objective is to present a methodlogy to crate a self sustainable
+network of ultra-low-voltage microprocessors platforms. It means the embedded 
+devices interconected could process their own workload without the need of an 
+external compute system
+
+The purpose of this methodology is to give an experienced IoT  developer 
+enough information to replicate the study. At the same time it offers the theoretical 
+underpinning for understanding which method, set of methods, or so-called “best 
+practices” can be applied an specific case
+
 
 \section{Justificaci'on}
 \noindent
-En esta secci'on explique por qu'e piensa usted que el proyecto es importante. Incluya argu- mentos que convenzan al lector de la relevancia del tema y del proyecto. En algunos casos, puede usar argumentos de tipo intelectual. En otros, tal vez sea m'as convincente apelar a consideraciones econ'omicas o de 'indole m'as pr'actica.
+
+The development of wireless sensor networks has reached a point where each 
+individual node of a network may store and deliver a massive amount of 
+(sensor-based) information at once or over time. Right now the total amount of 
+user data (data payload) to be stored or processed doubles every two years. Consequently,
+data will become a problem for traditional data aggregation strategies 
+traffic-wise as well as with regard to energy efficiency. 
+
+These problems start to be relevant in current industries. Such is the case of 
+the Aircraft industry. On March of 2013 Virgin Atlantic was preparing for a 
+significant increase in data as it embraces the internet of things, with a new fleet of highly 
+connected planes each expected to create over half a terabyte of data per flight.
+
+Speaking to Computerworld UK at the Economist Technology Frontiers 2103 event, Virgin 
+Atlantic IT director David Bulman said that the airline company was expecting an 
+"explosion" of information generated from a growing number of sources, from 
+employees and customers to cargo containers and planes.
+
+In particular, the introduction of Boeing 787 aircraft ordered by Virgin 
+Atlantic for delivery in 2014  was expected to dramatically increase the volume 
+of data the airline will need to deal with.
+
+From the interview Bulman hightlight their current problems: 
+
+\say{The challenge is what do you do with that amount of data when you are getting 
+terabytes of data a day off your various airplanes? We are getting to the stage 
+right now where we cannot deal with that much}
+
+He added: 
+
+\say{If you are talking that level of data you can't just chuck ten disks 
+into your data centre anymore, you have to look at cloud based solutions and how 
+you can store data.}
+
+As we can see the lack of standard solutions for self sustainable networks is 
+creating real problems among the industry
 
 \section{Hip'otesis}
 \noindent
-En la secci'on de hip'otesis debe especificar cu'ales son las cosas que se est'an asumiendo como punto de partida en el proyecto de investigaci'on. Para que el proyecto de investigaci'on tenga valor, deben haber supuestos que no se saben de fijo y que se busca verificar o falsificar (por ejemplo, se busca saber si Bluetooth es una tecnolog'ia con m'as o menos mercado potencial que WiFi).
+En la secci'on de hip'otesis debe especificar cu'ales son las cosas que se 
+est'an asumiendo como punto de partida en el proyecto de investigaci'on. Para 
+que el proyecto de investigaci'on tenga valor, deben haber supuestos que no se 
+saben de fijo y que se busca verificar o falsificar (por ejemplo, se busca saber 
+si Bluetooth es una tecnolog'ia con m'as o menos mercado potencial que WiFi).
 
-La hip'otesis debe por lo tanto ser un enunciado o grupo de enunciados que puedan ser demostrados o refutados de manera razonablemente confiable. Es importante que establezca c'omo se van a probar o refutar las hip'otesis planteadas, lo cual se hace en las secciones de planeaci'on.
+La hip'otesis debe por lo tanto ser un enunciado o grupo de enunciados que 
+puedan ser demostrados o refutados de manera razonablemente confiable. Es 
+importante que establezca c'omo se van a probar o refutar las hip'otesis 
+planteadas, lo cual se hace en las secciones de planeaci'on.
 
 \section{Metodolog'ia}
 \noindent
-En esta secci'on debe hacer un bosquejo de la manera en que se propone llevar a cabo la investigaci'on. Cuanto m'as completo el bosquejo, m'as f'acil se desarrollar'a el proceso de investigaci'on. En esta secci'on tiene que explicar lo que se va a realizar para lograr el objetivo de la investigaci'on, c'omo lo har'a, con qu'e elementos cuenta, qu'e equipos o programas se necesitan \cite{Demo:tesis_autor}.
+
+The steps followed to achive the task are: 
+
+
+
+
+En esta secci'on debe hacer un bosquejo de la manera en que se propone llevar a 
+cabo la investigaci'on. Cuanto m'as completo el bosquejo, m'as f'acil se 
+desarrollar'a el proceso de investigaci'on. En esta secci'on tiene que explicar 
+lo que se va a realizar para lograr el objetivo de la investigaci'on, c'omo lo 
+har'a, con qu'e elementos cuenta, qu'e equipos o programas se necesitan 
+\cite{Demo:tesis_autor}.
 
 \clearpage
