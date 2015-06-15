@@ -41,12 +41,12 @@ computing devices  and the Internet, a network, or another compute device
 by itself is not useful to the end user. An alarm or recomendation is all that 
 the end user will matter. After the data is sentand stored into the Cloud 
 Computting Data Centers is necesary to run Big Data solutions that presnet 
-meaningfull imformation to the users. \ldots
+meaningfull imformation to the users.
 \end{itemize}
 
 We have to understand that the rise of the internet of things is real. Acording 
 to a study by the International Data Corporation (IDC), a market research 
-analysis and advisory firm specialized in nformation technology stimate the 
+analysis and advisory firm specialized in nformation technology estimate the 
 number of IoT devices is aproaching  200 billion. And the number of sensors 
 (e.g., the accelerometer in your smart phone) that track, monitor, or feed data 
 to those things is already more than 50 billion, with scientists talking about 
@@ -86,7 +86,7 @@ Broadcom, and Samsung Electronics.
 \item AllJoyn : AllJoyn is an open, universal, secure and programmable software 
 connectivity and services framework that enables companies and enterprises to 
 create interoperable products that can discover, connect and interact directly 
-with other AllJoyn-enabled products.\ldots
+with other AllJoyn-enabled products.
 \end{itemize}
 
 Despite the efforts to develop standard, certifications and frameworks for 
@@ -136,7 +136,7 @@ the Aircraft industry. On March of 2013 Virgin Atlantic was preparing for a
 significant increase in data as it embraces the internet of things, with a new fleet of highly 
 connected planes each expected to create over half a terabyte of data per flight.
 
-Speaking to Computerworld UK at the Economist Technology Frontiers 2103 event, Virgin 
+Speaking to the Computerworld UK magazine at the Economist Technology Frontiers 2103 event, Virgin 
 Atlantic IT director David Bulman said that the airline company was expecting an 
 "explosion" of information generated from a growing number of sources, from 
 employees and customers to cargo containers and planes.
@@ -162,30 +162,80 @@ creating real problems among the industry
 
 \section{Hip'otesis}
 \noindent
-En la secci'on de hip'otesis debe especificar cu'ales son las cosas que se 
-est'an asumiendo como punto de partida en el proyecto de investigaci'on. Para 
-que el proyecto de investigaci'on tenga valor, deben haber supuestos que no se 
-saben de fijo y que se busca verificar o falsificar (por ejemplo, se busca saber 
-si Bluetooth es una tecnolog'ia con m'as o menos mercado potencial que WiFi).
 
-La hip'otesis debe por lo tanto ser un enunciado o grupo de enunciados que 
-puedan ser demostrados o refutados de manera razonablemente confiable. Es 
-importante que establezca c'omo se van a probar o refutar las hip'otesis 
-planteadas, lo cual se hace en las secciones de planeaci'on.
+Nowadays most of the computter systems we use are distributed systems. These
+systems are realiable, robust and fault tolerant. Thanks to this we are able to
+have amazing technology (e-mails/video-streaming/media-chats). All these
+technology has enforce the develop of better distributed systems
+
+We already have all this techonology for movile systems that comunicate with
+data centers. This work will try to prove that is possible to adapt current
+distributed systems technology to the embedded and IoT world. We will try to
+prove this measureing the energy efficiency of a cluster of less than a dozed 
+embedded systems. 
+
+In computing, performance per watt is a measure of the energy efficiency of a
+particular computer architecture or computer hardware. Literally, it measures
+the rate of computation that can be delivered by a computer for every watt of
+power consumed. 
+
+ 
+\begin{equation}
+    \dfrac {Performance}{Watts} = Energy
+\end{equation}
+
+Giving this the hipotesis we are trying to find to prove is that the energy
+efficiency an embedded cluster will have is the 
+figure~\ref{fig:4.1} on page~\pageref{fig:4.1}.
+
+The way we are going to test this hypotesis requires the following parts:
+
+
+\begin{itemize}
+\item Chose the rigth embedded platform 
+\item Chose the right Distributed System comunication and compute protocol
+\item Chose the right Operating System for the system (HW and comunication protocol) 
+\item Crate embedded clusters to measure energy efficiency
+\item Improve comunication protocol for embedded and IoT systems
+\item Implement solution on real application ( greenhouse )
+\end{itemize}
 
 \section{Metodolog'ia}
 \noindent
 
-The steps followed to achive the task are: 
+As described on the previus section the way we are trying to achive this
+research is as follows: 
 
 
+\begin{itemize}
+\item Chose the rigth embedded platform: There are dozens of embedded and IoT
+    platforms, this is why is necesary to make a deep analisys and choose the
+    best platform that feed our needs. Is important to mention that in a real
+    application like a greenhose the systems have an heterogenus architecture.
+\item Chose the right Distributed System comunication and compute protocol.
+    There are diferent kinds of distributed compute protocols. Part of this
+    investigation is to detect the most reliable and suitable for our needs.
+\item Chose the right Operating System for the system (HW and comunication
+    protocol). Once we have selected the apropiate embedded platforms, another 
+    varible in this investigation is the number of Operating
+    Systems. Either if is a microkernel or a monolotic kernel architecture
+    there are more than a dozen of choises for the current embedded platforms
+    exist on the market (the only requirement is that they have a microprocesor
+    instead of a microcontroller)
+\item Crate embedded clusters to measure energy efficiency. Once we have find
+    the best configuration ( HW + OS + Conumication Protocol ) and test thi set
+    up has the higher energy efficiency, we can start to create a cluster of
+    embedded systems. THe growth of th cluster will be by 2 ( 2,4,6,8,10..) ;
+    measuring at the same time the energy efficency of the system.
+\item Improve distributed technology for embedded and IoT systems. We will be
+    focus on find improvements on the distributed technology (compute
+    protocol, Operating System, Power and Performance) in order to make it part
+    of world wide standards.
+\item Implement solution on real application ( greenhouse ). In order to test
+    or hypotesis in a real application we will implent it on a real
+    greenhouse. Proving that the solution give an embedded system the power of
+    reliability and availability without the need of external and expensive servers 
+\end{itemize}
 
-
-En esta secci'on debe hacer un bosquejo de la manera en que se propone llevar a 
-cabo la investigaci'on. Cuanto m'as completo el bosquejo, m'as f'acil se 
-desarrollar'a el proceso de investigaci'on. En esta secci'on tiene que explicar 
-lo que se va a realizar para lograr el objetivo de la investigaci'on, c'omo lo 
-har'a, con qu'e elementos cuenta, qu'e equipos o programas se necesitan 
-\cite{Demo:tesis_autor}.
 
 \clearpage
