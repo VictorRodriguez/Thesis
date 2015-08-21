@@ -1,6 +1,6 @@
 %Empieza configuracion de capitulo
 \setstretch{1.0}
-\titleformat{\chapter}[block]{\Large\bfseries}{CAP'ITULO \Huge\thechapter\vspace{25 pt}}{0 pt}{\\\fontsize{26}{36}\selectfont}
+\titleformat{\chapter}[block]{\Large\bfseries}{CHAPTER \Huge\thechapter\vspace{25 pt}}{0 pt}{\\\fontsize{26}{36}\selectfont}
 \titlespacing{\chapter}{0 pt}{30 pt}{50 pt}[0 pt]
 \titleformat{\section}{\Large\bfseries}{\thesection}{0 pt}{\hspace{30 pt}}
 \titleformat{\subsection}{\large\bfseries}{\thesubsection}{0 pt}{\hspace{30 pt}}
@@ -10,23 +10,94 @@
 \fancyfoot[CO,CE]{}
 %Termina configuracion de capitulo
 
-\chapter{Planeaci'on} %Cambia al nombre de tu capitulo
+\chapter{State of the Art} %Cambia al nombre de tu capitulo
 \setstretch{1.5} %Regresa el interlineado a 1.5
 
 \normalsize
 
-\section{Cronograma}
+\section{Related Work}
 \noindent
-El cronograma puede representarse en forma gr'afica, pero conviene incluir una parte en la que se justifique la selecci'on de actividades. Procure utilizar t'ecnicas de administraci'on de proyectos (diagramas de Gantt, por ejemplo), para generar un cronograma lo m'as eficiente posible. Recuerde que el tiempo es escaso y no se debe desperdiciar.
 
-\section{Presupuesto}
-\noindent
-Es muy probable que, para la realizaci'on de este proyecto, usted s'olo cuente con sus propios fondos, a menos que haya logrado involucrar a su empresa o alguna otra organizaci'on. De todas formas, plantear un presupuesto representa una disciplina valiosa que le puede ahorrar recursos y dolores de cabeza, por lo que se recomienda sea cuidadoso y considere todos los posibles costos de manera exhaustiva.
+First of all we have to understand that before the IoT trend and all the
+efforts to standarize the comunnication among the IoT systems (like AllJoin and
+Open Interconect mentioned before) there was another
+huge trend called Embedded System. An embedded system is a computer system 
+designed to perform one or a few dedicated functions. Contrary to what happens 
+with general purpose computers (such as a personal computer or PC) that are 
+designed to cover a wide range of needs, embedded systems are designed to meet 
+specific needs.
 
-\section{Difusi'on}
-\noindent
-Esta secci'on es opcional, pero puede ser 'util mencionar en qu'e congresos se piensa presentar los resultados de la investigaci'on a realizar en el proyecto, as'i como las revistas en las que se podr'ian publicar los art'iculos correspondientes.
+Distributed embedded processors fast became the central stage in the
+architecture of embedded systems. With multiple processors, a distributed
+embedded system is more scalable towards either high performance or low
+power. The reduced workload on each processor creates new opportunities for
+dynamic voltage scaling (DVS); meanwhile the performance can be compensated by
+increased parallelism. However, distributed programming on embedded processors
+was very difficult and the well-established parallel programming paradigms
+were not available to embedded platforms. 
+
+In recent years several mature techniques for high level abstractions for
+inter-processor communication are available, such as Message Passing Interfaces
+(MPI), the problem is that these abstraction layers require extensive
+system resources with comprehensive operating systems support, which may not be
+available to an embedded platform.
+
+Fortunately, the recent development of full-fledged embedded platforms makes 
+it possible for distributed programming in embedded applications. In a paper
+call "MPI for Embedded Systems: A Case Study" the author implemented an image
+Aprocessing algorithm with MPI on voltage scalable Itsy pocket computers. 
+
+As a result of these article the author confirmed that the high-level distributed 
+programming tools were readily available to facilitate the design and 
+exploration of distributed embedded applications. However emphasiese that the 
+communication mechanism of MPI needs further study for adapting MPI to a wider 
+scope of embedded applications.
+
+Believe it or not there are works 
+\cite{Saldana} \cite{Gallego} \cite{McMahon} related to Jinfeng's
+recomendation. They describe proof-of-concept of MPI implementations for 
+embedded systems, showing an increasing interest in the topic. 
+
+These papers also discuss different ways to address the limitations found in 
+typical embedded systems. For example, one of the first aproaches was 
+"eMPI/eMPICH: Embedding MPI" by
+McMahon and A. Skjellum presented in the MPI conference in 1996; the authors 
+discussed efforts toward providing embeddable versions of MPI for use in 
+memory constrained systems (such as embedded and
+current IoT systems). As a result of this paper , the authors prove that the
+size of the eMPICH libraries are much smaller than that of the
+the original library. Assuming that the devices  and operating system
+can be made suitably small as well, it appears clear that use of MPI in
+memory-constrained systems is an achievable goal.
+
+Another diferent aproach was Azequia-MPI \cite{Gallego}, this is an MPI 
+implementation that uses threads instead of processes making MPI applications 
+more lightweight, Although, it requires an operating system that supports 
+threads, which in embedded systems it is not always available. 
+
+In recent years there has been some studies in this field. One of the
+firsts is the adaption of the MPI protocol for embedded systems , LMPI
+\cite{Liu} (Light Message Passing Interface). The noble idea of LMPI is
+separation of its server part (LMPI server) and the very thin client part (LMPI
+client). Both parts can reside on different hardware or on the same hardware.
+Multiple clients can be associated with a server. LMPI servers support full
+capability of MPI and can be implemented using pre-existing MPI implementation.
+Although LMPI is dedicated to embedded systems, to demonstrate the benefits of
+LMPI and show some initial results, they built LMPI server using MPICH on a
+non-embedded system. LMPI client consumes far less computation and
+communication
+bandwidth than typical implementations of MPI, such as MPICH. As a result, LMPI
+client is suitable for embedded systems with limited computation power and
+memory. They demonstrated the low overhead of LMPI clients on Linux
+workstations, which is as low as 10\% of MPICH for two benchmark applications.
+LMPI clients are highly portable because they don't rely on the operating
+system
+support. All they require from the embedded system is networking support to the
+LMPI server.
+
+As we can see very few researchers have studied high level distributed programming
+in embedded systems
+
 \newpage
-En muy raros casos, alg'un cap'itulo de tesis no requerir'a el uso de referencias bibliogr'aficas (por ejemplo, el cap'itulo de conclusiones o de trabajo futuro). En esos casos, usted no tendr'a que incluir referencias al final del cap'itulo, que es justamente lo que se hace en el presente caso.
 
 \clearpage

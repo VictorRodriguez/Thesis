@@ -1,6 +1,6 @@
 %Empieza configuracion de capitulo
 \setstretch{1.0}
-\titleformat{\chapter}[block]{\Large\bfseries}{CAP'ITULO \Huge\thechapter\vspace{25 pt}}{0 pt}{\\\fontsize{26}{36}\selectfont}
+\titleformat{\chapter}[block]{\Large\bfseries}{CHAPTER \Huge\thechapter\vspace{25 pt}}{0 pt}{\\\fontsize{26}{36}\selectfont}
 \titlespacing{\chapter}{0 pt}{30 pt}{50 pt}[0 pt]
 \titleformat{\section}{\Large\bfseries}{\thesection}{0 pt}{\hspace{30 pt}}
 \titleformat{\subsection}{\large\bfseries}{\thesubsection}{0 pt}{\hspace{30 pt}}
@@ -10,34 +10,63 @@
 \fancyfoot[CO,CE]{}
 %Termina configuracion de capitulo
 
-\chapter{Marco Te'orico} %Cambia Marco Te'orico al nombre de tu capitulo
+\chapter{Objectives} %Cambia Marco Te'orico al nombre de tu capitulo
 \setstretch{1.5} %Regresa el interlineado a 1.5
 
 \normalsize
 
-\section{Contenido del marco te'orico}
+\section{General Objective}
 \noindent
-Normalmente, el cap'itulo 2 del trabajo de investigaci'on lleva el marco te'orico, es decir, aqu'ellas cosas que ya se saben sobre el tema a investigar, que son de dominio p'ublico y que por tanto se deben de mencionar antes de presentar propiamente la propuesta de investigaci'on (o los resultados del proyecto, cuando se trate de la tesis definitiva).
 
-\subsection{Caracter'isticas generales del marco te'orico}
+The main objective is to present a methodlogy to crate a self sustainable
+network of ultra-low-voltage microprocessors platforms. It means the embedded 
+devices interconected could process their own workload without the need of an 
+external compute system
+
+The purpose of this methodology is to give an experienced IoT  developer 
+enough information to replicate the study. At the same time it offers the theoretical 
+underpinning for understanding which method, set of methods, or so-called “best 
+practices” can be applied an specific case
+
+
+\section{Justification}
 \noindent
-Es muy probable que en alg'un momento usted deba presentar alguna ecuaci'on, tal vez generada por usted o encontrada en alguna fuente. Cuando usted incluya ecuaciones en su documento, identif'iquelas con un par de n'umeros entre par'entesis, puestos despu'es de la ecuaci'on, de tal forma que el primer n'umero represente el cap'itulo y el segundo n'umero identifique el orden de la ecuaci'on en el cap'itulo. Referirse a la secci'on 4.3 para ver m'as detalles.
 
-En el marco te'orico, se recomienda seguir la norma: ``poco, pero selecto'' \cite{Demo:comunicacion}. Esto quiere decir que uno debe dar toda la informaci'on relevante necesaria para entender el tema de investigaci'on, sin saturar al lector de informaci'on trivial y poco relacionada con el tema pero sin omitir puntos importantes. Se debe ser claro y conciso en la expresi'on.
+The development of wireless sensor networks has reached a point where each 
+individual node of a network may store and deliver a massive amount of 
+(sensor-based) information at once or over time. Right now the total amount of 
+user data (data payload) to be stored or processed doubles every two years. Consequently,
+data will become a problem for traditional data aggregation strategies 
+traffic-wise as well as with regard to energy efficiency. 
 
-\subsection{Algunas recomendaciones sobre el marco te'orico}
-\noindent
-En algunos casos, en los que una secci'on de un cap'itulo se necesite subdividir en temas a'un m'as espec'ificos, se pueden usar subsecciones como 'esta, en la que el t'itulo (que comienza con un n'umero como 2.1.2) se escribe en negritas con letra Times de tama'no 12.
+These problems start to be relevant in current industries. Such is the case of 
+the Aircraft industry. On March of 2013 Virgin Atlantic was preparing for a 
+significant increase in data as it embraces the internet of things, with a new fleet of highly 
+connected planes each expected to create over half a terabyte of data per flight.
 
-Para el marco te'orico, como para los dem'as cap'itulos, uno debe escribir con sus propias palabras el texto, reservando las palabras de otros autores s'olo para citas expl'icitas, que deben siempre llevar la correspondiente referencia bibliogr'afica \cite{Demo:tesis_autor}.
+Speaking to the Computerworld UK magazine at the Economist Technology Frontiers 2103 event, Virgin 
+Atlantic IT director David Bulman said that the airline company was expecting an 
+"explosion" of information generated from a growing number of sources, from 
+employees and customers to cargo containers and planes.
 
-Entre el final de una secci'on y la secci'on siguiente se debe dejar una l'inea en blanco, tal y como ocurre a continuaci'on.
+In particular, the introduction of Boeing 787 aircraft ordered by Virgin 
+Atlantic for delivery in 2014  was expected to dramatically increase the volume 
+of data the airline will need to deal with.
 
-\section{Formato del marco te'orico y dem'as cap'itulos}
-\noindent
-A continuaci'on se presenta informaci'on general sobre el formato de los diferentes cap'itulos de la propuesta o del documento final. Para mayor detalle del formato referirse al cap'itulo 4. El texto debe escribirse en texto totalmente justificado con letra Times New Roman de tama'no 12. Los t'itulos de los cap'itulos se ponen en la esquina superior izquierda de la p'agina en que comienzan y deben usar tama'no de letra 24. Los t'itulos de secci'on (2.1, 2.2, etc.) deben usar tama'no de letra 18, siempre en Times New Roman.
+From the interview Bulman hightlight their current problems: 
 
-Con excepci'on del encabezado de referencias, todos los t'itulos deben ir a la izquierda de la p'agina. El texto debe estar justificado y centrado en la p'agina, dejando m'argenes de 3 cms a la izquierda y 2 cms a la derecha de la p'agina y 2 cms arriba y debajo de cada p'agina sin considerar el encabezado y pie de p'agina. No se olvide de numerar las p'aginas en la parte inferior central de cada inicio de cap'itulo y en la parte superior derecha para las siguientes p'aginas.
+\say{The challenge is what do you do with that amount of data when you are getting 
+terabytes of data a day off your various airplanes? We are getting to the stage 
+right now where we cannot deal with that much}
+
+He added: 
+
+\say{If you are talking that level of data you can't just chuck ten disks 
+into your data centre anymore, you have to look at cloud based solutions and how 
+you can store data.}
+
+As we can see the lack of standard solutions for self sustainable networks is 
+creating real problems among the industry
 
 
 \clearpage
