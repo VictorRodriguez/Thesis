@@ -1,103 +1,231 @@
 %Empieza configuracion de capitulo
 \setstretch{1.0}
-\titleformat{\chapter}[block]{\Large\bfseries}{CHAPTER \Huge\thechapter\vspace{25 pt}}{0 pt}{\\\fontsize{26}{36}\selectfont}
+\titleformat{\chapter}[block]{\Large\bfseries}{CAP'ITULO \Huge\thechapter\vspace{25 pt}}{0 pt}{\\\fontsize{26}{36}\selectfont}
 \titlespacing{\chapter}{0 pt}{30 pt}{50 pt}[0 pt]
 \titleformat{\section}{\Large\bfseries}{\thesection}{0 pt}{\hspace{30 pt}}
 \titleformat{\subsection}{\large\bfseries}{\thesubsection}{0 pt}{\hspace{30 pt}}
 \pagestyle{fancy}
-\fancyhead[LO,LE]{\footnotesize\textit{\leftmark}}
+\fancyhead[LO,LE]{\footnotesize\emph{\leftmark}}
 \fancyhead[RO,RE]{\thepage}
 \fancyfoot[CO,CE]{}
 %Termina configuracion de capitulo
 
-\chapter{State of the Art} %Cambia al nombre de tu capitulo
+\chapter{Theoretical Framework}
 \setstretch{1.5} %Regresa el interlineado a 1.5
 
 \normalsize
-
-\section{Related Work}
 \noindent
 
-First of all we have to understand that before the IoT trend and all the
-efforts to standarize the comunnication among the IoT systems (like AllJoin and
-Open Interconect mentioned before) there was another
-huge trend called Embedded System. An embedded system is a computer system 
-designed to perform one or a few dedicated functions. Contrary to what happens 
-with general purpose computers (such as a personal computer or PC) that are 
-designed to cover a wide range of needs, embedded systems are designed to meet 
-specific needs.
+This is a new topic that will require quite a few topics to fully understand
+further experiments and why we decided to do them. We will try to cover as much
+of the topics needed to fully understand the problem and the propoused
+solution. However will not cover deep topics as Operating Systems architecture
+nor parallel programing concepts.
 
-Distributed embedded processors fast became the central stage in the
-architecture of embedded systems. With multiple processors, a distributed
-embedded system is more scalable towards either high performance or low
-power. The reduced workload on each processor creates new opportunities for
-dynamic voltage scaling (DVS); meanwhile the performance can be compensated by
-increased parallelism. However, distributed programming on embedded processors
-was very difficult and the well-established parallel programming paradigms
-were not available to embedded platforms. 
 
-In recent years several mature techniques for high level abstractions for
-inter-processor communication are available, such as Message Passing Interfaces
-(MPI), the problem is that these abstraction layers require extensive
-system resources with comprehensive operating systems support, which may not be
-available to an embedded platform.
+\section{The need of parallel computing}
+\noindent
 
-Fortunately, the recent development of full-fledged embedded platforms makes 
-it possible for distributed programming in embedded applications. In a paper
-call "MPI for Embedded Systems: A Case Study" the author implemented an image
-Aprocessing algorithm with MPI on voltage scalable Itsy pocket computers. 
+Computer technology has made incredible progress in the roughly 60 years since
+the first general-purpose electronic computer was created. Today, less than 500
+USD will purchase a personal computer that has more performance, more main
+memory, and more disk storage than a computer bought in 1985 for 1 million
+dollars. This rapid improvement has come both from advances in the technology
+used to build computers and from innovation in computer design. \cite{Hennessy}
 
-As a result of these article the author confirmed that the high-level distributed 
-programming tools were readily available to facilitate the design and 
-exploration of distributed embedded applications. However emphasiese that the 
-communication mechanism of MPI needs further study for adapting MPI to a wider 
-scope of embedded applications.
+As we have seen it was around the years 2003 to 2005 that a dramatic change
+seized the semiconductor industry and the manufactures of processors. The
+increasing of computing performance in processors, based on simply screwing up
+the clock frequency, could not longer be holded. Scaling of the technology
+processes, leading to smaller channel lengths and shorter switching times in
+the devices, and measures like instruction-level-parallelism and out-of-order
+processing, leading to high fill rates in the processor pipelines, were the
+guarantors to meet Moore’s law.\cite{AMDAHL}
 
-Believe it or not there are works 
-\cite{Saldana} \cite{Gallego} \cite{McMahon} related to Jinfeng's
-recomendation. They describe proof-of-concept of MPI implementations for 
-embedded systems, showing an increasing interest in the topic. 
+The answer of the industry to that development, in order to still meet Moore’s
+law, was the shifting to real parallelism by doubling the number of processors
+on one chip die. This was the birth of the multi-core area. The benefits of
+multi-core computing, to meet Moore’s law and to limit the power density at the
+same time, at least at the moment this statement holds, are also the reason
+that parallel computing based on multi-core processors is underway to capture more
+and more applications, the world of embedded processing for example.\cite{MATTSON}
 
-These papers also discuss different ways to address the limitations found in 
-typical embedded systems. For example, one of the first aproaches was 
-"eMPI/eMPICH: Embedding MPI" by
-McMahon and A. Skjellum presented in the MPI conference in 1996; the authors 
-discussed efforts toward providing embeddable versions of MPI for use in 
-memory constrained systems (such as embedded and
-current IoT systems). As a result of this paper , the authors prove that the
-size of the eMPICH libraries are much smaller than that of the
-the original library. Assuming that the devices  and operating system
-can be made suitably small as well, it appears clear that use of MPI in
-memory-constrained systems is an achievable goal.
+Where do we find these task parallelism in embedded systems? A good example are
+automotive applications Multi-core technology in combination with a broadband
+efficient network system offers the possibility to save components, too, by
+migrating functionality that is now distributed among a quite large number of
+compute devices to fewer cores.
 
-Another diferent aproach was Azequia-MPI \cite{Gallego}, this is an MPI 
-implementation that uses threads instead of processes making MPI applications 
-more lightweight, Although, it requires an operating system that supports 
-threads, which in embedded systems it is not always available. 
 
-In recent years there has been some studies in this field. One of the
-firsts is the adaption of the MPI protocol for embedded systems , LMPI
-\cite{Liu} (Light Message Passing Interface). The noble idea of LMPI is
-separation of its server part (LMPI server) and the very thin client part (LMPI
-client). Both parts can reside on different hardware or on the same hardware.
-Multiple clients can be associated with a server. LMPI servers support full
-capability of MPI and can be implemented using pre-existing MPI implementation.
-Although LMPI is dedicated to embedded systems, to demonstrate the benefits of
-LMPI and show some initial results, they built LMPI server using MPICH on a
-non-embedded system. LMPI client consumes far less computation and
-communication
-bandwidth than typical implementations of MPI, such as MPICH. As a result, LMPI
-client is suitable for embedded systems with limited computation power and
-memory. They demonstrated the low overhead of LMPI clients on Linux
-workstations, which is as low as 10\% of MPICH for two benchmark applications.
-LMPI clients are highly portable because they don't rely on the operating
-system
-support. All they require from the embedded system is networking support to the
-LMPI server.
+\section{Distributed Systems}
+\noindent
 
-As we can see very few researchers have studied high level distributed programming
-in embedded systems
+The need of more complex and smart applications has risen the bar to create
+distributed systems based on parallel embedded platforms. By definition: A
+distributed system consists of a collection of autonomous computers, connected
+through a network and distribution middleware, which enables computers to
+coordinate their activities and to share the resources of the system, so that
+users perceive the system as a single, integrated computing facility.
 
-\newpage
+Advantages:
+
+\begin{enumerate}
+
+\item \textbf{Partioning Workload}:
+
+By partitioning the workload onto multiple processors, each processor is now
+responsible for only a fraction of the workload. The processors can now afford
+to slow down by dynamic voltage scaling (DVS) to run at more power-efficient
+states, and the degraded performance on each processor can still contribute to
+an increased system-wide performance by the increased parallelism.
+
+\item \textbf{Heterogeneous HW}:
+Another advantage with a distributed scheme is that heterogeneous hardware such
+as DSP and other accelerators can further improve power efficiency of various
+stages of the computation through specialisation.
+
+\end{enumerate}
+
+
+Disadvantages:
+
+\begin{enumerate}
+\item \textbf{Network}: Despite the fact the distributed systems may have
+many attractive properties, they pay a higher price for message-passing
+communications. Each node now must handle not only communication
+with the external world, but also extra communication on the internal network.
+As a result, even if the actual data payload is not large
+on an absolute scale, the communication appears very expensive and
+does not scale to a few more nodes
+
+\item \textbf{Lack of optimised OS}: A typical embedded system often does
+not contain an operating system. Crafting distributed programs on such a
+bare-bone platform is extremely difficult and error-prone. Although many
+higher-level abstractions such as Message Passing Interfaces (MPI)
+have been proposed to facilitate distributed programming, these abstraction
+layers require extensive system resources with comprehensive operating systems
+support, which may not be available to an embedded platform
+\end{enumerate}
+
+We will try to fulfill these minimal requirements described by (Tanaka) in our
+system:
+
+\begin{itemize}
+\item  Multiple autonomous components
+\item Components are not shared by all users
+\item Software runs in concurrent processes on different processors
+\item Resource Sharing : Ability to use any hardware, software or data anywhere in
+the system
+\item Openness: Differences in data representation of interface types on different
+processors (of different vendors) have to be resolved
+\item Concurrency : Components in distributed systems are executed in concurrent
+processes
+\item Scalability: Components should not need to be changed when scale of a system
+increases
+\item Fault Tolerance: Distributed systems must maintain availability even at low
+levels of hardware/software/network reliability.
+\item Transparency: Distributed systems should be perceived by users and
+application programmers as a whole rather than as a collection of cooperating components.
+\end{itemize}
+
+\section{Embedded Linux systems}
+
+Computers are everywhere , this fact, of course, is not a surprise to anyone 
+who hasn't been living in a cave during the past 25 years or so. And you
+probably know that computers aren't just on our desktops, in our kitchens, and, 
+increasingly, in our living rooms holding our music collections. They're also 
+in our microwave ovens, our regular ovens, our cellphones, and our portable 
+digital music players.
+
+Until not too long ago, embedded systems were not very powerful, and they ran
+special-purpose, proprietary operating systems that were very different from
+industry-standard ones. (Plus, they were much harder to develop for.) Today,
+embedded computers are as powerful as, if not more than, a modern home
+computer. (Consider the high-end gaming consoles, for example.)
+
+Along with this power comes the capability to run a full-fledged operating
+system such as Linux. Using a system such as Linux for an embedded product
+makes a lot of sense. A large community of developers are making it possible.
+The development environment and the deployment environment can be surprisingly
+similar, which makes your life as a developer much easier. And you have both
+the security of a protected address space that a virtual memory-based system
+gives you, and the power and flexibility of a multiuser, multiprocess system.
+That's a good deal all around. For this reason, companies all over the world
+are using Linux on many devices
+
+In the begining embedded systems were most comontly resource constrained
+compared to the typical desktop PC. Embedded systems often had limited memory,
+small or no hard drives, and sometimes no external network connectivity.
+Frequently, the only user interface was a serial port and some LEDs. But today
+there has been a change in the last point: external network connectivity.
+
+The internet of things is the evolution of the embedded world in terms of
+conectivity. The IoT systems keep being resource constrained but with the
+capability to be connected to an internet network where to send the data to
+external servers (where it will be analized,stored and presented in a web base
+user interface to the end user)
+
+In this new world the advantages (flexibility and scalability) of ussing Linux
+as the core of the OS Embedded Distributions turn out to make a nightmare for
+the embedded developers with too many options and no standard work to re use.
+In the end the developer ended with a "frankenstain" embedded linux
+distrbution with very low manteinability and robustness. In 2010 there was a
+change in the industry of embedded systems, the anounce of a project to solve
+these kind of problems: The Yocto project.
+
+\section{The Yocto project}
+\noindent
+The Yocto Project is an open source collaboration project that provides
+templates, tools and methods to help you create custom Linux-based systems for
+embedded products regardless of the hardware architecture. It was founded in
+2010 as a collaboration among many hardware manufacturers, open-source
+operating systems vendors, and electronics companies to bring some order to the
+chaos of embedded Linux development.
+
+As an open source project, the Yocto Project operates with a hierarchical
+governance structure based on meritocracy and managed by its chief architect,
+Richard Purdie, a Linux Foundation fellow. This enables the project to remain
+independent of any one of its member organizations, who participate in various
+ways and provide resources to the project.
+
+Why use the Yocto Project? It's a complete embedded Linux development
+environment with tools, metadata, and documentation. The
+free tools are easy to get started with, powerful to work with (including
+emulation environments, debuggers, an Application Toolkit Generator, etc.) and
+they allow projects to be carried forward over time without causing you to lose
+optimizations and investments made during the project’s prototype phase. The
+Yocto Project fosters community adoption of this open source technology
+allowing its users to focus on their specific product features and development.
+
+The Yocto Project through the Poky build tool provides an open source
+development environment (Figure XXX) targeting the ARM, MIPS, PowerPC and x86 
+architectures for a variety of platforms including x86-64 and emulated ones. 
+You can use components from the the Yocto Project to design, develop, build, 
+debug, simulate, and test the complete software stack using Linux, the X Window
+System, GNOME Mobile-based application frameworks, and Qt frameworks. 
+
+For complete information on the Yocto Project, you should check out the Yocto
+Project Website. You can find the latest builds, breaking news, full
+development documentation, and a rich Yocto Project Development Community into
+which you can tap.
+
+
+\section{Power and Performance}
+
+\noindent
+When we say one computer is faster than another is, what do we mean? The user
+of a desktop computer may say a computer is faster when a program runs in less
+time, while an Amazon.com administrator may say a computer is faster when it
+completes more transactions per hour. The computer user is interested in 
+reducing response time (the time between the start and the completion of an 
+event) also referred to as execution time. The administrator of a large data 
+processing center may be interested in increasing throughput (the total amount 
+of work done in a given time.) In comparing design alternatives, we often want
+to relate the performance of two different computers, say, X and Y. The phrase 
+“X is faster than Y” is used here to mean that the response time or execution 
+time is lower on X than on Y for the given task. In particular, “X is n times 
+faster than Y” will mean (Xizhou Feng)
+
+
 
 \clearpage

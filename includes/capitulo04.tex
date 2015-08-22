@@ -10,210 +10,222 @@
 \fancyfoot[CO,CE]{}
 %Termina configuracion de capitulo
 
-\chapter{Reglas de Presentaci'on} %Cambia al nombre de tu capitulo
+\chapter{Theoretical Framework}
 \setstretch{1.5} %Regresa el interlineado a 1.5
 
 \normalsize
 \noindent
-Este manual de tesis se basa, en parte, del estilo establecido por la Rector'ia de la Universidad Virtual (UV) del Sistema Tecnol'ogico de Monterrey \cite{Demo:manualUV} y publicado por la American Psychological Association (APA) \cite{Demo:APA,Demo:manualAPA}. Los alumnos de las maestr'ias de la EGIA (Escuela de Graduados en Ingenier'ia y Arquitectura) del ITESM Campus Guadalajara deben considerar que es imprescindible apegarse a las reglas de estilo que se presentan en este manual.
 
-Las siguientes reglas de formato son aplicables a las maestr'ias ofrecidas por la EGIA. Aseg'urate de seguirlas minuciosamente. Este manual est'a escrito estrictamente de acuerdo a las reglas generales y particulares que se mencionan a continuaci'on, as'i que le sirve como modelo para escribir tanto su documento de anteproyecto de tesis, como su documento final.
+This is a new topic that will require quite a few topics to fully understand
+further experiments and why we decided to do them. We will try to cover as much
+of the topics needed to fully understand the problem and the propoused
+solution. However will not cover deep topics as Operating Systems architecture
+nor parallel programing concepts.
 
-\section{Reglas generales}
+
+\section{The need of parallel computing}
 \noindent
+
+Computer technology has made incredible progress in the roughly 60 years since
+the first general-purpose electronic computer was created. Today, less than 500
+USD will purchase a personal computer that has more performance, more main
+memory, and more disk storage than a computer bought in 1985 for 1 million
+dollars. This rapid improvement has come both from advances in the technology
+used to build computers and from innovation in computer design. \cite{Hennessy}
+
+As we have seen it was around the years 2003 to 2005 that a dramatic change
+seized the semiconductor industry and the manufactures of processors. The
+increasing of computing performance in processors, based on simply screwing up
+the clock frequency, could not longer be holded. Scaling of the technology
+processes, leading to smaller channel lengths and shorter switching times in
+the devices, and measures like instruction-level-parallelism and out-of-order
+processing, leading to high fill rates in the processor pipelines, were the
+guarantors to meet Moore’s law.\cite{AMDAHL}
+
+The answer of the industry to that development, in order to still meet Moore’s
+law, was the shifting to real parallelism by doubling the number of processors
+on one chip die. This was the birth of the multi-core area. The benefits of
+multi-core computing, to meet Moore’s law and to limit the power density at the
+same time, at least at the moment this statement holds, are also the reason
+that parallel computing based on multi-core processors is underway to capture more
+and more applications, the world of embedded processing for example.\cite{MATTSON}
+
+Where do we find these task parallelism in embedded systems? A good example are
+automotive applications Multi-core technology in combination with a broadband
+efficient network system offers the possibility to save components, too, by
+migrating functionality that is now distributed among a quite large number of
+compute devices to fewer cores.
+
+
+\section{Distributed Systems}
+\noindent
+
+The need of more complex and smart applications has risen the bar to create
+distributed systems based on parallel embedded platforms. By definition: A
+distributed system consists of a collection of autonomous computers, connected
+through a network and distribution middleware, which enables computers to
+coordinate their activities and to share the resources of the system, so that
+users perceive the system as a single, integrated computing facility.
+
+Advantages:
+
 \begin{enumerate}
-	\item Imprime solamente en un lado de la p'agina.
-	\item Usa sangr'ias para cada p'arrafo nuevo, a excepci'on del primer p'arrafo que sigue a un cap'itulo, secci'on o subsecci'on.
-	\item Inicia cada cap'itulo en una p'agina nueva.
-	\item No dejes l'ineas aisladas al inicio de una p'agina. Escribe por lo menos un p'arrafo en su parte superior de al menos cuatro l'ineas.
-	\item Utilizar una p'agina nueva para las referencias bibliogr'aficas como se muestra en este manual.
-	\item Separa las s'ilabas siguiendo estrictamente las reglas gramaticales.
-	\item Los trabajos producidos en impresoras de puntos son inaceptables, as'i como aqu'ellos producidos en otros medios que no aseguren una alta calidad de impresi'on. Se recomienda utilizar impresoras del tipo postscript.
-	\item Centra los t'itulos de las p'aginas preliminares y la bibliograf'ia. Por ejemplo: Dedicatoria, Agradecimientos, Resumen, Contenido, Lista de Tablas y figuras y Bibliograf'ia (ver como ejemplo las p'aginas preliminares de este manual).
-	\item Los cap'itulos del cuerpo del documento deben estar justificados a la izquierda y escritas en negritas. El t'itulo del cap'itulo correspondiente lleva may'usculas al inicio de todas las palabras, a excepci'on de las palabras cortas como: de, un, una, el, la, etc. Por ejemplo: \textbf{Dise'no de una Plataforma de Decodificaci'on}.
-	\item Las subdivisiones de los cap'itulos deben estar escritas en negritas y min'usculas a excepci'on de la primera letra de la oraci'on.
-	\item La silustraciones y tablas podr'an ser presentadas horizontalmente si no caben de manera vertical.
+
+\item \textbf{Partioning Workload}:
+
+By partitioning the workload onto multiple processors, each processor is now
+responsible for only a fraction of the workload. The processors can now afford
+to slow down by dynamic voltage scaling (DVS) to run at more power-efficient
+states, and the degraded performance on each processor can still contribute to
+an increased system-wide performance by the increased parallelism.
+
+\item \textbf{Heterogeneous HW}:
+Another advantage with a distributed scheme is that heterogeneous hardware such
+as DSP and other accelerators can further improve power efficiency of various
+stages of the computation through specialisation.
+
 \end{enumerate}
 
-\section{Tipo de letra}
-\noindent
+
+Disadvantages:
+
 \begin{enumerate}
-	\item Si emplea el procesador de textos Word\copyright  de Microsoft\textsuperscript{\texttrademark} o alguno similar, utilice letra de tipo Times New Roman de tama'no 12 puntos para la redacci'on del documento. Si usted escribe el documento en \LaTeX, utilice el layout disponible para tal efecto. No use letra cursiva excepto para las palabras cuyo origen sea de un idioma diferente al Espa'nol.
-	\item Usa el mismo tipo de letra para todo el manuscrito; incluyendo las p'aginas preliminares, las referencias bibliogr'aficas y los anexos.
-	\item Podr'as usar tama'nos reducidos de letras solamente en los pies de p'agina, pies de ilustraciones y tablas y citas textuales de otros trabajos.
-	\item Usa el mismo tipo de letra para numerar ilustraciones y tablas, el cual puede ser diferente del tipo de letra usado para el texto del trabajo\footnote{De preferencia utilizar todas las especificaciones de este manual. En caso de utilizar, por ejemplo, el editor de texto Word ajustar las caracter'isticas del mismo para que cumplan con todas las especificaciones.\label{footnote}}.
-	\item Usa numeraci'on ar'abiga (1, 2, 3, etc.) en la numeraci'on de secciones, subsecciones y en los n'umeros de p'agina. No se permiten cursivas para estos n'umeros.
+\item \textbf{Network}: Despite the fact the distributed systems may have
+many attractive properties, they pay a higher price for message-passing
+communications. Each node now must handle not only communication
+with the external world, but also extra communication on the internal network.
+As a result, even if the actual data payload is not large
+on an absolute scale, the communication appears very expensive and
+does not scale to a few more nodes
+
+\item \textbf{Lack of optimised OS}: A typical embedded system often does
+not contain an operating system. Crafting distributed programs on such a
+bare-bone platform is extremely difficult and error-prone. Although many
+higher-level abstractions such as Message Passing Interfaces (MPI)
+have been proposed to facilitate distributed programming, these abstraction
+layers require extensive system resources with comprehensive operating systems
+support, which may not be available to an embedded platform
 \end{enumerate}
 
-\section{Ecuaciones}
+We will try to fulfill these minimal requirements described by (Tanaka) in our
+system:
+
+\begin{itemize}
+\item  Multiple autonomous components
+\item Components are not shared by all users
+\item Software runs in concurrent processes on different processors
+\item Resource Sharing : Ability to use any hardware, software or data anywhere in
+the system
+\item Openness: Differences in data representation of interface types on different
+processors (of different vendors) have to be resolved
+\item Concurrency : Components in distributed systems are executed in concurrent
+processes
+\item Scalability: Components should not need to be changed when scale of a system
+increases
+\item Fault Tolerance: Distributed systems must maintain availability even at low
+levels of hardware/software/network reliability.
+\item Transparency: Distributed systems should be perceived by users and
+application programmers as a whole rather than as a collection of cooperating components.
+\end{itemize}
+
+\section{Embedded Linux systems}
+
+Computers are everywhere , this fact, of course, is not a surprise to anyone 
+who hasn't been living in a cave during the past 25 years or so. And you
+probably know that computers aren't just on our desktops, in our kitchens, and, 
+increasingly, in our living rooms holding our music collections. They're also 
+in our microwave ovens, our regular ovens, our cellphones, and our portable 
+digital music players.
+
+Until not too long ago, embedded systems were not very powerful, and they ran
+special-purpose, proprietary operating systems that were very different from
+industry-standard ones. (Plus, they were much harder to develop for.) Today,
+embedded computers are as powerful as, if not more than, a modern home
+computer. (Consider the high-end gaming consoles, for example.)
+
+Along with this power comes the capability to run a full-fledged operating
+system such as Linux. Using a system such as Linux for an embedded product
+makes a lot of sense. A large community of developers are making it possible.
+The development environment and the deployment environment can be surprisingly
+similar, which makes your life as a developer much easier. And you have both
+the security of a protected address space that a virtual memory-based system
+gives you, and the power and flexibility of a multiuser, multiprocess system.
+That's a good deal all around. For this reason, companies all over the world
+are using Linux on many devices
+
+In the begining embedded systems were most comontly resource constrained
+compared to the typical desktop PC. Embedded systems often had limited memory,
+small or no hard drives, and sometimes no external network connectivity.
+Frequently, the only user interface was a serial port and some LEDs. But today
+there has been a change in the last point: external network connectivity.
+
+The internet of things is the evolution of the embedded world in terms of
+conectivity. The IoT systems keep being resource constrained but with the
+capability to be connected to an internet network where to send the data to
+external servers (where it will be analized,stored and presented in a web base
+user interface to the end user)
+
+In this new world the advantages (flexibility and scalability) of ussing Linux
+as the core of the OS Embedded Distributions turn out to make a nightmare for
+the embedded developers with too many options and no standard work to re use.
+In the end the developer ended with a "frankenstain" embedded linux
+distrbution with very low manteinability and robustness. In 2010 there was a
+change in the industry of embedded systems, the anounce of a project to solve
+these kind of problems: The Yocto project.
+
+\section{The Yocto project}
 \noindent
-\begin{enumerate}
-	\item La presentaci'on de las ecuaciones deber'a realizarse con el uso de un editor de ecuaciones.
-	\item Puedes utilizar un estilo de letra diferente al del texto para las ecuaciones.
-	\item Puedes numerar las ecuaciones a trav'es del escrito si lo consideras pertinente. Si es as'i, poner la numeraci'on justificada a la derecha de las ecuaciones. Ejemplo:
-\end{enumerate}
+The Yocto Project is an open source collaboration project that provides
+templates, tools and methods to help you create custom Linux-based systems for
+embedded products regardless of the hardware architecture. It was founded in
+2010 as a collaboration among many hardware manufacturers, open-source
+operating systems vendors, and electronics companies to bring some order to the
+chaos of embedded Linux development.
 
-Si consideramos una transmisi'on de s'imbolos sobre un canal con modulaci'on BPSK (\emph{Binary Phase Shift Keying}) no codificada, y utilizamos una demodulaci'on coherente\footnote{El demodulador conoce la frecuencia y la fase de la onda recibida.\label{footnote}}, la probabilidad de error \begin{math}P_b(e)\end{math} sobre un canal gaussiano se puede expresar bajo la forma [7]:
-\[P_b(e)=Q\left(\sqrt{\frac{2E_b}{N_0}}\right)\]
-donde \begin{math}Q(.)\end{math} es la funci'on de error de una variable aleatoria gaussiana normalizada:
-\[Q(x)=\int_x^\infty \frac{1}{\sqrt{2\pi}}e^{-\frac{u^2}{2}}du\]
-El l'imite de la capacidad de informaci'on cuando \begin{math}R \to 0\end{math} es derivado de la ecuaci'on \begin{math}\lim_{R \to 0} [1-H_b(e)]=\frac{E_b}{(ln 2) N_0}\end{math}. Re-escribi'endolo, obtenemos:
-\[
-\begin{aligned}
-\frac{E_b}{N_0}&=ln 2(1-H_b(e))\\
-&=ln 2(1+P_b(e)log_2P_b(e)+(1-P_b(e))log_2(1-P_b(e)))
-\end{aligned}
-\]
+As an open source project, the Yocto Project operates with a hierarchical
+governance structure based on meritocracy and managed by its chief architect,
+Richard Purdie, a Linux Foundation fellow. This enables the project to remain
+independent of any one of its member organizations, who participate in various
+ways and provide resources to the project.
 
-\section{Figuras}
+Why use the Yocto Project? It's a complete embedded Linux development
+environment with tools, metadata, and documentation. The
+free tools are easy to get started with, powerful to work with (including
+emulation environments, debuggers, an Application Toolkit Generator, etc.) and
+they allow projects to be carried forward over time without causing you to lose
+optimizations and investments made during the project’s prototype phase. The
+Yocto Project fosters community adoption of this open source technology
+allowing its users to focus on their specific product features and development.
+
+The Yocto Project through the Poky build tool provides an open source
+development environment (Figure XXX) targeting the ARM, MIPS, PowerPC and x86 
+architectures for a variety of platforms including x86-64 and emulated ones. 
+You can use components from the the Yocto Project to design, develop, build, 
+debug, simulate, and test the complete software stack using Linux, the X Window
+System, GNOME Mobile-based application frameworks, and Qt frameworks. 
+
+For complete information on the Yocto Project, you should check out the Yocto
+Project Website. You can find the latest builds, breaking news, full
+development documentation, and a rich Yocto Project Development Community into
+which you can tap.
+
+
+\section{Power and Performance}
+
 \noindent
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.75\textwidth]{images/graph_1.png}
-\caption{Hypothesis of energy efficiency behaivor in embedded cluster}
-\label{fig:4.1}
-\end{figure}
+When we say one computer is faster than another is, what do we mean? The user
+of a desktop computer may say a computer is faster when a program runs in less
+time, while an Amazon.com administrator may say a computer is faster when it
+completes more transactions per hour. The computer user is interested in 
+reducing response time (the time between the start and the completion of an 
+event) also referred to as execution time. The administrator of a large data 
+processing center may be interested in increasing throughput (the total amount 
+of work done in a given time.) In comparing design alternatives, we often want
+to relate the performance of two different computers, say, X and Y. The phrase 
+“X is faster than Y” is used here to mean that the response time or execution 
+time is lower on X than on Y for the given task. In particular, “X is n times 
+faster than Y” will mean (Xizhou Feng)
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.7\textwidth]{images/figura4_2}
-\caption{Comparaci'on del desempe'no de FER entre Turbo2000 y DVB-RCS. Par'ametros de la simulaci'on: Tama'no = 188 bytes, 8 iteraciones, q=4, QPSK y AWGN.}
-\label{fig:4.2}
-\end{figure}
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.9\textwidth]{images/figura4_3}
-\caption{Plataforma Turbo2000.}
-\label{fig:4.3}
-\end{figure}
-
-\section{Tablas}
-\noindent
-Esta secci'on presenta algunos ejemplos de formatos de tablas extra'idas de la referencia \cite{Demo:phdTesis} que se pueden usar en el documento de tesis.
-\begin{table}[H]
-	\begin{center}
-		\begin{tabular}{ | c | c | c | }
-			\hline
-			& & \\[-18pt]
-			\emph{q} bits	&	\emph{L}\subscript{max}	&	\begin{math}\Delta\end{math}\subscript{max} \\[3pt]
-			\hline \hline
-			& & \\[-18pt]
-			2 & 11 & 8 \\[8pt]
-			3 & 33 & 24 \\[8pt]
-			4 & 77 & 82 \\[8pt]
-			5 & 165 & 123 \\[8pt]
-			6 & 341 & 395 \\[5pt]
-			\hline
-		\end{tabular}
-	\end{center}
-	\caption{Din'amica de m'etricas para diferentes valores de q con $R =1/2, E_b/N_0 = 2 dB$ y modulaci'on QPSK.}
-\end{table}
-
-\begin{table}[H]
-	\begin{center}
-	\begin{threeparttable}
-	\begin{tabular}{ | c || c | c | }
-		\hline
-		& & \\[-8pt]
-		Unit'e	&	\# Add./Soustr.	&	\# min(.)	\\[3pt]
-		\hline \hline
-		& & \\[-18pt]CMB			&	22					&	0					\\& & \\[-18pt]\hline
-		& & \\[-18pt]Proc. ACS		&	$2^m \cdot N_a = 64$	&	$N_s \cdot (2^m-1)=48$	\\& & \\[-18pt]\hline
-		& & \\[-18pt]CP			&	$2^m \cdot N_a = 64$	&	$2^m \cdot (N_s-1)=60$	\\& & \\[-18pt]\hline
-		& & \\[-18pt]CIE\tnote{a}	&	$2^{m+1} = 8$		&	$2^m-1=3$			\\& & \\[-18pt]\hline
-		& & \\[-18pt]CCD\tnote{b}	&	1					&	2					\\& & \\[-18pt]\hline
-		& & \\[-18pt]CCA\tnote{b}	&	1					&	2					\\
-		\hline
-	\end{tabular}
-	\setstretch{1.0}
-	\begin{tablenotes}
-		\item[\tiny a]{\tiny No se consideran los sub-bloques de actualizaci'on de los datos extr'insecos.}
-		\item[\tiny b]{\tiny El comparador de salida es considerado como un sumador.}
-	\end{tablenotes}
-	\setstretch{1.5}
-	\end{threeparttable}
-	\end{center}
-	\caption{Complejidad de c'alculo de las unidades del decodificador Turbo2000.}
-\end{table}
-
-\begin{table}[H]
-	\begin{center}
-	\begin{threeparttable}
-	\begin{tabular}{ | l || l | l | l |}
-		\hline
-		& & & \\[-18pt]
-		\textbf{Tratamiento}		&	\textbf{Unidades activas}		&	\textbf{\# Add./Soustr.}	&	\textbf{\# min(.)}	\\[3pt]
-		\hline \hline
-		& & &\\[-18pt]RETOUR 2	&	CMB, Proc. ACS \emph{Retour}&	$22+2^m \cdot N_s$			& $N_s \cdot (2^m-1)$\\& & &\\[-18pt]
-		& & &\\[-18pt]			&						&	86						& 48\\& & &\\[-18pt]\hline
-		& & &\\[-18pt]ALLER 2		&	CMB, Proc. ACS \emph{Aller},&	$22+2^{m+1} \cdot (N_s+1)$	& $N_s \cdot (2^m-1)-1$\\& & &\\[-18pt]
-		& & &\\[-18pt]			&	CP, CIE				&	158						& 111\\& & &\\[-18pt]\hline
-		& & &\\[-18pt]RETOUR 1	&	CMB, Proc. ACS \emph{Retour}&	$22+2^m \cdot N_s$			& $N_s \cdot (2^m-1)$\\& & &\\[-18pt]
-		& & &\\[-18pt]			&						&	86						& 48\\& & &\\[-18pt]\hline
-		& & &\\[-18pt]ALLER 1		&	CMB, Proc. ACS \emph{Aller},&	$24+2^{m+1} \cdot (N_s+1)$	& $N_s \cdot (2^m-1)+3$\\& & &\\[-18pt]
-		& & &\\[-18pt]			&	CP, CIE, CDD, CCA			&	160						& 115\\[3pt]
-		\hline
-	\end{tabular}
-	\end{threeparttable}
-	\end{center}
-	\caption{Complejidad de c'alculo seg'un el tratamiento del decodificador Turbo2000.}
-\end{table}
-
-\section{M'argenes}
-\noindent
-\begin{enumerate}
-	\item El margen izquierdo (del lado del encuadernado) ser'a de tres cent'imetros, incluyendo tablas e ilustraciones. El margen derecho ser'a de dos cent'imetros.
-	\item Los m'argenes superior e inferior ser'an de dos cent'imetros. Esto no incluye los encabezados o pies de p'agina.
-	\item Las p'aginas horizontales deber'an tener en la parte superior de la hoja un margen de tres cent'imetros; para que, al ubicarlas de manera vertical en el manuscrito, este margen coincida con el requerido para el encuadernado.
-\end{enumerate}
-
-\section{Espacios}
-\noindent
-\begin{enumerate}
-	\item El texto del trabajo se har'a a doble espacio como viene en este manual.
-	\item Se permite usar espacio sencillo en el 'indice de contenido, de ilustraciones, de tablas y en los ap'endices.
-	\item El espacio sencillo es obligatorio para citas textuales en p'arrafos de otros autores, pies de figura, pies de tabla y pies de p'agina. Ejemplo de una cita textual \cite{Demo:phdTesis}:\\
-	
-	\setstretch{1.0}
-	\small
-	``Un turbo-c'odigo m-binario est'a compuesto de dos c'odigos CRSC m-binarios id'enticos concatenados en paralelo a trav'es de un permutador. La t'ecnica de terminaci'on circular es utilizada en estos c'odigos bidimensionales para codificar bloques sin hacer uso de bits de terminaci'on. La tasa de codificaci'on global R para un turbo-c'odigo es igual a m/(m + 2).''
-\end{enumerate}
-\setstretch{1.5}
-
-\section{P'aginas}
-\noindent
-\begin{enumerate}
-	\item Se numeran todas las p'aginas a partir de las p'aginas de Dedicatoria, Agradecimientos, Resumen, Contenido, Lista de Tablas y Figuras, Bibliograf'ia, Ap'endices y Vitae.
-	\item No se numeran las p'aginas de la Portada y de Firmas.
-	\item Coloca los n'umeros de p'aginas en el centro del margen inferior al inicio de un cap'itulo, y en el margen superior derecho para las dem'as. Las p'aginas en las que aparecen cuadros y gr'aficas tambi'en deben numerarse y su disposici'on (vertical u horizontal) no debe alterar la posici'on del n'umero de p'agina.
-	\item Las p'aginas que incluyen la Dedicatoria, Agradecimientos, Resumen, Contenido, Lista de Tablas y Figuras utilizan la numeraci'on romana, es decir, I, II, III, IV, etc.
-	\item Las p'aginas a partir del cap'itulo 1 utilizan la numeraci'on ar'abiga, es decir, 1, 2, 3, etc. Esto considera tambi'en a la Bibliograf'ia, los Ap'endices y el Vitae.
-	\item No uses la palabra ``p'agina'' antes de la numeraci'on de las p'aginas.
-	\item Usa el mismo tipo de letra para todos los n'umeros de p'agina.
-\end{enumerate}
-
-\section{Manuscrito final del documento de tesis}
-\noindent
-El manuscrito final de tesis deber'a respetar el siguiente orden:
-\begin{enumerate}
-	\item Portada del empastado (obligatoria): No se coloca el n'umero de p'agina y no se cuenta. Ver primera p'agina del manual.
-	\item P'agina de Firmas (obligatoria): No se coloca el n'umero de p'agina y no se cuenta. Ver segunda p'agina del manual.
-	\item Dedicatoria (opcional): Se coloca p'agina con n'umero romano en min'uscula.
-	\item Ep'igrafe (opcional): Se coloca p'agina con n'umero romano en min'uscula.
-	\item P'agina de reconocimientos o agradecimientos (opcional): Se coloca p'agina con n'umero romano en min'uscula.
-	\item Resumen (obligatorio): Se coloca p'agina con n'umero romano en min'uscula.
-	\item 'Indice de contenido (obligatorio): Se coloca p'agina con n'umero romano en min'uscula.
-	\item Lista de tablas (puede ser requerido): Se coloca p'agina con n'umero romano en min'uscula.
-	\item Lista de ilustraciones o gr'aficas (puede ser requerido): Se coloca p'agina con n'umero romano en min'uscula.
-	\item Lista de abreviaturas (opcional): Se coloca p'agina con n'umero romano en min'uscula.
-	\item Glosario (opcional): Se coloca p'agina con n'umero romano en min'uscula.
-	\item Introducci'on (obligatoria). La introducci'on ser'a considerada como el primer cap'itulo del cuerpo del manuscrito. A partir de aqu'i inicia la paginaci'on ar'abiga.
-	\item Cuerpo del manuscrito (obligatorio): Continu'a la paginaci'on ar'abiga.
-	\newpage
-	\item Referencias bibliogr'aficas (obligatorio): Continu'a la paginaci'on ar'abiga. Utilizar el formato del IEEE como viene en la siguiente p'agina.
-	\item Ap'endices (opcional): Continu'a la paginaci'on ar'abiga.
-	\item Vitae (obligatorio): Continu'a la paginaci'on ar'abiga.
-\end{enumerate}
 
 \clearpage
