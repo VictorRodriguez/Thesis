@@ -16,7 +16,7 @@
 \normalsize
 \noindent
 In this chapter we will cover the architecture of the system, from a HW and SW
-persepective. As well as the MPI implementation in Yocto. There is a brief
+perspective. As well as the MPI implementation in Yocto. There is a brief
 description of the benchmarks (with the fixes implemented). In the end we
 present the description of the topology implemented
 
@@ -27,18 +27,18 @@ As we described in the theoretical framework an embedded system is some
 combination of computer hardware and software, either fixed in capability or
 programmable, that is specifically designed for a particular function.
 
-This project is not differnt from the standard. We will discribe the HW
+This project is not different from the standard. We will describe the HW
 architecture and the SW architecture of the system.
 
     \subsection{HW Platform} 
-    The platform we will use for our experiment is the Intel® AtomTM Processor
+    The platform we will use for our experiment is the Intel® Atom-TM Processor
     E3825. Their main characteristics are described on table:
 
     \begin{center}
     \rowcolors{1}{gray}{white}
     \begin{tabular}{ | l | r |}
         \hline
-        Procesor Number & E3825  \\ \hline
+        Processor Number & E3825  \\ \hline
         \# of cores & 2  \\ \hline
         \# of Thread & 2  \\ \hline
         Clock Speed & 1.3 GHz  \\ \hline
@@ -51,14 +51,14 @@ architecture and the SW architecture of the system.
 
     \subsection{SW Platform} 
     The SW we need for the experiments is a full OS platform. This means that
-    it will require a boot manager, a full filesystem , kernel and user space.
+    it will require a boot manager, a full file system , kernel and user space.
     As we saw on the theoretical framework is hard to have such thing from
     scratch, instead of that we have Yocto project. Yocto project is designed
     to create a full Linux OS for embedded platforms. However there are other
-    ways to boot an OS, either a costum OS from scratch or a generic one as
+    ways to boot an OS, either a custom OS from scratch or a generic one as
     Fedora. We will need to experiment which one is better for our needs.
 
-\section{Mesage Passing Interface (MPI) implementation}
+\section{Message Passing Interface (MPI) implementation}
 \noindent
 
 The Message Passing Interface Standard (MPI) is a message passing library
@@ -74,15 +74,15 @@ The implementation we are going to test are :
 
 \begin{itemize}
     \item Fedora version
-    \item Clear Linux for intel Architecture version
+    \item Clear Linux for Intel Architecture version
     \item Yocto version (ported by Victor Rodriguez)
 \end{itemize}
 
-The diversity of version help us to create a better suport to chose
+The diversity of version help us to create a better support to chose
 optimizations on the experiments. If we just choose an OS without proves that
-this one is the better for what we want, we will end having buttle necks , the
+this one is the better for what we want, we will end having bottle necks , the
 same that industry had 20 years ago to say that an embedded distributed
-platform is not posible.
+platform is not possible.
 
 
 \section{Benchmarks}
@@ -92,10 +92,10 @@ platform is not posible.
 High-performance computing (HPC) is a broad term that at its core represents
 compute intensive applications that need acceleration. Users of application
 acceleration systems range from medical imaging, financial trading, oil and gas
-expiration, to bioscience, data warehousing, data security, and many more. In
+expiration, to bio science, data warehousing, data security, and many more. In
 the information age, the need for acceleration of data processing is growing
 exponentially and the markets deploying HPC for their applications are growing
-every day. The HPC expansion is being fueled by the coprocessor, which is
+every day. The HPC expansion is being fueled by the co-processor, which is
 fundamental to the future of HPC. (High- Performance Computing Applications)
 
 Our main scope will be to find which HPC applications better suit a distributed

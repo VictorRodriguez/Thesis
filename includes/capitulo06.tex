@@ -1,6 +1,6 @@
 %Empieza configuracion de capitulo
 \setstretch{1.0}
-\titleformat{\chapter}[block]{\Large\bfseries}{CAP'ITULO \Huge\thechapter\vspace{25 pt}}{0 pt}{\\\fontsize{26}{36}\selectfont}
+\titleformat{\chapter}[block]{\Large\bfseries}{CHAPTER \Huge\thechapter\vspace{25 pt}}{0 pt}{\\\fontsize{26}{36}\selectfont}
 \titlespacing{\chapter}{0 pt}{30 pt}{50 pt}[0 pt]
 \titleformat{\section}{\Large\bfseries}{\thesection}{0 pt}{\hspace{30 pt}}
 \titleformat{\subsection}{\large\bfseries}{\thesubsection}{0 pt}{\hspace{30 pt}}
@@ -19,10 +19,10 @@
 \section{Find the correct OS}
 \noindent
 
-    The forst aproach was to find the correct Operating system for the test,
-    however this wasn't easy in the begining we startd to create a few
-    experiments. In the end we came up with a full suport of MPi for embedded
-    platfoms suport that the comunity thanks to us a lot.
+    The first approach was to find the correct Operating system for the test,
+    however this wasn't easy in the beginning we started to create a few
+    experiments. In the end we came up with a full support of MPi for embedded
+    platforms support that the community thanks to us a lot.
 
     \subsection {Embedded Distributed Systems: A Case of Study with Clear Linux
     Project for Intel Architecture}
@@ -31,7 +31,7 @@
 
 
 The main objective of this work will be to prove that a distributed embedded
-system (Intel® AtomTM Processor E3825) running real HPC workloads 
+system (Intel® Atom-TM Processor E3825) running real HPC workloads 
 (MPI benchmarks) can be improved by the use of a customized operating system 
 
 
@@ -50,7 +50,7 @@ Advantages:
 
 \begin{enumerate} 
     
-    \item \textbf{Partioning Workload}: 
+    \item \textbf{Partitioning Workload}: 
     By partitioning the workload onto multiple processors, 
     each processor is now responsible for only a fraction of the workload. 
     The processors can now afford to slow down by dynamic voltage scaling 
@@ -61,7 +61,7 @@ Advantages:
     \item \textbf{Heterogeneous HW}: 
     Another advantage with a distributed scheme is that heterogeneous hardware 
     such as DSP and other accelerators can further improve power efficiency 
-    of various stages of the computation through specialisation.
+    of various stages of the computation through specialization.
 
 \end{enumerate}
  
@@ -77,7 +77,7 @@ Disadvantages:
     scale, the communication appears very expensive and does not scale to a few
     more nodes
 
-    \item \textbf{Lack of optimised OS}: A typical embedded system often does
+    \item \textbf{Lack of optimized OS}: A typical embedded system often does
     not contain an operating system. Crafting distributed programs on such a
     bare-bone platform is extremely difficult and error-prone. Although many
     higher-level abstractions such as Message Passing Interfaces (MPI) have been
@@ -107,7 +107,7 @@ capability of an embedded distributed system:
     
     \item Compare an Embedded system with generic SW (Linux base OS
     (Fedora/Ubuntu/Debian) and generic MPI protocol (MPICH)) against a
-    regular development system (with the same OS and MPI toolS)
+    regular development system (with the same OS and MPI tools)
 
     \item Compare an Embedded system with a distributed operating system
     against the same embedded system with custom SW (Linux from scratch system)
@@ -131,8 +131,8 @@ system is listed on the fedora project site home page (http://fedoraproject.org)
 The benchmark we will use to measure the performance is MPIbench. This is a
 program to measure the performance of some critical MPI functions. By critical
 it means that the behavior of these functions can dominate the run time of a
-distributed application. MPBench has now been integrated into LLCbench (Low
-Level Characterisation Benchmarks) 
+distributed application. MP-Bench has now been integrated into LLCbench (Low
+Level Characterization Benchmarks) 
 
 The MPIfunctions that it stress are: 
 
