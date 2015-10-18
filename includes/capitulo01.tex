@@ -17,32 +17,124 @@
 
 \normalsize
 
+This work Will present a detailed study of how could a network of embedded
+systems collaborate among each others to solve parallel problems. After reading
+this project you will understand how this can be done , what are their
+limitations and recommendations if you would like to implement this as part of 
+your current projects. 
+
 \section{Background}
 \vspace{30 pt}
 \noindent
-According to the Oxford Dictionary, the Internet of Things (Iot) is defined as 
-the interconnection via the Internet of computing devices embedded in everyday 
-objects, enabling them to send and receive data. 
+
+Our story begins decades ago. The Computers was finally at the homes and many
+people wonder what was going to be next revolution. There was expectations that
+in close future the Computers was going to be everywhere: in our houses , in
+our cars teaching to the children and controlling the traffic. Well that was
+the dream that seems more like a science fiction story. But as we know that
+dream has came true in many ways.
+
+All this has been possible due to the evolution of computing technology over
+these years. Computer technology has made incredible progress in the roughly 60
+years since the first general-purpose electronic computer was created. Today,
+less than 500 dollars  will purchase a personal computer that has more
+performance, more main memory, and more disk storage than a computer bought in
+1985 for 1 million dollars. This rapid improvement has come both from advances
+in the technology used to build computers and from innovation in computer
+design.
+
+The 1980s saw the rise of the desktop computer based on microprocessors, in the
+form of both personal computers and workstations. The 1990s saw the emergence
+of the Internet and the World Wide Web, the first successful handheld computing
+devices, and the emergence of high-performance digital consumer electronics.
+The extraordinary popularity of cell phones has been obvious since 2000, with
+rapid improvements in functions and sales that far exceed those of the PC.
+These more recent applications use embedded computers.
+
+But lets stop a bit here. A new world came to our vocabulary at those days:
+embedded. What is an embedded system? An embedded system is a special-purpose
+system in which the computer is completely encapsulated by the device it
+controls. Unlike a general-purpose computer, such as a personal computer, an
+embedded system performs pre-defined tasks, usually with very specific
+requirements. Examples of these was the first microwaves, the first cellphones
+and GPS systems. All those electronic gadgets that started to emerge 10 years
+ago.
+
+As we know society loved these new devices and asked for more. Less cost, 
+smaller devices, better power consumption and the capability to make much more
+complex tasks. This was a clear path to follow until a new requirement came up:
+Connectivity. The market started to ask for embedded systems with the capability
+not only to measure but also with the capability to be fully connected to the
+internet all the time. One could start to ask why. Why would I want to have an
+embedded system connected to the internet all the time?. Can you imagine now
+your TV, smart phone or tablet not connected to the Internet? This is the
+technology that old science fiction novels imagine years ago, the internet of
+things.
+
+The Internet of Things (Iot) is defined as the interconnection via the Internet
+of computing devices embedded in everyday objects, enabling them to send and
+receive data. As you can see the differences with traditional embedded systems
+are the internet connectivity and less power consumption
 
 But the entire picture of an IoT solution is quite bigger. A full solution has 
 the following parts:
 
-\begin{itemize}
-\item The Thing (computing devices):  in the Internet 
-of Things, can be a person with a heart monitor implant, a farm animal with a 
-bio chip transponder, an automobile that has built-in sensors to alert the driver 
-when tire pressure is low or any other natural or man-made object that can be 
-assigned an IP address and provided with the ability to transfer data over a 
-network
-\item Network Connection: Network Connections provides connectivity between your 
-computing devices  and the Internet, a network, or another compute device 
+\begin{itemize} 
 
-\item Cloud computing Data centers for storage and Big Data analysis: The data 
-by itself is not useful to the end user. An alarm or recommendation is all that 
-the end user will matter. After the data is sent and stored into the Cloud 
-Computing Data Centers is necessary to run Big Data solutions that present 
-meaning full information to the users.
+\item The Thing (computing devices):  in the Internet of
+Things, can be a person with a heart monitor implant, a farm animal with a bio
+chip transponder, an automobile that has built-in sensors to alert the driver
+when tire pressure is low or any other natural or man-made object that can be
+assigned an IPA address and provided with the ability to transfer data over a
+network 
+
+\item Network Connection: Network Connections provides connectivity
+between your computing devices  and the Internet, a network, or another compute
+device 
+
+\item Cloud computing Data centers for storage and Big Data analysis: The data
+by itself is not useful to the end user. An alarm or recommendation is all that
+the end user will matter. After the data is sent and stored into the Cloud
+Computing Data Centers is necessary to run Big Data solutions that present
+meaning full information to the users.  
+
+\item Presentation Devices: At the end of the day, what do we do with all that
+information we have collected?; one obvious thing is to display the information
+via a dashboard. Dashboards have to be hosted on some kind of display, we call
+that the Presentation Device.  It could be a desktop computer running an 
+application, a tablet or a smart phone accesing to a web page. It could
+even be a purpose-built device like a retail kiosk, intelligent vending machine
+or a control panel. The goal is to present the information comming from the big
+data analysis.
+
 \end{itemize}
+
+
+Like many booming areas of technology, the internet of things
+revolution is plagued by a lack of industry standards. Right now exist two main 
+projects that are compiling to establish standards for the IoT communications: 
+
+\begin{itemize}
+\item Open Interconnect Consortium (OIC): OIC is an industry group whose stated 
+mission is to develop standards and certification for devices involved in the 
+Internet of Things based around CoAP. OIC was created in July 2014 by Intel, 
+Broadcom, and Samsung Electronics.
+
+\item AllJoyn : AllJoyn is an open, universal, secure and programmable software 
+connectivity and services framework that enables companies and enterprises to 
+create interoperable products that can discover, connect and interact directly 
+with other AllJoyn-enabled products.
+\end{itemize}
+
+Despite the efforts to develop standard, certifications and frameworks for 
+interconnection among IoT systems there is no effort to make self sustainable 
+networks. All the current solution send all the data to Cloud Data centers to be 
+analyzed. 
+
+
+
+\section{Problem Definition}
+\noindent
 
 We have to understand that the rise of the internet of things is real. According 
 to a study by the International Data Corporation (IDC), a market research 
@@ -74,29 +166,6 @@ Besides that, the power consumption of these  IoT’s Cloud Data Centers is a ke
 part to considerate. If current trends continue, a petaflop system will require 
 100 megawatts to manage the IoT data. 
 
-Like many booming areas of technology before it, the internet of things
-revolution is plagued by a lack of industry standards. Right now exist two main 
-projects that are compiling to establish standards for the IoT communications: 
-
-\begin{itemize}
-\item Open Interconnect Consortium (OIC): OIC is an industry group whose stated 
-mission is to develop standards and certification for devices involved in the 
-Internet of Things based around CoAP. OIC was created in July 2014 by Intel, 
-Broadcom, and Samsung Electronics.
-\item AllJoyn : AllJoyn is an open, universal, secure and programmable software 
-connectivity and services framework that enables companies and enterprises to 
-create interoperable products that can discover, connect and interact directly 
-with other AllJoyn-enabled products.
-\end{itemize}
-
-Despite the efforts to develop standard, certifications and frameworks for 
-interconnection among IoT systems there is no effort to make self sustainable 
-networks. All the current solution send all the data to Cloud Data centers to be 
-analyzed. 
-
-\section{Problem Definition}
-\noindent
-
 The rise of IoT will lead to an explosion in the volume of data collected, 
 transmitted and processed.This will require novel and optimized solutions. 
 How can we make the IoT networks self sustainable? Make them solve their own compute problems 
@@ -118,46 +187,6 @@ The purpose of this methodology is to give an experienced IoT  developer
 enough information to replicate the study. At the same time it offers the theoretical 
 underpinning for understanding which method, set of methods, or so-called best 
 practices can be applied an specific case
-
-
-\section{Justification}
-\noindent
-
-The development of wireless sensor networks has reached a point where each 
-individual node of a network may store and deliver a massive amount of 
-(sensor-based) information at once or over time. Right now the total amount of 
-user data (data payload) to be stored or processed doubles every two years. Consequently,
-data will become a problem for traditional data aggregation strategies 
-traffic-wise as well as with regard to energy efficiency. 
-
-These problems start to be relevant in current industries. Such is the case of 
-the Aircraft industry. On March of 2013 Virgin Atlantic was preparing for a 
-significant increase in data as it embraces the internet of things, with a new fleet of highly 
-connected planes each expected to create over half a terabyte of data per flight.
-
-Speaking to the Computer-world UK magazine at the Economist Technology Frontiers 2103 event, Virgin 
-Atlantic IT director David Bulman said that the airline company was expecting an 
-explosion of information generated from a growing number of sources, from 
-employees and customers to cargo containers and planes.
-
-In particular, the introduction of Boeing 787 aircraft ordered by Virgin 
-Atlantic for delivery in 2014  was expected to dramatically increase the volume 
-of data the airline will need to deal with.
-
-From the interview Bulman highlight their current problems: 
-
-\say{The challenge is what do you do with that amount of data when you are getting 
-terabytes of data a day off your various airplanes? We are getting to the stage 
-right now where we cannot deal with that much}
-
-He added: 
-
-\say{If you are talking that level of data you can't just chuck ten disks 
-into your data centre anymore, you have to look at cloud based solutions and how 
-you can store data.}
-
-As we can see the lack of standard solutions for self sustainable networks is 
-creating real problems among the industry
 
 
 \section{Hypothesis}
