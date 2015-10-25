@@ -36,19 +36,10 @@ used to build computers and from innovation in computer design. \cite{Hennessy}
 As we have seen it was around the years 2003 to 2005 that a dramatic change
 seized the semiconductor industry and the manufactures of processors. The
 increasing of computing performance in processors, based on simply screwing up
-the clock frequency, could not longer be holded. Scaling of the technology
-processes, leading to smaller channel lengths and shorter switching times in
-the devices, and measures like instruction-level-parallelism and out-of-order
-processing, leading to high fill rates in the processor pipelines, were the
-guarantors to meet Moore’s law.\cite{AMDAHL}
-
-The answer of the industry to that development, in order to still meet Moore’s
-law, was the shifting to real parallelism by doubling the number of processors
-on one chip die. This was the birth of the multi-core area. The benefits of
-multi-core computing, to meet Moore’s law and to limit the power density at the
-same time, at least at the moment this statement holds, are also the reason
-that parallel computing based on multi-core processors is underway to capture more
-and more applications, the world of embedded processing for example.\cite{MATTSON}
+the clock frequency, could not longer be holded. The answer of the industry to
+that development, in order to still meet Moore’s law, was the shifting to real
+parallelism by doubling the number of processors on one chip die. This was the
+birth of the multi-core area. 
 
 Where do we find these task parallelism in embedded systems? A good example are
 automotive applications Multi-core technology in combination with a broadband
@@ -60,73 +51,86 @@ compute devices to fewer cores.
 \section{Distributed Systems}
 \noindent
 
-The need of more complex and smart applications has risen the bar to create
-distributed systems based on parallel embedded platforms. By definition: A
-distributed system consists of a collection of autonomous computers, connected
-through a network and distribution middleware, which enables computers to
-coordinate their activities and to share the resources of the system, so that
-users perceive the system as a single, integrated computing facility.
+We define a distributed system as one in which hardware or software components
+located at networked computers communicate and coordinate their actions only by
+passing messages. This simple definition covers the entire range of systems in
+which networked computers can usefully be deployed.
 
-Advantages:
+Computers that are connected by a network may be spatially separated by any
+distance. They may be on separate continents, in the same building or in the
+same room. Our definition of distributed systems has the following significant
+consequences:
+
 
 \begin{enumerate}
 
-\item \textbf{Partitioning Workload}:
+\item \textbf{Concurrency:}
+In a network of computers, concurrent program execution is the norm. I can
+do my work on my computer while you do your work on yours, sharing resources
+such as web pages or files when necessary. The capacity of the system to handle
+shared resources can be increased by adding more resources (for example.
+computers) to the network.
 
-By partitioning the workload onto multiple processors, each processor is now
-responsible for only a fraction of the workload. The processors can now afford
-to slow down by dynamic voltage scaling (DVS) to run at more power-efficient
-states, and the degraded performance on each processor can still contribute to
-an increased system-wide performance by the increased parallelism.
+\item \textbf{No global clock:}
+When programs need to cooperate they coordinate their actions
+by exchanging messages. Close coordination often depends on a shared idea of
+the time at which the programs actions occur. But it turns out that there are
+limits to the accuracy with which the computers in a network can synchronize
+their clocks – there is no single global notion of the correct time. This is a
+direct consequence of the fact that the only communication is by sending
+messages through a network.
 
-\item \textbf{Heterogeneous HW}:
-Another advantage with a distributed scheme is that heterogeneous hardware such
-as DSP and other accelerators can further improve power efficiency of various
-stages of the computation through specialization.
+\item \textbf{Independent failures:}
+All computer systems can fail, and it is the
+responsibility of system designers to plan for the consequences of possible
+failures. Distributed systems can fail in new ways. Faults in the network
+result in the isolation of the computers that are connected to it, but that
+doesn’t mean that they stop running. In fact, the programs on them may not be
+able to detect whether the network has failed or has become unusually slow.
+Similarly, the failure of a computer, or the unexpected termination of a
+program somewhere in the system (a crash), is not immediately made known to the
+other components with which it communicates. Each component of the system can
+fail independently, leaving the others still running.
 
 \end{enumerate}
 
 
-Disadvantages:
+Each one these characteristics is also present in a modern IoT system. As we can
+see in (figure~\ref{fig:3.1}). As we can see these three characteristics of a
+distributed system are also present in an IoT system. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{images/IoT_distributed.jpg}
+\caption{IoT system as a distributed system}
+\label{fig:3.1}
+\end{figure}
+
 
 \begin{enumerate}
-\item \textbf{Network}: Despite the fact the distributed systems may have
-many attractive properties, they pay a higher price for message-passing
-communications. Each node now must handle not only communication
-with the external world, but also extra communication on the internal network.
-As a result, even if the actual data payload is not large
-on an absolute scale, the communication appears very expensive and
-does not scale to a few more nodes
+\item \textbf{Concurrency}
+In an IoT system there are multiple systems trying to use the same resource.
+For example all the IoT devices are trying to access the same data base or the
+even the same access's point. All of them are fighting for similar resources , a
+good IoT design need to schedule the use of the limited resources in an efficient
+way.
 
-\item \textbf{Lack of optimized OS}: A typical embedded system often does
-not contain an operating system. Crafting distributed programs on such a
-bare-bone platform is extremely difficult and error-prone. Although many
-higher-level abstractions such as Message Passing Interfaces (MPI)
-have been proposed to facilitate distributed programming, these abstraction
-layers require extensive system resources with comprehensive operating systems
-support, which may not be available to an embedded platform
+\item \textbf{No global clock}
+None of the systems in an IoT network (either sensors or processing devices)
+have the same clock. They have to use a message base mechanism to communicate
+each other. 
+
+\item \textbf{Independent failures}
+In a regular IoT network multiple systems could fail (either sensors,
+processing devices or one of the data centers) and despite of that all the
+others should keep working without any problem. 
+
+All these characteristics enforce the idea that the nature of an IoT system is
+being treated as a distributed system. With this main idea is much more simple
+to adapt the solutions of the distributed systems into our embedded distributed
+system.
+
 \end{enumerate}
-
-We will try to fulfill these minimal requirements described by (Tanaka) in our
-system:
-
-\begin{itemize}
-\item  Multiple autonomous components
-\item Components are not shared by all users
-\item Software runs in concurrent processes on different processors
-\item Resource Sharing : Ability to use any hardware, software or data anywhere in
-the system
-\item Openness: Differences in data representation of interface types on different
-processors (of different vendors) have to be resolved
-\item Concurrency : Components in distributed systems are executed in concurrent
-processes
-\item Scalability: Components should not need to be changed when scale of a system
-increases
-\item Fault Tolerance: Distributed systems must maintain availability even at low
-levels of hardware/software/network reliability.
-\item Transparency: Distributed systems should be perceived by users and
-application programmers as a whole rather than as a collection of cooperating components.
-\end{itemize}
 
 \section{Embedded Linux systems}
 
@@ -149,7 +153,7 @@ makes a lot of sense. A large community of developers are making it possible.
 The development environment and the deployment environment can be surprisingly
 similar, which makes your life as a developer much easier. And you have both
 the security of a protected address space that a virtual memory-based system
-gives you, and the power and flexibility of a multiuser, multiprocess system.
+gives you, and the power and flexibility of a multiuser, multiprocessor system.
 That's a good deal all around. For this reason, companies all over the world
 are using Linux on many devices
 
@@ -168,7 +172,7 @@ user interface to the end user)
 In this new world the advantages (flexibility and scalability) of using Linux
 as the core of the OS Embedded Distributions turn out to make a nightmare for
 the embedded developers with too many options and no standard work to re use.
-In the end the developer ended with a "Frankenstein" embedded Linux
+In the end the developer ended with a ''Frankenstein'' embedded Linux
 distribution with very low maintainability and robustness. In 2010 there was a
 change in the industry of embedded systems, the announce of a project to solve
 these kind of problems: The Yocto project.
@@ -180,7 +184,7 @@ templates, tools and methods to help you create custom Linux-based systems for
 embedded products regardless of the hardware architecture. It was founded in
 2010 as a collaboration among many hardware manufacturers, open-source
 operating systems vendors, and electronics companies to bring some order to the
-chaos of embedded Linux development.
+chaos of embedded Linux development.\cite{yocto-project}
 
 As an open source project, the Yocto Project operates with a hierarchical
 governance structure based on meritocracy and managed by its chief architect,
@@ -193,22 +197,32 @@ environment with tools, meta-data, and documentation. The
 free tools are easy to get started with, powerful to work with (including
 emulation environments, debuggers, an Application Toolkit Generator, etc.) and
 they allow projects to be carried forward over time without causing you to lose
-optimizations and investments made during the project’s prototype phase. The
+optimization's and investments made during the project's prototype phase. The
 Yocto Project fosters community adoption of this open source technology
 allowing its users to focus on their specific product features and development.
 
 The Yocto Project through the Poky build tool provides an open source
-development environment (Figure XXX) targeting the ARM, MIPS, Power-PC and x86 
-architectures for a variety of platforms including x86-64 and emulated ones. 
-You can use components from the the Yocto Project to design, develop, build, 
-debug, simulate, and test the complete software stack using Linux, the X Window
-System, GNOME Mobile-based application frameworks, and Qt frameworks. 
+development environment (figure~\ref{fig:3.1}). targeting the ARM, MIPS,
+Power-PC and x86 architectures for a variety of platforms including x86-64 and
+emulated ones.  You can use components from the the Yocto Project to design,
+develop, build, debug, simulate, and test the complete software stack using
+Linux, the X Window System, GNOME Mobile-based application frameworks, and Qt
+frameworks. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{images/yocto-environment.png}
+\caption{The Yocto Project Development Environment}
+\label{fig:3.2}
+\end{figure}
 
 For complete information on the Yocto Project, you should check out the Yocto
-Project Website. You can find the latest builds, breaking news, full
-development documentation, and a rich Yocto Project Development Community into
-which you can tap.
-
+Project website\cite{yocto-project}. As you can see the Yocto project will play
+an important role in the IoT world. If we want to develop a solution standard
+for multiple platforms we might adapt it for the Yocto project. If we do this
+our solution will be deployable into multiple IoT devices due to the bast
+amount of platforms ( sensors and processing devices ) that use the Yocto
+project everyday.
 
 \section{Power and Performance}
 
@@ -222,10 +236,13 @@ event) also referred to as execution time. The administrator of a large data
 processing center may be interested in increasing throughput (the total amount 
 of work done in a given time.) In comparing design alternatives, we often want
 to relate the performance of two different computers, say, X and Y. The phrase 
-“X is faster than Y” is used here to mean that the response time or execution 
-time is lower on X than on Y for the given task. In particular, “X is n times 
-faster than Y” will mean (Xizhou Feng)
+''X is faster than Y'' is used here to mean that the response time or execution 
+time is lower on X than on Y for the given task. In particular, ''X is n times 
+faster than ''  will mean (Xizhou Feng)
 
-
+The power and performance efficiency of our embedded distributed system is very
+important. If we can  make the system process more data with less number
+of systems more IoT applications will consider use this approach for their
+solutions.
 
 \clearpage

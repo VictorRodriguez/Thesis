@@ -1,0 +1,101 @@
+%Empieza configuracion de capitulo
+\setstretch{1.0}
+\titleformat{\chapter}[block]{\Large\bfseries}{CHAPTER \Huge\thechapter\vspace{25 pt}}{0 pt}{\\\fontsize{26}{36}\selectfont}
+\titlespacing{\chapter}{0 pt}{30 pt}{50 pt}[0 pt]
+\titleformat{\section}{\Large\bfseries}{\thesection}{0 pt}{\hspace{30 pt}}
+\titleformat{\subsection}{\large\bfseries}{\thesubsection}{0 pt}{\hspace{30 pt}}
+\pagestyle{fancy}
+\fancyhead[LO,LE]{\footnotesize\emph{\leftmark}}
+\fancyhead[RO,RE]{\thepage}
+\fancyfoot[CO,CE]{}
+%Termina configuracion de capitulo
+
+\chapter{Planning}
+\setstretch{1.5} %Regresa el interlineado a 1.5
+
+\section{Schedule}
+\newcommand{\foo}{\hspace{-2.3pt}$\bullet$ \hspace{5pt}}
+
+\scalebox{1}{
+\begin{tabular}{r |@{\foo} l}
+
+2014    & \\
+January & Discoverment of Thesis subject \\
+February & State of the art review \\
+March & Definition of methodology \\
+March & Scope and limitations \\
+March & General Objective definition \\
+April & Scope and limitations \\
+April & Drafting of Introduction \\
+April & First deliver of thesis document drafting  \\
+May & Deliver and present project for aproval \\
+
+
+June - July & Yocto training\\
+
+August & Parallel programing training \\
+August & Create MPI sanity tests \\
+September & Create MPI benchmarks \\
+October & Define and fix MPIbench \\
+November & First Experiments (MPIbench) with Fedora OS\\
+November & First Experiments (MPIbench) with Clear Linux OS \\
+December & Drafting of first article \\
+
+
+\end{tabular}
+}
+
+\scalebox{1}{
+\begin{tabular}{r |@{\foo} l}
+
+2015    & \\
+January & Send abstract for Embedded Linux Conference \\
+January & Work on Mpich implementation for Yocto  \\
+February & Make Mpich get accepted into Yocto mainline \\
+February & Run MPIbench in 1 board with  \\
+March & First Experiments (MPIbench) with Yocto base OS\\
+March & Analyze MPI in multiple embedded systems (3-4) \\
+March & Present paper in  Embedded Linux Conference 2015 \\
+April & Analyze power and performance gaps : systemd \\
+April & Analyze power and performance gaps : kernel \\
+April & Analyze power and performance gaps : memory management \\
+April & Second deliver of thesis document drafting  \\
+April & Drafting of State of the art \\
+May & Deliver and present project for aproval \\
+
+
+June - July & Research stay in CINVESTAV Guadalajara \\
+June & Study problem and basic topology in smart greenhouse \\
+June & Study problem and basic topology in smart greenhouse \\
+June & Propose new Embedded Distributed system  for Energy efficiency improvement \\
+July & Implement Embedded Distributed system \\
+July & Implement Image processing solution in Embedded Distributed system\\
+July & Document presentation and final report \\
+July & Present to CINVESTAV professors results \\
+
+August & Final experiment with Power and Performance tests\\
+August & Third deliver of thesis document drafting  \\
+September & Third deliver of thesis document drafting  \\
+September & Final experiment with Power and Performance tests\\
+September & Write final conclusions\\
+September & Make correction to thesis document draft \\
+October & Send final thesis document to review \\
+October & Make final representation of thesis to council \\
+
+\end{tabular}
+}
+
+\section{Budget}
+\noindent
+
+Facts about the budget:
+\begin{itemize}
+    \item All the SW used for development is Open Source
+    \item All HW used to make the tests (Atom boards as well as the power
+    analyzer) are provided by Intel Tecnologias de Mexico
+    \item All HW used in CINVESTAV experiments are provided by CINVESTAV
+\end{itemize}
+
+Based on this there is no cost on the experiments
+
+\clearpage

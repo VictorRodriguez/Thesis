@@ -18,76 +18,64 @@
 \section{Related Work}
 \noindent
 
-Distributed embedded processors fast became the central stage in the
-architecture of embedded systems. With multiple processors, a distributed
-embedded system is more scalable towards either high performance or low
-power. The reduced workload on each processor creates new opportunities for
-dynamic voltage scaling (DVS); meanwhile the performance can be compensated by
-increased parallelism. However, distributed programming on embedded processors
-was very difficult and the well-established parallel programming paradigms
-were not available to embedded platforms. 
 
-In recent years several mature techniques for high level abstractions for
-inter-processor communication are available, such as Message Passing Interfaces
-(MPI), the problem is that these abstraction layers require extensive
-system resources with comprehensive operating systems support, which may not be
-available to an embedded platform.
+Recent researches \cite{Saldana} \cite{Gallego} \cite{McMahon} \cite{Liu} are
+showing an increasing interest in the topic. In all of them is proved that when
+multiple voltage-scalable processors are available, the workload can be
+distributed such that each processor runs at a very low-power level; meanwhile
+the performance is compensated by parallelism. \cite{Weglarz} proposed
+partitioning the computation onto a multi-processor architecture that consumes
+significantly less power than a single processor.
 
-Fortunately, the recent development of full-fledged embedded platforms makes 
-it possible for distributed programming in embedded applications. In a paper
-call "MPI for Embedded Systems: A Case Study" the author implemented an image
-Processing algorithm with MPI on voltage scalable Itsy pocket computers. 
 
-As a result of these article the author confirmed that the high-level distributed 
-programming tools were readily available to facilitate the design and 
-exploration of distributed embedded applications. However emphasize that the 
-communication mechanism of MPI needs further study for adapting MPI to a wider 
-scope of embedded applications.
+In order to do this is necessary to have mature techniques for inter-processor
+communication, such as Message Passing Interfaces (MPI) \cite{lam-mpi}
+\cite{mpi-forum}. The problem is that these abstraction layers require
+extensive system resources with comprehensive operating systems support, which
+may not be available to an embedded platform.
 
-Believe it or not there are works 
-\cite{Saldana} \cite{Gallego} \cite{McMahon} related to Jinfeng's
-recommendation. They describe proof-of-concept of MPI implementations for 
-embedded systems, showing an increasing interest in the topic. 
-
-These papers also discuss different ways to address the limitations found in 
-typical embedded systems. For example, one of the first approaches was 
-"eMPI/eMPICH: Embedding MPI" by
-McMahon and A. Skjellum presented in the MPI conference in 1996; the authors 
-discussed efforts toward providing embedded versions of MPI for use in 
-memory constrained systems (such as embedded and
-current IoT systems). As a result of this paper , the authors prove that the
-size of the eMPICH libraries are much smaller than that of the
-the original library. Assuming that the devices  and operating system
-can be made suitably small as well, it appears clear that use of MPI in
-memory-constrained systems is an achievable goal.
-
-Another different approach was Azequia-MPI \cite{Gallego}, this is an MPI 
-implementation that uses threads instead of processes making MPI applications 
-more lightweight, Although, it requires an operating system that supports 
+Recent researches \cite{Saldana} \cite{Gallego} \cite{McMahon} describe
+proof-of-concept MPI implementations targeting embedded systems,  These papers
+also discuss different ways to address the limitations found in typical
+embedded systems. For example, in the eMPl/eMPICH project \cite{McMahon} the
+main focus is to port MPICH to an embedded platform and reduce its memory
+footprint by removing some MPI functions. Azequia-MPI \cite{Gallego} is an MPI
+implementation that uses threads instead of processes making MPI applications
+more lightweight, Although, it requires an operating system that supports
 threads, which in embedded systems it is not always available. 
 
-In recent years there has been some studies in this field. One of the
-firsts is the adaption of the MPI protocol for embedded systems , LMPI
-\cite{Liu} (Light Message Passing Interface). The noble idea of LMPI is
-separation of its server part (LMPI server) and the very thin client part (LMPI
-client). Both parts can reside on different hardware or on the same hardware.
-Multiple clients can be associated with a server. LMPI servers support full
-capability of MPI and can be implemented using pre-existing MPI implementation.
+One of the most powerfull approaches for MPI implementations for embedded
+systems is the Lightweight Message Passing Interface(LMPI)\cite{Abgaria}. The
+idea of LMPI is separation of its server part (LMPI server) and the very thin
+client part (LMPI client). Both parts can reside on different hardware or on
+the same hardware. Multiple clients can be associated with a server. LMPI
+servers support full capability of MPI and can be implemented using
+pre-existing MPI implementation. 
+
 Although LMPI is dedicated to embedded systems, to demonstrate the benefits of
-LMPI and show some initial results, they built LMPI server using MPICH on a
-non-embedded system. LMPI client consumes far less computation and
-communication
-bandwidth than typical implementations of MPI, such as MPICH. As a result, LMPI
-client is suitable for embedded systems with limited computation power and
-memory. They demonstrated the low overhead of LMPI clients on Linux
+LMPI and show some initial results, \cite{Abgaria} built an LMPI server using
+MPICH on a non-embedded system. LMPI client consumes far less computation and
+communication bandwidth than typical implementations of MPI, such as MPICH.  As
+a result, LMPI client is suitable for embedded systems with limited computation
+power and memory. They demonstrated the low overhead of LMPI clients on Linux
 workstations, which is as low as 10\% of MPICH for two benchmark applications.
 LMPI clients are highly portable because they don't rely on the operating
-system
-support. All they require from the embedded system is networking support to the
-LMPI server.
+system support. All they require from the embedded system is networking support
+to the LMPI server.
 
-As we can see very few researchers have studied high level distributed programming
-in embedded systems
+Thanks to all these works now is possible to see real distributed embedded
+applications. In \cite{Liu} the author implemented an image Processing algorithm
+with MPI on a low voltage computer. As a result of these article the author
+confirmed that the high-level distributed programming tools are readily
+available to facilitate the design and exploration of distributed embedded
+applications. However emphasize that the communication mechanism of MPI needs
+further study (LMPI was not implemented yet at that point). 
+
+As we can see there is a need to make new experiments with the latest
+technology available. Nowadays we have ultra-low-voltage microprocessors
+platforms, customized operating systems for these platforms and  innovative
+technologies for achieving MPI implementations. All these variables Will be
+considered into the development of this current work.
 
 \newpage
 
