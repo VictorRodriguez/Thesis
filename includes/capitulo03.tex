@@ -37,13 +37,13 @@ As we have seen it was around the years 2003 to 2005 that a dramatic change
 seized the semiconductor industry and the manufactures of processors. The
 increasing of computing performance in processors, based on simply screwing up
 the clock frequency, could not longer be holded. The answer of the industry to
-that development, in order to still meet Moore’s law, was the shifting to real
+that development, in order to still meet Moore's law, was the shifting to real
 parallelism by doubling the number of processors on one chip die. This was the
 birth of the multi-core area. 
 
-Where do we find these task parallelism in embedded systems? A good example are
-automotive applications Multi-core technology in combination with a broadband
-efficient network system offers the possibility to save components, too, by
+Where do we find parallelism  examples in embedded systems? A good example are
+automotive applications multi-core technology in combination with a broadband
+efficient network system offers the possibility to save components too by
 migrating functionality that is now distributed among a quite large number of
 compute devices to fewer cores.
 
@@ -76,7 +76,7 @@ When programs need to cooperate they coordinate their actions
 by exchanging messages. Close coordination often depends on a shared idea of
 the time at which the programs actions occur. But it turns out that there are
 limits to the accuracy with which the computers in a network can synchronize
-their clocks – there is no single global notion of the correct time. This is a
+their clocks there is no single global notion of the correct time. This is a
 direct consequence of the fact that the only communication is by sending
 messages through a network.
 
@@ -85,7 +85,7 @@ All computer systems can fail, and it is the
 responsibility of system designers to plan for the consequences of possible
 failures. Distributed systems can fail in new ways. Faults in the network
 result in the isolation of the computers that are connected to it, but that
-doesn’t mean that they stop running. In fact, the programs on them may not be
+doesn't mean that they stop running. In fact, the programs on them may not be
 able to detect whether the network has failed or has become unusually slow.
 Similarly, the failure of a computer, or the unexpected termination of a
 program somewhere in the system (a crash), is not immediately made known to the
@@ -141,10 +141,10 @@ increasingly, in our living rooms holding our music collections. They're also
 in our microwave ovens, our regular ovens, our cellphones, and our portable 
 digital music players.
 
-Until not too long ago, embedded systems were not very powerful, and they ran
-special-purpose, proprietary operating systems that were very different from
-industry-standard ones. (Plus, they were much harder to develop for.) Today,
-embedded computers are as powerful as, if not more than, a modern home
+Until not too long time ago, embedded systems were not very powerful, and they
+ran special-purpose, proprietary operating systems that were very different
+from industry-standard ones. (Plus, they were much harder to develop for.)
+Today, embedded computers are as powerful as, if not more than, a modern home
 computer. (Consider the high-end gaming consoles, for example.)
 
 Along with this power comes the capability to run a full-fledged operating
@@ -166,13 +166,13 @@ there has been a change in the last point: external network connectivity.
 The internet of things is the evolution of the embedded world in terms of
 connectivity. The IoT systems keep being resource constrained but with the
 capability to be connected to an internet network where to send the data to
-external servers (where it will be analyzed,stored and presented in a web base
+external servers (where it will be analyzed, stored and presented in a web base
 user interface to the end user)
 
 In this new world the advantages (flexibility and scalability) of using Linux
 as the core of the OS Embedded Distributions turn out to make a nightmare for
 the embedded developers with too many options and no standard work to re use.
-In the end the developer ended with a ''Frankenstein'' embedded Linux
+In the end, the developer ended with a ''Frankenstein'' embedded Linux
 distribution with very low maintainability and robustness. In 2010 there was a
 change in the industry of embedded systems, the announce of a project to solve
 these kind of problems: The Yocto project.
@@ -192,19 +192,19 @@ Richard Purdie, a Linux Foundation fellow. This enables the project to remain
 independent of any one of its member organizations, who participate in various
 ways and provide resources to the project.
 
-Why use the Yocto Project? It's a complete embedded Linux development
+Why to use the Yocto Project? It's a complete embedded Linux development
 environment with tools, meta-data, and documentation. The
 free tools are easy to get started with, powerful to work with (including
 emulation environments, debuggers, an Application Toolkit Generator, etc.) and
-they allow projects to be carried forward over time without causing you to lose
-optimization's and investments made during the project's prototype phase. The
+they allow projects to be carried forward over time without causing you to loose
+optimizations and investments made during the project's prototype phase. The
 Yocto Project fosters community adoption of this open source technology
 allowing its users to focus on their specific product features and development.
 
 The Yocto Project through the Poky build tool provides an open source
 development environment (figure~\ref{fig:3.1}). targeting the ARM, MIPS,
 Power-PC and x86 architectures for a variety of platforms including x86-64 and
-emulated ones.  You can use components from the the Yocto Project to design,
+emulated ones.  You can use components from the Yocto Project to design,
 develop, build, debug, simulate, and test the complete software stack using
 Linux, the X Window System, GNOME Mobile-based application frameworks, and Qt
 frameworks. 
@@ -227,18 +227,27 @@ project everyday.
 \section{Power and Performance}
 
 \noindent
-When we say one computer is faster than another is, what do we mean? The user
+When we say one computer is faster than another , what do we mean? The user
 of a desktop computer may say a computer is faster when a program runs in less
 time, while an Amazon.com administrator may say a computer is faster when it
 completes more transactions per hour. The computer user is interested in 
 reducing response time (the time between the start and the completion of an 
 event) also referred to as execution time. The administrator of a large data 
 processing center may be interested in increasing throughput (the total amount 
-of work done in a given time.) In comparing design alternatives, we often want
-to relate the performance of two different computers, say, X and Y. The phrase 
-''X is faster than Y'' is used here to mean that the response time or execution 
-time is lower on X than on Y for the given task. In particular, ''X is n times 
-faster than ''  will mean (Xizhou Feng)
+of work done in a given time.) 
+
+In comparing design alternatives, we often want to relate the performance of
+two different computers, say, X and Y. The phrase ''X is faster than Y'' is
+used here to mean that the response time or execution time is lower on X than
+on Y for the given task. In particular, ''X is n times faster than ''  will
+mean
+
+Since execution time is the reciprocal of performance, the following
+relationship holds:
+
+The phrase “the throughput of X is 1.3 times higher than Y” signifies here that
+the number of tasks completed per unit time on computer X is 1.3 times the
+number completed on Y.
 
 The power and performance efficiency of our embedded distributed system is very
 important. If we can  make the system process more data with less number

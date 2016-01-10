@@ -50,7 +50,7 @@ described in (table~\ref{tab:4.1}).\cite{E3825}:
 
 The commercial name of this platform is Minnow board Max.  figure~\ref{fig:4.1}
 and  figure~\ref{fig:4.2} This is a development platform for both
-professionals and makers. Minnow board Max is an open hardware platform, The
+professionals and makers. Minnow board Max is an open hardware platform. The
 concept of ''open-source hardware'' or ''open hardware'' is not yet as well
 known or widespread as the free software or open-source software concept.
 However, it shares the same principles: anyone should be able to see the source
@@ -74,11 +74,14 @@ it.\cite{CERN}
 
 \subsection{Embedded Operating System} 
 
-Typical embedded system often does not contain an operating system.  In order
-to perform the experiments we need a full Operating System running on the
-development board. This means that it will require a boot manager, a full file
-system , kernel and user space.  As we can see in \cite{minnowboard} the board
-support multiple kind of Operating Systems. The OS we are going to test are : 
+Typical embedded system does not contain an operating system (ussually); but
+due to the commplexity of current embedded applications is plenty necesary to
+have an operating system that manage all the processes that current embedded
+applications have. In order to perform the experiments we need a full Operating
+System running on the development board. This means that it will require a boot
+manager, a full file system , kernel and user space.  As we can see in
+\cite{minnowboard} the board support multiple kind of Operating Systems. The OS
+we are going to test are : 
 
 \begin{itemize}
     \item Fedora project (Linux base) \cite{fedora}
@@ -88,8 +91,8 @@ support multiple kind of Operating Systems. The OS we are going to test are :
 
 We will need to experiment which one is better for our needs. The reason why to
 prove multiple  operating systems is because is necessary to find the best one.
-There are multiple configurations inside each one that make the performance of
-the distributed system change. 
+There are multiple configurations inside each one that makes the performance of
+the distributed system different. 
 
 \subsection{Embedded Firmware}
 
@@ -103,7 +106,7 @@ the Minnow Board MAX design.
 The Minnow Board MAX firmware download page presents firmware components for the
 Minnow Board MAX reference board. This firmware is provided to the community for
 the purpose of enabling open development and experimentation. For this
-experiment we have download the official BIOS Firmware Binary Images
+experiment we have downloaded the official BIOS Firmware Binary Images
 \cite{minnowmax-firmware}
 
 
@@ -153,8 +156,8 @@ one missing the MPI implementation was actually the Yocto project.
 \label{tab:4.2}
 \end{center}
 
-Because of that on of the experiment was the implementation of the MPI library
-in the Yocto project. 
+Is because of that we decided to do the implementation of the MPI library in
+the Yocto project. 
 
 \section{MPI Benchmarks}
 \noindent
@@ -164,7 +167,7 @@ The benchmarks we are going to run are the MPI bench version 4
 MPI functions. By critical we mean that the behavior of these functions can
 dominate the run time of a distributed application.
 
-MP Bench currently tests eight different MPI calls. The following functions are
+MPIBench currently tests eight different MPI calls. The following functions are
 measured:
 
 \begin{itemize}
@@ -192,14 +195,14 @@ iteration count.
     \item Compute the appropriate metric
 \end{itemize}
 
-By default, MP-Bench measures messages from 4 bytes to 216 bytes, in powers of
+By default, MPIBench measures messages from 4 bytes to 216 bytes, in powers of
 two for 100 iterations. Each test is run a single time before testing to allow
 for cache setup and routing. The cache is then flushed before each repetition
 and before each new message size is tested. The cache is not flushed however
 between iterations on the same message size, which are averaged
 
 For simplicity purposes, we will refer to two different types of tasks in
-MPBench, the master of which there is only one, and the slaves of which their
+MPIBench, the master of which there is only one, and the slaves of which their
 may be any number. The point-to-point tests only use two tasks, a master and a
 slave. The other tests run with any number of slaves, the default being
 sixteen.
@@ -210,7 +213,7 @@ We will describe each one of the tests in order to understand the experiments.
 \subsection{Bandwidth}
 
 MPBench measures bandwidth with a doubly nested loop. The outer loop varies the
-mes-sage size, and the inner loop measures the send operation over the
+message size, and the inner loop measures the send operation over the
 iteration count. After the iteration count is reached, the slave process
 acknowledges the data it has received by sending a four byte message back to
 the master. This informs the sender when the slaves have completely finished
@@ -298,7 +301,7 @@ do over all message sizes
 \subsection{Application Latency}
 
 Application latency is something relatively unique to MPBench. This benchmark
-can prop-early be described as one that measures the time for an application
+can propearly be described as one that measures the time for an application
 to issue a send and continue computing. The results for this test vary
 greatly given how the message passing layer is implemented. For example, PVM
 will buffer all messages for transmission, regardless of whether or not the
@@ -332,7 +335,7 @@ The slaves' pseudo code is as follows:
 
 The two functions are also very heavily used in many parallel applications.
 Essentially these operations are mirror images of one another, the different
-being that reduce reveres the di-rection of communication and performs some
+being that reduce reveres the direction of communication and performs some
 computation with the data during intermediate steps. Both of these
 benchmarks return the number of megabytes per second computed from the
 iteration count and the length argument given to function call.
