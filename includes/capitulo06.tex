@@ -1,6 +1,6 @@
 %Empieza configuracion de capitulo
 \setstretch{1.0}
-\titleformat{\chapter}[block]{\Large\bfseries}{CAPSULE \Huge\thechapter\vspace{25 pt}}{0 pt}{\\\fontsize{26}{36}\selectfont}
+\titleformat{\chapter}[block]{\Large\bfseries}{CAP'ITULO \Huge\thechapter\vspace{25 pt}}{0 pt}{\\\fontsize{26}{36}\selectfont}
 \titlespacing{\chapter}{0 pt}{30 pt}{50 pt}[0 pt]
 \titleformat{\section}{\Large\bfseries}{\thesection}{0 pt}{\hspace{30 pt}}
 \titleformat{\subsection}{\large\bfseries}{\thesubsection}{0 pt}{\hspace{30 pt}}
@@ -10,139 +10,17 @@
 \fancyfoot[CO,CE]{}
 %Termina configuracion de capitulo
 
-\chapter{Results}
+\chapter{Conclusions}
 \setstretch{1.5} %Regresa el interlineado a 1.5
 
 \normalsize
 \noindent
 
-\section{Find the correct OS}
+\section{Conclusions}
 \noindent
 
-    \subsection {Embedded Distributed Systems: A Case of Study with Clear Linux
-    Project for Intel Architecture}
-    \noindent
 
-The results after the execution of the benchmarks are described on the Appendix
-section (for minnow board and then for development board):
-
-\begin{itemize}
-
-\item MPI\_Send/MPI\_Recv Bandwidth (Kb/second vs. bytes) 
-\item MPI\_Send/MPI\_Recv Application latency or Gap time (us vs. bytes) 
-\item MPI\_Send/MPI\_Recv Roundtrip or 2 * Latency (trns/second vs. bytes) 
-\item MPI\_Send/MPI\_Recv() BidirectionalBandwidth (Kb/second vs. bytes) 
-\item MPI\_Bcast broadcast (Kb/second vs. bytes) 
-\item MPI\_Reduce reduction (sum) (Kb/second vs. bytes) 
-\item MPI\_AllReduce reduction (sum) (Kb/second vs. bytes) 
-\item MPI\_Alltoall Each process sends to every other process (Kb/sec vs. bytes) 
-
-\end{itemize}
-
-As seen on the results presented on the AllReduce (MPI\_Allreduce
-combines values from all processes and distributes the result back to all
-processes) graphs in both OS's (either Clear LInux or Fedora ) the drop of speed 
-is extremely fast until reach a minimal point of stability with packages grater 
-than 1.04e+06 Bytes. if we look the graph we can see that Clear Linux can sustain
-a better quality of transaction (much more stable and with less drops). The 
-dramatic drop after the increment of 1.04e+06 Bytes is not reflected on the 
-Clear Linux system. On the Clear Linux  the speed is the same until the size of the 
-packages reach the 3.3e+07 Bytes. A similar behavior occurs on the
-unidirectional/bidirectional and broadcast MPI bandwith. 
-
-
-Analyzing the  Bidirectional Bandwidth algorithm (as an example of the root
-cause of this behaivor): 
-
-\begin{lstlisting} 
-if (am_i_the_master()){                                                                           
-        TIMER_START;                                                              
-        for (i=0; i<cnt; i++){
-                mp_irecv(dest_rank, 2, destbuf, bytes, &requestarray[1]);                 
-                mp_isend(dest_rank, 1, sendbuf, bytes, &requestarray[0]);                 
-                MPI_Waitall(2, requestarray, statusarray);                                
-        }   
-        
-else if (am_i_the_slave()){
-        for (i=0; i<cnt; i++) {
-                mp_irecv(source_rank, 1, destbuf, bytes, &requestarray[0]);               
-                mp_isend(source_rank, 2, sendbuf, bytes, &requestarray[1]);               
-                MPI_Waitall(2, requestarray, statusarray);                                
-        }                 
-         
-\end{lstlisting}
-
-
-We can see that at the end they use MPI\_Waitall. MPI\_Waitall blocks until 
-all communication operations associated with active handles in the list complete, 
-and returns the status of all these operations. In the case of Clear Linux
-there is a reduced number of process running in background (No
-Xserver/Xorg/etc); besides there is an implementation of systemd. This helps
-in lack of process trying to gain control of the system and memory at the same
-time, which will be reflected every time the MPI\_Waitall arrives. 
-
-
-In case of the All to all experiment (Each process sends to every other process). 
-we don't see a huge gain on the performance. MPI\_Alltoall is a collective 
-operation in which all processes send the same amount of data to each other, 
-and receive the same amount of data from each other. The operation of this 
-routine can be represented as follows:
-
-Algorithm: 
-
-\begin{lstlisting} 
-    MPI_Comm_size(comm, &n); 
-    for (i = 0, i < n; i++)
-        MPI_Send(sendbuf + i * sendcount * extent(sendtype),\
-            sendcount, sendtype, i,..., comm); 
-    for (i = 0, i < n; i++) 
-        MPI_Recv(recvbuf + i * recvcount *extent(recvtype), \
-            recvcount, recvtype, i, ..., comm); 
-\end{lstlisting}
-
-As we can see here there is no chance to other process to compete for memory or
-CPU resources. 
-
-The latency and round trip benchmarks show a similar performance all the time
-despite the Operating System running . For MPI the definition of latency is 
-the time to launch a message in the network's buffer: 
-
-Algorithm: 
-
-\begin{lstlisting}
-
- if (am_i_the_master())
-    {
-      TIMER_START;
-      for (i=0; i<cnt; i++)
-      {
-	  if (flush & FLUSH_BETWEEN_ITERATIONS)
-	      flushall(1);
-	  mp_send(dest_rank, 1, sendbuf, bytes);
-      }
-      TIMER_STOP;
-      mp_recv(dest_rank, 2, destbuf, 4);
-      total = TIMER_ELAPSED;
-      total -= calibrate_cache_flush(cnt);
-      return(total/(double)cnt);   
-    }
-
-\end{lstlisting}
-
-The low performance (either in Clear Linux or Fedora) is an expected behavior. 
-Embedded systems have traditionally been much more sensitive to both the 
-interrupt latency and Central Processing Unit (CPU) overhead involved in 
-servicing interrupts as compared to conventional Personal Computers (PC).
-    \subsection {Embedded Distributed Systems: A Case of Study with Yocto project}
-    \noindent
-
-\section{Find the correct MPI protocol configuration}
-\noindent
-
-\section{Embedded Distributed System: A case of study in smart greenhouses}
-\noindent
-
-\section{Embedded Distributed System: PnP measurement with comercial OS}
+\section{Future Work}
 \noindent
 
 \clearpage

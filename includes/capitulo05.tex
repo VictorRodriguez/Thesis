@@ -16,18 +16,17 @@
 \normalsize
 \noindent
 
-This section will describe the experiments we did in order to find the best
-conditions for the embedded distributed system. We will describe each
+This section will describe the experiments and results we did in order to find
+the best conditions for the embedded distributed system. We will describe each
 experiment in the same order it was tested and explaining the reasons that make
-us run that experiment.The variables that are involved are : 
+us run that experiment.The variables that are involved are: 
 
 \begin{itemize}
 \item Run a simple sanity test in the embedded platform
-\item Run the mpebch test suite in the embedded platform
-\item Find out if chaning the OS for one custimized for the embedded platform
-architecure (x86) give better results,
-\item Find out the best implementation of MPI library and at the end, 
-\item once that we have found the OS and MPI configuration that give better
+\item Run the MPI Bebch test suite in the embedded platform
+\item Find out the OS for embedded platform with better performance 
+\item Find out the implementation of MPI library yhat improve the performance
+\item Once that we have found the OS and MPI configuration that give better
 performance results, we will apply this knowledge to solve a real application
 where a distributed embedded system could improve the energy efficiency
 \end{itemize}
@@ -74,7 +73,6 @@ The way to run it is:
   $ mpirun -n 4 -f host_file ./mpi_hello_world
 \end{lstlisting}
 
-
 After your program is compiled, it is ready to be executed. Now comes the part
 where you might have to do some additional configuration. If you are running
 MPI programs on a cluster of nodes, you will have to set up a host file. If you
@@ -117,6 +115,9 @@ Hello from task 2 on minnow-1
 Hello from task 3 on minnow-1
 \end{lstlisting}
 
+
+\subsection{Results}
+
 After this experiment running on our embedded platform with a regular GNU/Linux
 OS (Fedora), we prove that is possible to run MPI in an embedded system. But as
 we know there are other options of GNU/Linux Operating Systems
@@ -154,13 +155,14 @@ Windows, OSX, VMS, and many other platforms.
 After the success of this experiment we can say that is possible to run the MPI
 benchmarks on the embedded platoform with a regular Linux base operating system
 (Fedora Project). now the ext question was: What if we change the operating
-system? Can we get better numbers if we change the operating system?
+system? Can we get better numbers if we change the operating system? Is because
+of that quesiton that we decided to measure with multiple Operating systems.
 
 
 \section{Test multiple operating systems to run the MPI benchmark}
 
 We decided to use another Linux OS designed for Intel Architecture
-/cite{clear-linux}.The Clear Linux Project for Intel Architecture is a
+\cite{clear-linux}.The Clear Linux Project for Intel Architecture is a
 distribution built for various Cloud use cases. The project  want to showcase
 the best of Intel Architecture technology, from low-level kernel features to
 complex applications that span across the entire OS stack.
@@ -232,7 +234,8 @@ Fedora (lower is better)}
 
 As we know the standard of the industry to generate a custum Linux OS is the
 Yocto project. As we saw in table~\ref{tab:4.2} the operating systems generated
-with the Yocto project do not have an implementation of the MPI library. Becase
+with the Yocto project do not have an implementation of the MPI library. Takign
+these first resutls we decided to run another experimentBecase
 of that we decided to make the MPI implementation in the Yocto project. 
 
 
@@ -392,10 +395,56 @@ Yocto and Fedora (lower is better)}
 \label{fig:5.14}
 \end{figure}
 
-
 \section{Test MPI benchmark in a cluster of embedded systems}
 
-\section{Test MPI benchmark in a cluster of embedded systems}
+After doing the experiments in a single Atome system we decided to do the
+experiments in a cluster of them. The experiment is limitated to the number of
+systems we can gather. In this case we could gather 6 Minnowboad
+\cite{minnowboard} plaforms to do the experiments. The full diagram of the
+cluster is described bellow in figure \ref{fig:5.20}.
 
-\section{Test MPI benchmark in a cluster of embedded systems}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{images/cluster_minnows.png}
+\caption{Connection Ports of the Minnow board Max}
+\label{fig:5.20}
+\end{figure}
+
+All these sistems execute the MPIBenchmarks with the following ssh config file:
+
+
+\begin{lstlisting}[frame=single,language=bash]
+  $ cat ~/.ssh/config
+    Host node1
+        HostName node1-ip-or-hostname
+        User user-of-the-ssh-key
+        Port port-if-nedded
+
+    Host node2
+        HostName node1-ip-or-hostname
+        User user-of-the-ssh-key
+        Port port-if-nedded
+
+    Host node3
+        HostName node1-ip-or-hostname
+        User user-of-the-ssh-key
+        Port port-if-nedded
+
+\end{lstlisting}
+
+And the following MPI config file:
+
+
+\begin{lstlisting}[frame=single,language=bash]
+  $ cat hostfile
+    node1
+    node2
+    node3
+\end{lstlisting}
+
+This is necesary to make the systems comunicate each other thorugh MPI , if we
+don't include this configuration there will not be any comunications due to the
+fact that MPI requires an ssh conection. 
+
+
 \clearpage

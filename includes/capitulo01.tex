@@ -17,7 +17,7 @@
 
 \normalsize
 
-This work Will present a detailed study of how could a network of embedded
+This work will present a detailed study of how could a network of embedded
 systems collaborate among each others to solve parallel problems. After reading
 this project you will understand how this can be done , what are their
 limitations and recommendations if you would like to implement this as part of 
@@ -29,13 +29,13 @@ your current projects.
 
 Our story begins decades ago, the computers were finally at homes and many
 people wonder what was going to be next revolution. There was expectations that
-in close future the Computers were going to be everywhere: in our houses , in
+in close future the computers were going to be everywhere: in our houses , in
 our cars, teaching to the children and controlling the traffic. Well that was
 the dream that seems more like a science fiction story, but as we know that
 dream has came true in many ways.
 
 All this has been possible due to the evolution of computing technology over
-these years. Computer technology has made incredible progress in the roughly 60
+these years. computer technology has made incredible progress in the roughly 60
 years since the first general-purpose electronic computer was created. Today,
 less than 500 dollars  will purchase a personal computer that has more
 performance, more main memory, and more disk storage than a computer bought in
@@ -48,17 +48,17 @@ form of both personal computers and workstations. The 1990s saw the emergence
 of the Internet and the World Wide Web, the first successful hand-held computing
 devices, and the emergence of high-performance digital consumer electronics.
 The extraordinary popularity of cell phones has been obvious since 2000, with
-rapid improvements in functions and sales that far exceed those of the PC.
-These more recent applications use embedded computers.
+rapid improvements in functions and sales that far exceed those of the PC
+(personal computers).These more recent applications use embedded computers.
 
 But let's stop a bit here. A new world came to our vocabulary at those days:
 embedded. What is an embedded system? An embedded system is a special-purpose
 system in which the computer is completely encapsulated by the device it
 controls.\cite{Hallinan} Unlike a general-purpose computer, such as a personal
 computer, an embedded system performs pre-defined tasks, usually with very
-specific requirements. Examples of these was the first microwaves, the first
-cellphones and GPS systems. All those electronic gadgets that started to emerge
-10 years ago.
+specific requirements. Examples of these were the first microwaves, the first
+cellphones and GPS (Global Positioning System) systems. All those electronic
+gadgets that started to emerge 10 years ago.
 
 As we know society loved these new devices and asked for more. Less cost,
 smaller devices, better power consumption and the capability to make much more
@@ -69,15 +69,15 @@ connected to the internet all the time. One could start to ask why. Why would I
 want to have an embedded system connected to the internet all the time?. Can
 you imagine now your TV, smart phone or tablet not connected to the Internet?
 This is the technology that old science fiction novels imagined years ago, the
-internet of things.
+Internet of Things (IoT).
 
-Internet of Things (IoT) refers to physical and virtual objects that have
+Internet of Things refers to physical and virtual objects that have
 unique identities and are connected to the internet to facilitate intelligent
 applications that make energy, logistics, industrial control, retail,
 agriculture and many other domains "smarter".\cite{Bahga} The IoT enables the
 interconnection via the Internet of computing devices embedded in everyday
 objects, enabling them to send and receive data. So what is the diference
-betwen the embddded systems and the IoT systems? As you can see the differences
+betwen the embeddded systems and the IoT systems? As you can see the differences
 with traditional embedded systems are the internet connectivity and less power
 consumption. IoT systems must always be connected to the internet and require a
 lower power consumption.
@@ -87,31 +87,29 @@ the following parts (figure~\ref{fig:1.1}).
 
 \begin{itemize} 
 
-\item The Thing (computing devices):  in the Internet of
-Things, can be a person with a heart monitor implant, a farm animal with a bio
-chip transponder, an automobile that has built-in sensors to alert the driver
-when tire pressure is low or any other natural or man-made object that can be
-assigned an IPA address and provided with the ability to transfer data over a
-network 
+\item The Thing (computing devices):  in the Internet of Things, can be a
+person with a heart monitor implant, a farm animal with a bio chip transponder,
+an automobile that has built-in sensors to alert the driver when tire pressure
+is low or any other natural or man-made object that can be assigned an IPA
+address and provided with the ability to transfer data over a network.
 
-\item Network Connection: Network Connections provides connectivity
-between your computing devices  and the Internet, a network, or another compute
-device 
+\item Network Connection: Network Connections provides connectivity between
+your computing devices  and the Internet, a network, or another compute device.
 
-\item Cloud computing Data centers for storage and Big Data analysis: The data
+\item Cloud Computing Data centers for storage and Big Data analysis: The data
 by itself is not useful to the end user. An alarm or recommendation is all that
 the end user will matter. After the data is sent and stored into the Cloud
 Computing Data Centers is necessary to run Big Data solutions that present
-meaning full information to the users.  
+meaningfull information to the users.
 
 \item Presentation Devices: At the end of the day, what do we do with all that
 information we have collected?; one obvious thing is to display the information
 via a dashboard. Dashboards have to be hosted on some kind of display, we call
-that the Presentation Device.  It could be a desktop computer running an 
-application, a tablet or a smart phone accessing to a web page. It could
-even be a purpose-built device like a retail kiosk, intelligent vending machine
-or a control panel. The goal is to present the information coming from the big
-data analysis.
+that the Presentation Device.  It could be a desktop computer running an
+application, a tablet or a smart phone accessing to a web page. It could even
+be a purpose-built device like a retail kiosk, intelligent vending machine or a
+control panel. The goal is to present the information coming from the big data
+analysis.
 
 \end{itemize}
 
@@ -122,11 +120,11 @@ data analysis.
 \label{fig:1.1}
 \end{figure}
 
-Like many booming areas of technology, the internet of things revolution is
-plagued by a lack of industry standards. As you can imagine there are thousands
-of computing devices and sensors from different vendors that appear on the
-market  every day , each one with his unique way to send  or store their data
-in their centralized cloud computing centers.
+Like many booming areas of technology, the IoT revolution is plagued by a lack
+of industry standards. As you can imagine there are thousands of computing
+devices and sensors from different vendors that appear on the market  every day
+, each one with his unique way to send  or store their data in their
+centralized cloud computing centers.
 
 Right now exist two main projects that are compiling to establish standards for
 the IoT communications: 
@@ -217,17 +215,17 @@ these kind of solution? All these questions will be addressed in this work.
 The main objective is to find the maximum number of low ultra-low-voltage
 microprocessors platforms that provides the maximum level of energy efficiency.
 
-After finding this information for commons benchmarks it will be easy for the
+After finding this information for common benchmarks it will be easy for the
 industry of IoT systems to determine if their applications can take advantage
-of communicate their IoT devices to process their own data instead of sending
-the information to data centers.
+of the communication betwen their IoT devices to process their own data instead
+of sending the information to data centers.
 
 \section{Hypothesis}
 \noindent
 
 We are confident that with the current technology is possible to generate a
 distributed system of ultra-low-voltage microprocessors platforms (core
-systems of the IoT devices). The part that we are concern is determine the
+systems of the IoT devices). The part that we are concern is to determine the
 breaking point where is better to send the data to the cloud data centers. How
 many systems is the maximum that these kind of network could support and still
 being a good option in terms of energy efficiency?
@@ -267,14 +265,14 @@ information to their data centers.
 \noindent
 
 Recent researches \cite{Saldana} \cite{Gallego} \cite{McMahon} \cite{Liu} are 
-showing an increasing interest in the topic.  All these research always talk
+showing an increasing interest in the topic.  All these research as always talk
 about the lack of three parts: 
 
 \begin{itemize}
-\item A low-voltage microprocessors platform with enough compute power
-\item An operating system for Distributed Systems
+\item A low-voltage microprocessors platform with enough compute power.
+\item An operating system for Distributed Systems.
 \item A light communication protocol to distribute the workload among the
-embedded platforms
+embedded platforms.
 \end{itemize}
 
 The way we are going to address this will be:
@@ -282,16 +280,16 @@ The way we are going to address this will be:
 
 \begin{itemize}
 
-\item Chose the right embedded platform: There are dozens of embedded and IoT
+\item Choose the right embedded platform: There are dozens of embedded and IoT
 platforms, this is why is necessary to make a deep analysis and choose the best
 platform that feed our needs. (taking into consideration that sometimes the
 systems might have heterogeneous platforms)
 
-\item Chose the right communication and compute protocol: There are different
+\item Choose the right communication and compute protocol: There are different
 kinds of distributed compute protocols. Part of this investigation is to detect
 the most reliable and suitable for our needs.
 
-\item Chose the right Operating System for the system. Once we have selected
+\item Choose the right Operating System for the system. Once we have selected
 the appropriate embedded platforms, another variable in this investigation is
 the number of Operating Systems. Either if it is a micro kernel or a monolithic
 kernel architecture there are more than a dozen of solutions to use.
@@ -306,10 +304,9 @@ public. All the improvements made into any technology (operating systems or
 communication protocols) will be published with an open source license.
 
 \item Implement solution on real application ( greenhouse ). In order to test
-or hypothesis in a real application we will implement it on a real greenhouse.
+the hypothesis in a real application we will implement it on a real greenhouse.
 Proving that the solution give an embedded system the power of reliability and
-availability without the need of external and expensive servers 
+availability without the need of external and expensive servers.
 \end{itemize}
-
 
 \clearpage
