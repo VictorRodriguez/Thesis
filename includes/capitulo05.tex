@@ -26,18 +26,37 @@ us run that experiment.The variables that are involved are:
 \item Run the MPI Bebch test suite in the embedded platform
 \item Find out the OS for embedded platform with better performance 
 \item Find out the implementation of MPI library yhat improve the performance
-\item Once that we have found the OS and MPI configuration that give better
-performance results, we will apply this knowledge to solve a real application
-where a distributed embedded system could improve the energy efficiency
+\item Test MPI benchmark in a cluster of embedded systems
+\item Compare MPI benchmark performance of cluster of embedded systems
+against traditional computing system
+\item Compare power consumption of cluster of embedded systems against
+traditional computing system
+\item Implement cluster of embedded systems for green house application: Once
+that we have found the OS and MPI configuration that give better performance
+results, we will apply this knowledge to solve a real application where a
+distributed embedded system could improve the energy efficiency
 \end{itemize}
 
 \section{Run MPI sanity test in an embedded platform}
+
+
+    \begin{center}
+    \begin{tabular}{ | l | r |}
+        \hline
+        Platform under test & Minnow Board  Max \\ \hline
+        Number of platforms  & 1  \\ \hline
+        Operating System & 2  \\ \hline
+        SW to Test & Hello world GHz  \\ \hline
+    \end{tabular}
+    \captionof{table}{Sanity Test Experiment Summary} \label{Sanity Sumary}
+    \end{center}
+
 
 In order to find the enviroment that gives better performance of the MPIbench
 tests, first is necesary to run the basic and simple MPI test. A simple code to
 prove that the MPI implementation is working as espected is:
 
-\begin{lstlisting}[frame=single,numbers=left,breaklines=true]
+\begin{lstlisting}[frame=single,numbers=left,breaklines=true,basicstyle=\tiny]
 #include "mpi.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -128,6 +147,17 @@ as the hello world test we just did ?
 
 
 \section{Run MPI benchmarks in an embedded platform}
+    
+    \begin{center}
+    \begin{tabular}{ | l | r |}
+        \hline
+        Platform under test & Minnow Board  Max \\ \hline
+        Number of platforms  & 1  \\ \hline
+        Operating System & Fedora  \\ \hline
+        SW to Test & MPI benchmark \\ \hline
+    \end{tabular}
+    \captionof{table}{Sanity Test Experiment Summary} \label{Sanity Sumary}
+    \end{center}
 
 The first aproach was to find out if is possible to run a sanity MPI test (MPI
 hellow world) with a regular GNU Linux operating system under the embedded
@@ -152,20 +182,43 @@ resutls are gather in a tar ball. The results can be ploted with gnuplot.
 Gnuplot is a portable command-line driven graphing utility for Linux, OS/2, MS
 Windows, OSX, VMS, and many other platforms. 
 
+\subsection{Results}
 After the success of this experiment we can say that is possible to run the MPI
-benchmarks on the embedded platoform with a regular Linux base operating system
-(Fedora Project). now the ext question was: What if we change the operating
+benchmarks on the embedded platform with a regular Linux base operating system
+(Fedora Project). Now the ext question was: What if we change the operating
 system? Can we get better numbers if we change the operating system? Is because
-of that quesiton that we decided to measure with multiple Operating systems.
+of that question that we decided to measure with multiple Operating systems.
 
 
 \section{Test multiple operating systems to run the MPI benchmark}
+
+    \begin{center}
+    \begin{tabular}{ | l | r |}
+        \hline
+        Platform under test & Minnow Board  Max \\ \hline
+        Number of platforms  & 1  \\ \hline
+        Operating System & Fedora / Clear Linux  \\ \hline
+        SW to Test & MPI benchmark \\ \hline
+    \end{tabular}
+    \captionof{table}{Sanity Test Experiment Summary} \label{Sanity Sumary}
+    \end{center}
+
 
 We decided to use another Linux OS designed for Intel Architecture
 \cite{clear-linux}.The Clear Linux Project for Intel Architecture is a
 distribution built for various Cloud use cases. The project  want to showcase
 the best of Intel Architecture technology, from low-level kernel features to
 complex applications that span across the entire OS stack.
+
+The way we run the experiments was the same as before: 
+
+\begin{lstlisting}[frame=single,language=bash]
+victor@minnow-1 $ llcbench $ make linux-mpich
+victor@minnow-1 $ llcbench $ make mp-bench
+victor@minnow-1 $ llcbench $ make mp-run
+\end{lstlisting}
+
+\subsection{Results}
 
 After running this two experiments we found interesting results that make us
 think that maybe a much more custom OS could impprove the numbers of the MPI
@@ -176,17 +229,19 @@ benchmarks. These results are presented in the next figures:
 \includegraphics[width=0.75\textwidth]{images/mpbench_clr_experiments/mpi_allreduce.pdf}
 \caption{MPI all reduce benchmark running in Minnowboard with Clear Linux and
 Fedora (higher is better)}
-\label{fig:5.1}
+\label{mpi_allreduce_clr_fedora}
 \end{figure}
 
-
+The all reduce benchmark (\ref{mpi_allreduce_clr_fedora}) shows more stable
+performance running in a custom OS.  This can be seen in the drop of speed
+(KB/sec) close to the test with a message size of 30000 Bytes. 
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.75\textwidth]{images/mpbench_clr_experiments/mpi_alltoall.pdf}
 \caption{MPI all to all benchmark running in Minnowboard with Clear Linux and
 Fedora (higher is better)}
-\label{fig:5.2}
+\label{mpi_alltoall_clr_fedora}
 \end{figure}
 
 
@@ -195,8 +250,57 @@ Fedora (higher is better)}
 \includegraphics[width=0.75\textwidth]{images/mpbench_clr_experiments/mpi_bandwidth.pdf}
 \caption{MPI bandwidth benchmark running in Minnowboard with Clear Linux and
 Fedora (higher is better)}
-\label{fig:5.3}
+\label{mpi_bandwidth_clr_fedora}
 \end{figure}
+
+The same results can bee seen in the "bandwidth" benchmark (figure
+\ref{mpi_bandwidth_clr_fedora}); however in the "all to all" (figure
+\ref{mpi_alltoall_clr_fedora}) there are no drops in speed at any size of the
+message under test.  This is mainly because of the nature of the test , if we
+remember both the "all reduce" and the "bandwidth" test execute the similar
+tasks. Meanwhile bandwidth executes send and receives: 
+
+\begin{lstlisting}[frame=single,numbers=left]
+do over all message sizes 
+    start timer
+    do over iteration count 
+        send(message size) 
+        recv (4)
+    stop timer
+\end{lstlisting}
+
+On the other hand mpi allreduce will reduce the values and distribute the
+results to all processes. The function prototype is the following:
+
+\begin{lstlisting}[frame=single,numbers=left]
+MPI_Allreduce(
+    void* send_data,
+    void* recv_data,
+    int count,
+    MPI_Datatype datatype,
+    MPI_Op op,
+    MPI_Comm communicator)
+\end{lstlisting}
+
+MPI all reduce does the operation in each process and then broadcast the result
+of the operation to all the individuals of the distributed system. This can be
+seen in the figure \ref{mpi_allreduce_example}: 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{images/mpi_allreduce_1.png}
+\caption{MPI all reduce example }
+\label{mpi_allreduce_example}
+\end{figure}
+
+As we can see both test exercise the send and receive functions of the OS. The
+Clear Linux OS has specific implementations in the kernel that improve the
+network performance, specially in the kernel network area
+
+On the other hand the "all to all" sends data from all to all processes, this
+mean that each node of the system need to send and receive data to every one.
+This will mean an increase in the latency of the network. Another test just for
+latency is executed in the future. 
 
 
 \begin{figure}[H]
@@ -204,7 +308,7 @@ Fedora (higher is better)}
 \includegraphics[width=0.75\textwidth]{images/mpbench_clr_experiments/mpi_bibw.pdf}
 \caption{MPI Bi directional bandwidth running in Minnowboard with Clear Linux
 and Fedora (higher is better)}
-\label{fig:5.4}
+\label{mpi_bibw_clr_fedora}
 \end{figure}
 
 
@@ -213,40 +317,147 @@ and Fedora (higher is better)}
 \includegraphics[width=0.75\textwidth]{images/mpbench_clr_experiments/mpi_broadcast.pdf}
 \caption{MPI broadcast benchmark running in Minnowboard with Clear Linux and
 Fedora (higher is better)}
-\label{fig:5.4}
+\label{mpi_broadcast_clr_fedora}
 \end{figure}
+
+The same results can be sen in the bi directional bandwidth (figure
+\ref{mpi_bibw_clr_fedora}) and the broadcast (figure
+\ref{mpi_broadcast_clr_fedora}) test. As we remember the MPBench measures
+bidirectional bandwidth with a doubly nested loop. The outer loop varies the
+message size, and the inner loop measures the send operation over the iteration
+count. Both processes execute a non-blocking receive, then a non-blocking send.
+A non blocking send and receive mean that each process will release the
+communication channel to other processes. If we check the number of processes
+running in Fedora , the number is 30\% higher. This can bee seen in the figure
+\ref{number_forks_fedora_clr}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{images/number_forks.png}
+\caption{Number of forks since boot reported in /proc/stat file (lower is better)}
+\label{number_forks_fedora_clr}
+\end{figure}
+
+As we remember tin chapter 4 the latency benchmark can be described as one that
+measures the time for an application to issue a send and continue computing.
+
+The master's pseudo code for this test is as follows:
+
+\begin{lstlisting}[frame=single,numbers=left]
+do over all message sizes 
+    start timer
+    do over iteration count 
+        send(message size) 
+    stop timer
+\end{lstlisting}    
+
+The slaves' pseudo code is as follows:
+
+\begin{lstlisting}[frame=single,numbers=left]
+   do over all message sizes 
+        start timer
+        do over iteration count 
+            recv(message size) 
+        stop timer
+\end{lstlisting}
+
+
+As we can see in the figure \ref{mpi_latency_clr_fedora} there the latency in
+both operating systems is pretty similar. The significant change is at the
+beginning of the test (before the package size reach the 32 Bytes). This is due
+to the fact that the test we are performing is with just 1 system, so there is
+no network message does not have to travel among multiple points due to the
+simplicity of our network (message send is received immediately) 
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.75\textwidth]{images/mpbench_clr_experiments/mpi_latency.pdf}
 \caption{MPI latency benchmark running in Minnowboard with Clear Linux and
 Fedora (lower is better)}
-\label{fig:5.5}
+\label{mpi_latency_clr_fedora}
 \end{figure}
+
+
+
+As we saw in chapter 4 roundtrip times are measured in much the same way as
+bandwidth, except that, the slave process, after receiving the message, echoes
+it back to the master.  This benchmark is often referred to as ping-pong. Here
+our metric is transactions per second, which is a common metric for database
+and server applications. No acknowledgment is needed with this test as it is
+implicit given its semantics.
+
+The master's pseudo code for this test is as follows:
+
+\begin{lstlisting}[frame=single,numbers=left]
+  do over all message sizes 
+    start timer
+    do over iteration count
+        send(message size)
+        recv(message size) 
+        stop timer
+\end{lstlisting}
+
+The slaves' pseudo code is as follows:
+
+\begin{lstlisting}[frame=single,numbers=left]
+do over all message sizes 
+    start timer
+    do over iteration count
+        recv(message size)
+        send(message size)
+    stop timer
+\end{lstlisting}
+
+We can see similar results in round trip test ( figure
+\ref{mpi_roundtrip_clr_fedora} ) due to the same reasons in latency test. In
+the future we will execute the same tests with up to 6 systems, there the
+network results ( latency,roundtrip,bandwidth) might show different behaivor
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.75\textwidth]{images/mpbench_clr_experiments/mpi_roundtrip.pdf}
 \caption{MPI latency benchmark running in Minnowboard with Clear Linux and
 Fedora (lower is better)}
-\label{fig:5.6}
+\label{mpi_roundtrip_clr_fedora}
 \end{figure}
 
-As we know the standard of the industry to generate a custum Linux OS is the
-Yocto project. As we saw in table~\ref{tab:4.2} the operating systems generated
-with the Yocto project do not have an implementation of the MPI library. Takign
-these first resutls we decided to run another experimentBecase
-of that we decided to make the MPI implementation in the Yocto project. 
+Based on the results we got from these experiments we came to the hypothesis
+that a custom Operating System might represent a benefit for a cluster of
+embedded platforms. We did the experiments with two operating systems , une
+commercial ( Fedora ) and one custom (Clear linux for Intel Architecture). We
+consider worth to try with an Operating System designed for Embedded and IoT
+platforms. 
+
+As we know the standard of the embedded industry to generate a custom Linux OS
+is the Yocto project. As we saw in table~\ref{tab:4.2} the operating systems
+generated with the Yocto project do not have an implementation of the MPI
+library. 
+
+If we want to repeat these experiments is necessary to make the MPI
+implementation in the Yocto project. 
 
 
 \section{Yocto project MPI implementation}
 
-The Yocto project \cite{yocto-project} generate a custum Linux OS for you
+    \begin{center}
+    \begin{tabular}{ | l | r |}
+        \hline
+        Platform under test & Minnow Board  Max \\ \hline
+        Number of platforms  & 1  \\ \hline
+        Operating System & Fedora / Clear Linux / Yocto base OS  \\ \hline
+        SW to Test & MPI benchmark \\ \hline
+    \end{tabular}
+    \captionof{table}{Sanity Test Experiment Summary} \label{Sanity Sumary}
+    \end{center}
+
+The Yocto project \cite{yocto-project} generate a custom Linux OS for you
 embedded system. The way you add a new capability to the system is by adding a
-new receipt. This is described in the Yocto documenttion. The receipt we
+new receipt. This is described in the Yocto documentation. The receipt we
 implemented for MPI is: 
 
-\begin{lstlisting}[frame=single,numbers=left,breaklines=true]
+\begin{lstlisting}[frame=single,numbers=left,breaklines=true,basicstyle=\tiny]
+
 SUMMARY = "Message Passing Interface (MPI) implementation"
 HOMEPAGE = "http://www.mpich.org/"
 SECTION = "devel"
@@ -317,58 +528,130 @@ not suport Fortran
 support C++ in order to generate a small MPI implementation
 \end{itemize}
 
+
+\subsection{Results}
+
 With this configuration we could create an MPI implementation in the Yocto
 project, not just the compiler but also the MPI process manager. The results of
-doin this can be seen in the following graphs.
+doin this can be seen in the following graphs of the MPI benchmarks, now
+running with a Yocto base image: 
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{images/mpbench_yocto_experiments/mpi_reduce.pdf}
+\caption{MPI Reduce benchmark running in Minnowboard with Clear Linux, Yocto
+and Fedora (higher is better)}
+\label{mpi_reduce_yocto}
+\end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.75\textwidth]{images/mpbench_yocto_experiments/mpi_allreduce.pdf}
 \caption{MPI all reduce benchmark running in Minnowboard with Clear Linux,
 Yocto and Fedora (higher is better)}
-\label{fig:5.7}
+\label{mpi_allreduce_yocto}
 \end{figure}
-
-
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.75\textwidth]{images/mpbench_yocto_experiments/mpi_alltoall.pdf}
-\caption{The Minnow board Max}
 \caption{MPI all to all benchmark running in Minnowboard with Clear Linux, Yocto
 and Fedora (higher is better)}
-\label{fig:5.8}
+\label{mpi_all_to_all_yocto}
 \end{figure}
 
+As we can see the results with the Yocto base operating system have the same
+tendency that with the Clear Linux base OS. Except in the "all to all"
+experiment where the gain in performance was higher with a message size higher
+than 32000 Bytes. This is pretty much because of the nature of the test. As we
+remember the test measures a kind of round-robin communication among multiple
+processes.
+
+\begin{lstlisting}[frame=single,numbers=left]
+    do over all message sizes 
+        start timer
+        do over iteration count 
+            all-to-all(message size)
+        stop timer
+\end{lstlisting}
+
+The all to all systems is described in figure \ref{mpi_all_to_all_example}.
+MPI all to all  is a collective operation in which all processes send the same
+amount of data to each other, and receive the same amount of data from each
+other. As we can see on the figure each process has its own data , at the end,
+all the processes has the same amount of data from each one. In the figure we
+can see how each process distribute its data among the other processes.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{images/mpi_all_to_all.png}
+\caption{MPI all to all mechanism diagram}
+\label{mpi_all_to_all_example}
+\end{figure}
+
+Each of these process are blocking processes, which mean that the number of
+processes does not affect the performance of the test. However when we check
+the configuration of the Yocto Base operating system we can see there there
+some modifications for the specific platform we are testing. Specially in the
+kernel section: 
+
+\begin{lstlisting}[frame=single,numbers=left]
+    # enable cpu frequency scaling and stats for powertop
+    CONFIG_CPU_FREQ=y
+    CONFIG_CPU_FREQ_STAT=y
+    CONFIG_X86_ACPI_CPUFREQ=y
+    CONFIG_X86_INTEL_PSTATE=y
+    CONFIG_CPU_FREQ_GOV_ONDEMAND=y
+    CONFIG_CPU_FREQ_GOV_PERFORMANCE=y
+    CONFIG_CPU_FREQ_DEFAULT_GOV_ONDEMAND=y
+\end{lstlisting}
+
+The Yocto kernel for the platform under test ( Minnow Board Max ) has the CPU
+frequency scaling enable. Clock scaling allows you to change the clock speed of
+CPUs on the fly. This is a nice method to save battery during runtime as well
+as a nice method to boos the speed of the system when required. In this case
+the speed of the system is increased upon request when send/receive method
+require it.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.75\textwidth]{images/mpbench_yocto_experiments/mpi_bandwidth.pdf}
-\caption{The Minnow board Max}
 \caption{MPI bandwidth benchmark running in Minnowboard with Clear Linux,
 Yocto and Fedora (higher is better)}
-\label{fig:5.9}
+\label{mpi_bandwidth_yocto}
 \end{figure}
 
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.75\textwidth]{images/mpbench_yocto_experiments/mpi_bibw.pdf}
-\caption{The Minnow board Max}
 \caption{MPI Bi directional bandwidth running in Minnowboard with Clear Linux,
 Yocto and Fedora (higher is better)}
-\label{fig:5.10}
+\label{mpi_bibw_yocto}
 \end{figure}
 
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.75\textwidth]{images/mpbench_yocto_experiments/mpi_broadcast.pdf}
-\caption{The Minnow board Max}
 \caption{MPI Broadcast benchmark running in Minnowboard with Clear Linux, Yocto
 and Fedora (lower is better)}
-\label{fig:5.11}
+\label{mpi_broadcast_yocto}
+\end{figure}
+
+If we remember the results we got in the previous tests of bi directional band
+width (figure \ref{mpi_bibw_clr_fedora}) and the broadcast test (figure
+\ref{mpi_broadcast_clr_fedora}) , the main reason why Clear Linux ran with
+higher speed was because of the number of processes (forks) since fighting for
+the same resources ( network / memory / CPU) . Now if we check the number of
+processes running in Yocto base OS , the number is 15\% lower than CLR and 35\%
+lower than Fedora . This can bee seen in the figure \ref{number_forks_yocto}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{images/number_forks_yocto.png}
+\caption{Number of forks since boot reported in /proc/stat file (lower is better)}
+\label{number_forks_yocto}
 \end{figure}
 
 \begin{figure}[H]
@@ -376,26 +659,83 @@ and Fedora (lower is better)}
 \includegraphics[width=0.75\textwidth]{images/mpbench_yocto_experiments/mpi_latency.pdf}
 \caption{MPI latency running in Minnowboard with Clear Linux,
 Yocto and Fedora (higher is better)}
-\label{fig:5.12}
+\label{mpi_latency_yocto}
 \end{figure}
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.75\textwidth]{images/mpbench_yocto_experiments/mpi_reduce.pdf}
-\caption{MPI Reduce benchmark running in Minnowboard with Clear Linux, Yocto
-and Fedora (higher is better)}
-\label{fig:5.13}
-\end{figure}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.75\textwidth]{images/mpbench_yocto_experiments/mpi_roundtrip.pdf}
 \caption{MPI Bi directional bandwidth running in Minnowboard with Clear Linux,
 Yocto and Fedora (lower is better)}
-\label{fig:5.14}
+\label{mpi_roundtrip_yocto}
 \end{figure}
 
+Latency and bandwidth tests ( figure \ref{mpi_latency_yocto} and figure
+\ref{mpi_roundtrip_yocto}) have the same performance despite the Operating
+System running on the platform under test ( Minnow Board Max , due to the fact
+that we are running the tests in a single platform for now.
+
 \section{Test MPI benchmark in a cluster of embedded systems}
+
+
+    \begin{center}
+    \begin{tabular}{ | l | r |}
+        \hline
+        Platform under test & Minnow Board  Max \\ \hline
+        Number of platforms  & 1  \\ \hline
+        Operating System & Fedora / Clear Linux  \\ \hline
+        SW to Test & MPI benchmark \\ \hline
+    \end{tabular}
+    \captionof{table}{Sanity Test Experiment Summary} \label{Sanity Sumary}
+    \end{center}
+
+
+\section{Compare MPI benchmark performance of cluster of embedded systems
+against traditional computing system}
+
+
+    \begin{center}
+    \begin{tabular}{ | l | r |}
+        \hline
+        Platform under test & Minnow Board  Max \\ \hline
+        Number of platforms  & 1  \\ \hline
+        Operating System & Fedora / Clear Linux  \\ \hline
+        SW to Test & MPI benchmark \\ \hline
+    \end{tabular}
+    \captionof{table}{Sanity Test Experiment Summary} \label{Sanity Sumary}
+    \end{center}
+
+
+\section{Compare power consumption of cluster of embedded systems against
+traditional computing system}
+
+    \begin{center}
+    \begin{tabular}{ | l | r |}
+        \hline
+        Platform under test & Minnow Board  Max \\ \hline
+        Number of platforms  & 1  \\ \hline
+        Operating System & Fedora / Clear Linux  \\ \hline
+        SW to Test & MPI benchmark \\ \hline
+    \end{tabular}
+    \captionof{table}{Sanity Test Experiment Summary} \label{Sanity Sumary}
+    \end{center}
+
+
+
+\section{Implement cluster of embedded systems for green house application}
+
+
+    \begin{center}
+    \begin{tabular}{ | l | r |}
+        \hline
+        Platform under test & Minnow Board  Max \\ \hline
+        Number of platforms  & 1  \\ \hline
+        Operating System & Fedora / Clear Linux  \\ \hline
+        SW to Test & MPI benchmark \\ \hline
+    \end{tabular}
+    \captionof{table}{Sanity Test Experiment Summary} \label{Sanity Sumary}
+    \end{center}
 
 After doing the experiments in a single Atome system we decided to do the
 experiments in a cluster of them. The experiment is limitated to the number of
@@ -410,7 +750,7 @@ cluster is described bellow in figure \ref{fig:5.20}.
 \label{fig:5.20}
 \end{figure}
 
-All these sistems execute the MPIBenchmarks with the following ssh config file:
+All these systems execute the MPIBenchmarks with the following ssh config file:
 
 
 \begin{lstlisting}[frame=single,language=bash]
