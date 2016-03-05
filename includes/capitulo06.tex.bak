@@ -1,0 +1,166 @@
+%Empieza configuracion de capitulo
+\setstretch{1.0}
+\titleformat{\chapter}[block]{\Large\bfseries}{CHAPTER \Huge\thechapter\vspace{25 pt}}{0 pt}{\\\fontsize{26}{36}\selectfont}
+\titlespacing{\chapter}{0 pt}{30 pt}{50 pt}[0 pt]
+\titleformat{\section}{\Large\bfseries}{\thesection}{0 pt}{\hspace{30 pt}}
+\titleformat{\subsection}{\large\bfseries}{\thesubsection}{0 pt}{\hspace{30 pt}}
+\pagestyle{fancy}
+\fancyhead[LO,LE]{\footnotesize\emph{\leftmark}}
+\fancyhead[RO,RE]{\thepage}
+\fancyfoot[CO,CE]{}
+%Termina configuracion de capitulo
+
+\chapter{Experiments}
+\setstretch{1.5} %Regresa el interlineado a 1.5
+
+\normalsize
+\noindent
+
+\section{Find the correct OS}
+\noindent
+
+    The forst aproach was to find the correct Operating system for the test,
+    however this wasn't easy in the begining we startd to create a few
+    experiments. In the end we came up with a full suport of MPi for embedded
+    platfoms suport that the comunity thanks to us a lot.
+
+    \subsection {Embedded Distributed Systems: A Case of Study with Clear Linux
+    Project for Intel Architecture}
+    \noindent
+
+
+
+The main objective of this work will be to prove that a distributed embedded
+system (Intel® AtomTM Processor E3825) running real HPC workloads 
+(MPI benchmarks) can be improved by the use of a customized operating system 
+
+
+
+The need of more complex and smart applications (they must adapt their
+performance as well as power) has risen the bar to create distributed systems
+based on parallel embedded platforms. 
+
+By definition: A distributed system consists of a collection of autonomous
+computers, connected through a network and distribution middle-ware, which
+enables computers to coordinate their activities and to share the resources of
+the system, so that users perceive the system as a single, integrated computing
+facility.
+
+Advantages: 
+
+\begin{enumerate} 
+    
+    \item \textbf{Partioning Workload}: 
+    By partitioning the workload onto multiple processors, 
+    each processor is now responsible for only a fraction of the workload. 
+    The processors can now afford to slow down by dynamic voltage scaling 
+    (DVS) to run at more power-efficient states, and the degraded performance 
+    on each processor can still contribute to an increased system-wide 
+    performance by the increased parallelism.  
+
+    \item \textbf{Heterogeneous HW}: 
+    Another advantage with a distributed scheme is that heterogeneous hardware 
+    such as DSP and other accelerators can further improve power efficiency 
+    of various stages of the computation through specialisation.
+
+\end{enumerate}
+ 
+
+Disadvantages: 
+
+\begin{enumerate}
+    \item \textbf{Network}: Despite the fact the distributed systems may have
+    many attractive properties, they pay a higher price for message-passing 
+    communications. Each node now must handle not only communication with 
+    the external world, but also extra communication on the internal network. 
+    As a result, even if the actual data payload is not large on an absolute 
+    scale, the communication appears very expensive and does not scale to a few
+    more nodes
+
+    \item \textbf{Lack of optimised OS}: A typical embedded system often does
+    not contain an operating system. Crafting distributed programs on such a
+    bare-bone platform is extremely difficult and error-prone. Although many
+    higher-level abstractions such as Message Passing Interfaces (MPI) have been
+    proposed to facilitate distributed programming, these abstraction layers require
+    extensive system resources with comprehensive operating systems support, which
+    may not be available to an embedded platform 
+    
+\end{enumerate}
+ 
+However in recent years we have seen an emergence of a new class of full-fledged
+embedded systems (they are fully loaded with sufficient system resources as well
+as networking and other peripheral devices, and a complete version of the
+operating system with network support) In addition, they are typically designed
+with power-management technology in order to extend the battery life
+
+With these gaps closed there might be a chance to merge the parallel and
+distributed paradigms on the embedded world.  A merging point of technologies
+from different domains often inspires technology innovations in new domains.
+
+\section{Development}
+
+According to these in consideration there are multiple scenarios to test the
+capability of an embedded distributed system: 
+
+
+\begin{itemize} 
+    
+    \item Compare an Embedded system with generic SW (Linux base OS
+    (Fedora/Ubuntu/Debian) and generic MPI protocol (MPICH)) against a
+    regular development system (with the same OS and MPI toolS)
+
+    \item Compare an Embedded system with a distributed operating system
+    against the same embedded system with custom SW (Linux from scratch system)
+
+
+    \item Compare an Embedded system with a distributed operating system
+    against the same embedded system with custom SW (Linux from scratch system and
+    MPI for embedded (LMPI)) in order to check the gap in the multiple systems
+
+\end{itemize}
+
+For this report we will execute the experiment of the second scenario, due to the
+fact that we have already done the study of the first scenario. In that case we
+realize that despite the fact that the minnow Max ran 8 times slower than the
+regular development system (NUC Haswell system) the Minnow Max was more stable
+and with less drops in performance. 
+
+The operating system we will use is the Fedora 19 system, the description of the
+system is listed on the fedora project site home page (http://fedoraproject.org)
+
+The benchmark we will use to measure the performance is MPIbench. This is a
+program to measure the performance of some critical MPI functions. By critical
+it means that the behavior of these functions can dominate the run time of a
+distributed application. MPBench has now been integrated into LLCbench (Low
+Level Characterisation Benchmarks) 
+
+The MPIfunctions that it stress are: 
+
+
+\begin{itemize}
+
+\item MPI\_Send/MPI\_Recv Bandwidth (Kb/second vs. bytes) 
+\item MPI\_Send/MPI\_Recv Application latency or Gap time (us vs. bytes)
+\item MPI\_Send/MPI\_Recv Roundtrip or 2 * Latency (trns/second vs. bytes) 
+\item MPI\_Send/MPI\_Recv() BidirectionalBandwidth (Kb/second vs. bytes) 
+\item MPI\_Bcast broadcast (Kb/second vs. bytes) 
+\item MPI\_Reduce reduction (sum) (Kb/second vs. bytes) 
+\item MPI\_AllReduce reduction (sum) (Kb/second vs. bytes) 
+\item MPI\_Alltoall Each process sends to every other process (Kb/sec vs. bytes) 
+
+\end{itemize}
+
+
+    \subsection {Embedded Distributed Systems: A Case of Study with Yocto project}
+    \noindent
+
+\section{Find the correct MPI protocol configuration}
+\noindent
+
+\section{Embedded Distributed System: A case of study in smart greenhouses}
+\noindent
+
+\section{Embedded Distributed System: PnP measurement with comercial OS}
+\noindent
+
+\clearpage
