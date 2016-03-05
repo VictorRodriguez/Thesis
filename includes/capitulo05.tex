@@ -48,7 +48,6 @@ distributed embedded system could improve the energy efficiency
         Operating System & 2  \\ \hline
         SW to Test & Hello world GHz  \\ \hline
     \end{tabular}
-    \captionof{table}{Sanity Test Experiment Summary} \label{Sanity Sumary}
     \end{center}
 
 
@@ -156,7 +155,6 @@ as the hello world test we just did ?
         Operating System & Fedora  \\ \hline
         SW to Test & MPI benchmark \\ \hline
     \end{tabular}
-    \captionof{table}{Sanity Test Experiment Summary} \label{Sanity Sumary}
     \end{center}
 
 The first aproach was to find out if is possible to run a sanity MPI test (MPI
@@ -200,7 +198,6 @@ of that question that we decided to measure with multiple Operating systems.
         Operating System & Fedora / Clear Linux  \\ \hline
         SW to Test & MPI benchmark \\ \hline
     \end{tabular}
-    \captionof{table}{Sanity Test Experiment Summary} \label{Sanity Sumary}
     \end{center}
 
 
@@ -448,7 +445,6 @@ implementation in the Yocto project.
         Operating System & Fedora / Clear Linux / Yocto base OS  \\ \hline
         SW to Test & MPI benchmark \\ \hline
     \end{tabular}
-    \captionof{table}{Sanity Test Experiment Summary} \label{Sanity Sumary}
     \end{center}
 
 The Yocto project \cite{yocto-project} generate a custom Linux OS for you
@@ -676,71 +672,25 @@ Latency and bandwidth tests ( figure \ref{mpi_latency_yocto} and figure
 System running on the platform under test ( Minnow Board Max , due to the fact
 that we are running the tests in a single platform for now.
 
-\section{Test MPI benchmark in a cluster of embedded systems}
-
-
-    \begin{center}
-    \begin{tabular}{ | l | r |}
-        \hline
-        Platform under test & Minnow Board  Max \\ \hline
-        Number of platforms  & 1  \\ \hline
-        Operating System & Fedora / Clear Linux  \\ \hline
-        SW to Test & MPI benchmark \\ \hline
-    \end{tabular}
-    \captionof{table}{Sanity Test Experiment Summary} \label{Sanity Sumary}
-    \end{center}
-
 
 \section{Compare MPI benchmark performance of cluster of embedded systems
 against traditional computing system}
 
-
     \begin{center}
     \begin{tabular}{ | l | r |}
         \hline
-        Platform under test & Minnow Board  Max \\ \hline
-        Number of platforms  & 1  \\ \hline
-        Operating System & Fedora / Clear Linux  \\ \hline
+        Platform under test & Minnow Board  Max and Intel NUC D54250WYK
+        (Haswell)\\ \hline
+        Number of platforms  & 6  \\ \hline
+        Operating System & Yocto / Clear Linux  \\ \hline
         SW to Test & MPI benchmark \\ \hline
     \end{tabular}
-    \captionof{table}{Sanity Test Experiment Summary} \label{Sanity Sumary}
-    \end{center}
-
-
-\section{Compare power consumption of cluster of embedded systems against
-traditional computing system}
-
-    \begin{center}
-    \begin{tabular}{ | l | r |}
-        \hline
-        Platform under test & Minnow Board  Max \\ \hline
-        Number of platforms  & 1  \\ \hline
-        Operating System & Fedora / Clear Linux  \\ \hline
-        SW to Test & MPI benchmark \\ \hline
-    \end{tabular}
-    \captionof{table}{Sanity Test Experiment Summary} \label{Sanity Sumary}
-    \end{center}
-
-
-
-\section{Implement cluster of embedded systems for green house application}
-
-
-    \begin{center}
-    \begin{tabular}{ | l | r |}
-        \hline
-        Platform under test & Minnow Board  Max \\ \hline
-        Number of platforms  & 1  \\ \hline
-        Operating System & Fedora / Clear Linux  \\ \hline
-        SW to Test & MPI benchmark \\ \hline
-    \end{tabular}
-    \captionof{table}{Sanity Test Experiment Summary} \label{Sanity Sumary}
     \end{center}
 
 After doing the experiments in a single Atome system we decided to do the
-experiments in a cluster of them. The experiment is limitated to the number of
+experiments in a cluster of them. The experiment is limited to the number of
 systems we can gather. In this case we could gather 6 Minnowboad
-\cite{minnowboard} plaforms to do the experiments. The full diagram of the
+\cite{minnowboard} platforms to do the experiments. The full diagram of the
 cluster is described bellow in figure \ref{fig:5.20}.
 
 \begin{figure}[H]
@@ -782,9 +732,274 @@ And the following MPI config file:
     node3
 \end{lstlisting}
 
-This is necesary to make the systems comunicate each other thorugh MPI , if we
-don't include this configuration there will not be any comunications due to the
-fact that MPI requires an ssh conection. 
+This is necessary to make the systems communicate each other through MPI , if we
+don't include this configuration there will not be any communications due to the
+fact that MPI requires an ssh connection. 
+
+The idea of this experiment is to compare the performance of the cluster of
+Embedded systems (now that we have found that a Yocto base OS has the best
+performance) with a Traditional Computing System. In this case it will be the
+Intel NUC D54250WYK (Haswell). The brief description of this system is
+described here in following table: 
+
+    \begin{center}
+    \begin{tabular}{ | l | r |}
+        \hline
+        Platform Name & Intel NUC D54250WYK \\ \hline
+        Core Name & i5-4250U CPU  \\ \hline
+        Number of cores & 2 \\ \hline
+        Number of Threads & 4 \\ \hline
+        Frequency & 1.30GHz \\ \hline
+        Memory & 16GB\\ \hline
+        Hard Disk & 120GB \\ \hline
+    \end{tabular}
+    \end{center}
+
+
+
+\subsection{Results}
+
+After executing the MPI benchmark in the cluster of embedded systems  and in
+the NUC ( with Clear Linux OS ) we could compare their MPI performance in the
+following graphs; 
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.0\textwidth]{images/mpbench_cluster_experiments/mpi_all_reduce.png}
+\caption{All reduce  benchmark in cluster of minnowboards with Yocto OS and NUC
+with Clear Linux OS}
+\label{all_reduce_cluster}
+\end{figure}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.0\textwidth]{images/mpbench_cluster_experiments/mpi_reduce.png}
+\caption{Reduce  benchmark in cluster of minnowboards with Yocto OS and NUC
+with Clear Linux OS}
+\label{reduce_cluster}
+\end{figure}
+
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.0\textwidth]{images/mpbench_cluster_experiments/mpi_alltoall.png}
+\caption{All to All  benchmark in cluster of minnowboards with Yocto OS and NUC
+with Clear Linux OS}
+\label{all_to_all_cluster}
+\end{figure}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.0\textwidth]{images/mpbench_cluster_experiments/mpi_bandwidth.png}
+\caption{Bandwidth  benchmark in cluster of minnowboards with Yocto OS and NUC
+with Clear Linux OS}
+\label{all_to_all_cluster}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.0\textwidth]{images/mpbench_cluster_experiments/mpi_bibw.png}
+\caption{Bi directional bandwidth benchmark in cluster of minnowboards with Yocto OS and NUC
+with Clear Linux OS}
+\label{all_to_all_cluster}
+\end{figure}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.0\textwidth]{images/mpbench_cluster_experiments/mpi_broadcast.png}
+\caption{Broadcast  benchmark in cluster of minnowboards with Yocto OS and NUC
+with Clear Linux OS}
+\label{all_to_all_cluster}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.0\textwidth]{images/mpbench_cluster_experiments/mpi_latency.png}
+\caption{Latency  benchmark in cluster of minnowboards with Yocto OS and NUC
+with Clear Linux OS}
+\label{all_to_all_cluster}
+\end{figure}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1.0\textwidth]{images/mpbench_cluster_experiments/mpi_roundtrip.png}
+\caption{Roundtrip  benchmark in cluster of minnowboards with Yocto OS and NUC
+with Clear Linux OS}
+\label{all_to_all_cluster}
+\end{figure}
+
+
+
+\section{Compare power efficiency of cluster of embedded systems against
+traditional computing system}
+
+
+So far we have been able to see the performance comparison of a traditional
+computer system and a cluster of embedded systems. As we have seen even with 6
+systems of embedded platforms is not possible to get the same performance
+impact that with traditional computer system ( close , upt 85\% of the
+performance in some tests ) ; but what about the power consumption?. If we
+remember the hypothesis (Section 1.4) The part that we are concern is to
+determine the breaking point where is better to send the data to the cloud data
+centers. How many systems is the maximum that these kind of network could
+support and still being a good option in terms of energy efficiency?
+
+In computing, performance per watt is a measure of the energy efficiency of a
+particular computer architecture or computer hardware. Literally, it measures
+the rate of computation that can be delivered by a computer for every watt of
+power consumed.
+
+\begin{equation}
+    Energy Efficiency = \dfrac {Performance}{Watts}
+\end{equation}
+
+We believe that the energy efficiency in an embedded cluster will have the
+behavior of the  figure~\ref{fig:1.2}. In the beginning the increment of the
+number of nodes in our network will increment the performance (the top part of
+the equation), but at the same time the amount of watts will
+increase making the energy efficiency flat at some point (if the lower part of
+the equation increases the equation tends to decrease)
+
+The next natural step is to measure the power consumption of both systems : the
+cluster of embedded systems and the D54250WYK
+
+The instrument to measure the power consumption of the system is the WT300
+Series Digital Power Meter (from Yokogawa) . Digital Power Analyzers are
+instruments for laboratory, manufacturing test, or handheld applications to
+accurately measure and analyze electrical power characteristics.
+
+The next table \ref{minnow_power_1} describe the power consumption of a single Minnow board: 
+
+\begin{table}[]
+    \centering
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+    \hline
+          &All reduce &Reduce & All to all &Bandwidht & Bi direct bandwidth & Boradcast & Latency & Roundtrip \\ \hline 
+          Average Power Consumption (Watts) & 4.234  & 2.231 & 2.4.876 & 4.9871 & 4.7865 & 4.8721  & 4.1235  & 4.8563 \\ \hline
+          MAX Watts & 5.6139 & 5.875 & 5.934 & 5.823 & 5.749  & 5.853 & 5.761 & 5.703 \\ \hline
+          MIN Watts & 2.8874 & 2.234 & 2.7532 & 2.8342 & 2.7431  & 2.6548 & 2.934  & 2.985 \\ \hline
+          Average Power at idle (Watts) & 2.5663 & 2.5663 & 2.5663 & 2.5663 & 2.5663 & 2.5663 & 2.5663  & 2.5663 \\ \hline
+    \end{tabular}}
+    \captionof{table}{Minnow board Max power consumption during MPI bench}
+    \label{minnow_power_1}
+\end{table}
+
+
+The next table describe the power consumption of a single NUC D54250WYK
+
+
+\begin{table}[]
+    \centering
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{|l|l|l|l|l|l|l|l|l|}
+    \hline
+          & All reduce & Reduce  & All to all &
+          Bandwidht & Bi directional bandwidth &
+          Boradcast & Latency & Roundtrip \\ \hline
+          Average Power Consumption (Watts) &
+          18.0742    & 19.2853 & 18.6589    &
+          18.2385   & 18.8423                  &
+          19.4739   & 18.8664 & 19.6473   \\ \hline
+          MAX Watts                         &
+          20.3010    & 20.1011 & 20.4240    &
+          20.8761   & 19.9573                  &
+          20.8436   & 20.3242 & 20.3452   \\ \hline
+          MIN Watts                         &
+          5.2046     & 4.4239  & 5.9853     &
+          6.5838    & 5.4086                   &
+          4.5973    & 6.2199  & 6.8419    \\ \hline
+          Average Power at idle (Watts)     &
+          4.4801     & 4.4801  & 4.4801     &
+          4.4801    & 4.4801                   &
+          4.4801    & 4.4801  & 4.4801    \\ \hline
+        \end{tabular}}
+    \caption{NUC D54250WYK power consumption during MPI bench}
+    \label{NUC_power_1}
+\end{table}
+
+
+As we can see the average power consumption of the NUC is close to 20 Watts in
+the meantime the average power consumption of the embedded system is close to
+2 Watts. This is due to the design of the embedded system, just the CPU in the
+embedded system is designed to consume 1 Watt in idle mode.
+
+After this we start to measure the power consumption of the embedded cluster,
+this can bee seen in the next graph\ref{power_average_minnow}: 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{images/power_average.png}
+\caption{Average power management}
+\label{power_average_minnow}
+\end{figure}
+
+
+The energy eficienty characterization of the systems can be described in the
+following graphs: 
+
+Number of platforms
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{images/energy_results/allreduce.png}
+\caption{Energy efitiancy comparison in MPI "All reduce" benchmark (lower is
+better)}
+\label{all_reduce_energy}
+\end{figure}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{images/energy_results/reduce.png}
+\caption{Energy efitiancy comparison in MPI "Reduce" benchmark (lower is
+better)}
+\label{reduce_energy}
+\end{figure}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{images/energy_results/all_to_all.png}
+\caption{Energy efitiancy comparison in MPI "All to all" benchmark (lower is
+better)}
+\label{alltoall_energy}
+\end{figure}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{images/energy_results/bandwidth.png}
+\caption{Energy efitiancy comparison in MPI "Bandwidth" benchmark (lower is
+better)}
+\label{bandwidth_energy}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{images/energy_results/bibw.png}
+\caption{Energy efitiancy comparison in MPI " Bi directional Bandwidth" benchmark (lower is
+better)}
+\label{bibw_energy}
+\end{figure}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{images/energy_results/broadcast.png}
+\caption{Energy efitiancy comparison in MPI " Broadcast Bandwidth" benchmark (lower is
+better)}
+\label{broadcast_energy}
+\end{figure}
+
+
+\section{Implement cluster of embedded systems for green house application}
 
 
 \clearpage
