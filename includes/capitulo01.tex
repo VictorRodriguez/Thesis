@@ -17,70 +17,107 @@
 
 \normalsize
 
-This work will present a detailed study of how could a network of embedded
-systems collaborate among each others to solve parallel problems. After reading
-this project you will understand how this can be done , what are their
-limitations and recommendations if you would like to implement this as part of 
-your current projects. 
+This work presents a detailed study of how a network of embedded systems
+collaborates among each others to solve parallel problems. At the end a
+detailed case of study based on: industrial benchmarks for distributed systems,
+power consumption analysis and optimal operating system selection, will provide
+the IoT and embedded industry a solid methodology to use their compute power as
+much as possible.
 
 \section{Background}
 \vspace{30 pt}
 \noindent
 
-Our story begins decades ago, the computers were finally at homes and many
-people wonder what was going to be next revolution. There was expectations that
-in close future the computers were going to be everywhere: in our houses , in
-our cars, teaching to the children and controlling the traffic. Well that was
-the dream that seems more like a science fiction story, but as we know that
-dream has came true in many ways.
+The evolution of computing technology as made incredible progress in the
+roughly 60 years since the first general-purpose electronic computer was
+created. Today, less than 300 dollars  will purchase a personal computer that
+has more performance, more main memory, and more disk storage than a computer
+bought in 1985 for 1 million dollars. \cite{Hennessy}. This advantages has been
+possible thanks to the innovations in computer design and software design.
 
-All this has been possible due to the evolution of computing technology over
-these years. computer technology has made incredible progress in the roughly 60
-years since the first general-purpose electronic computer was created. Today,
-less than 500 dollars  will purchase a personal computer that has more
-performance, more main memory, and more disk storage than a computer bought in
-1985 for 1 million dollars.\cite{Hennessy} This rapid improvement has come both
-from advances in the technology used to build computers and from innovation in
-computer design.
+
+%Computter architecture
+Since the commercial use of computers (started in 1951 with the
+introduction of UNIVAC \cite{Nur}) the development of the computers has had
+multiple changes, not only from the architectural point of view but also from
+the application point of view. In \cite{Hennessy} the image \textit"{Figure 1:1
+Growth in processor performance since the mid-1980s."} shows the evolution of
+the computers in term of performance over the years. 
+
+The first important breakpoint in the history of computers came in the late
+1970s, whit the emergence of the microprocessor. Since then there has been an
+increase in the number of computer business being based on microprocessors. 
 
 The 1980s saw the rise of the desktop computer based on microprocessors, in the
 form of both personal computers and workstations. The 1990s saw the emergence
-of the Internet and the World Wide Web, the first successful hand-held computing
-devices, and the emergence of high-performance digital consumer electronics.
-The extraordinary popularity of cell phones has been obvious since 2000, with
-rapid improvements in functions and sales that far exceed those of the PC
-(personal computers).These more recent applications use embedded computers.
+of the Internet and the World Wide Web, the first successful lap top computing
+devices, and the emergence of high performance compute systems for business
+purposes (servers). During this years the performance of the microprocessors
+increase around 27\% each year.\cite{Hennessy}
 
-But let's stop a bit here. A new world came to our vocabulary at those days:
-embedded. What is an embedded system? An embedded system is a special-purpose
+However in the beginning of 2000's a dramatic change in the computer
+architecture happened. The idea of increasing of computing performance in
+processors, based on simply screwing up the clock frequency, could not longer
+be hold. Due to the fact that the power density (amount of power per unit
+volume) increase with the increase in frequency.
+
+The solution, in order to still meet Moore's law, was the shifting to real
+parallelism by doubling the number of processors on one chip die. This was the
+birth of the multi-core area. This idea increasing the compute power limiting
+the power density at the same time. This new computer architecture break the
+paradigm of use low compute power microprocessors for embedded platforms.
+Instead of this it was possible to have more compute power with less frequency.
+Thanks to this radical change there has been a rapid evolution of the compute
+and multimedia capabilities of embedded systems. At the point where have more
+computer power in our cellphones than all of NASA back in 1969 \cite{Michio}
+
+
+%Embedded architecture
+
+But the smart-phones are not the only example of embedded platforms.
+According to \cite{Hallinan} \textit{"An embedded system is a special-purpose
 system in which the computer is completely encapsulated by the device it
-controls.\cite{Hallinan} Unlike a general-purpose computer, such as a personal
+controls"} Unlike a general-purpose computer, such as a personal
 computer, an embedded system performs pre-defined tasks, usually with very
-specific requirements. Examples of these were the first microwaves, the first
-cellphones and GPS (Global Positioning System) systems. All those electronic
-gadgets that started to emerge 10 years ago.
+specific requirements. Examples of these are:microwaves, washing machines, printers,
+and GPS (Global Positioning System) systems. All those electronic
+gadgets that started to emerge 15 years ago \cite{Nur}.
 
-As we know society loved these new devices and asked for more. Less cost,
-smaller devices, better power consumption and the capability to make much more
-complex tasks. This was a clear path to follow until a new requirement came up:
-Connectivity. The market started to ask for embedded systems with the
-capability,not only to measure, but also with the capability to be fully
-connected to the internet all the time. One could start to ask why. Why would I
-want to have an embedded system connected to the internet all the time?. Can
-you imagine now your TV, smart phone or tablet not connected to the Internet?
-This is the technology that old science fiction novels imagined years ago, the
-Internet of Things (IoT).
+The variety of the embedded applications requires at the widest spread
+of processing power and cost. They include 8-bit and 16-bit processors that may
+cost few cents, 32-bit microprocessors that execute 100 million instructions
+per second and cost less than few dollars, and high-end processors for the
+newest video games or network switches that cost at least 100 dollars and can
+execute a billion instructions per second.\cite{Hennessy}
 
-Internet of Things refers to physical and virtual objects that have
-unique identities and are connected to the internet to facilitate intelligent
-applications that make energy, logistics, industrial control, retail,
-agriculture and many other domains "smarter".\cite{Bahga} The IoT enables the
-interconnection via the Internet of computing devices embedded in everyday
-objects, enabling them to send and receive data. So what is the diference
-betwen the embeddded systems and the IoT systems? As you can see the differences
-with traditional embedded systems are the internet connectivity and less power
-consumption. IoT systems must always be connected to the internet and require a
-lower power consumption.
+%Ubicuos systems
+The combination of all these factors (the cost, size, and power density
+reduction) in combination with the increase in computing power and connectivity
+has caused the computing technology to evolve into ubiquitous computing.
+According to Mark \cite{Mark}, ubiquitous computing is \textit{"the method of
+enhancing computer use by making many computers available throughout the
+physical environment, but making them effectively invisible to the user"}. This
+mean that the computing power is available anywhere and at any time
+
+%IoT
+
+According to \cite{Nur}, currently we are moving from ubiquitous computing into
+advanced ubiquitous computing. An advanced ubiquitous computing is an extension
+of ubiquitous environment that improve connectivity between devices. The major
+characteristics of this environment can be listed as follows: large number of
+heterogeneous devices, new communication technology  and Internet of Things
+(IoT) among others.
+
+
+One of the most accurate definitions of the IoT is the one given by
+\cite{Bahga} where it mentions that \textit{"Internet of Things refers to
+physical and virtual objects that have unique identities and are connected to
+the internet to facilitate intelligent applications [...] smarter"}. The IoT
+enables the interconnection via the Internet of computing devices embedded in
+everyday objects, enabling them to send and receive data. As you can see the
+differences with traditional embedded systems are the internet connectivity and
+less power consumption. IoT systems must always be connected to the internet
+which require a lower power consumption.
 
 But the entire picture of an IoT solution is quite bigger. A full solution has 
 the following parts (figure~\ref{fig:1.1}).
@@ -103,7 +140,7 @@ Computing Data Centers is necessary to run Big Data solutions that present
 meaningfull information to the users.
 
 \item Presentation Devices: At the end of the day, what do we do with all that
-information we have collected?; one obvious thing is to display the information
+information we have collected; one obvious thing is to display the information
 via a dashboard. Dashboards have to be hosted on some kind of display, we call
 that the Presentation Device.  It could be a desktop computer running an
 application, a tablet or a smart phone accessing to a web page. It could even
@@ -130,28 +167,24 @@ Right now exist two main projects that are compiling to establish standards for
 the IoT communications: 
 
 \begin{itemize}
-\item Open Interconnect Consortium (OIC): OIC is an industry group whose stated 
-mission is to develop standards and certification for devices involved in the 
-Internet of Things based around CoAP. OIC was created in July 2014 by Intel, 
-Broadcom, and Samsung Electronics.\cite{OIC}
+\item Open Connectivity Foundation(OCF): The OCF tries to  create a set of open
+specifications and protocols to enable devices from a variety of manufactures
+to securely and seamlessly interact with one another. Regardless of the
+manufacturer, operating system or chipset the devices that adhere to
+the OCF specifications should communicate together.\cite{Terry}
 
-\item AllJoyn : AllJoyn is an open, universal, secure and programmable software 
-connectivity and services framework that enables companies and enterprises to 
-create inter-operable products that can discover, connect and interact directly 
-with other AllJoyn-enabled products. \cite{AllJoyn}
+\item AllSeen Alliance (AllJoyn before) : is an open source project for the
+development of a universal software framework aimed at the interoperability
+among heterogeneous devices, dynamic creation of proximal networks and
+execution of distributed applications. The framework provides a common
+interface towards smart devices \cite{Massimo}
 \end{itemize}
 
 
-Both standards try to solve a simple problem. Imagine you have smart light bulbs
-in your house, all of them a device of your IoT network at home. What happened
-if one of them burns? You go and buy one but then you remember that all your
-light bulbs at home are brand A and at the store there are only brand B
-light bulbs. It should be possible to bring any brand of light bulbs and
-still work with the rest of the devices of your network. This will be possible
-with communications standards among the industry.These two efforts are fighting
-each other to generate these kind of standards in IoT communications. Which one
-is the best ? maybe is too soon to have a winner, but in less than a decade
-this question might be answered. 
+Both standards try to solve a simple problem: communications standards among
+the industry. This means that all the IoT devices could communicate among each
+others despite the vendor. Despite the efforts of both initiatives none of
+those are the standard in terms of IoT technology. 
 
 In the meantime the Internet of Things revolution is here whether we like it or
 not. We live in houses with computers inside our air conditions, televisions
@@ -160,7 +193,7 @@ parts that are being missing. Despite the efforts to develop standard network
 protocols for IoT systems there is no effort to make the IoT systems analyze
 their data among each others instead of send  all the data to Cloud Data
 centers to be analyzed. This could be a problem in a short future because as we
-have we will the solution is not to add another server (specially when you have
+and  the solution might not to add another server (specially when you have
 space and economic constrains)
 
 
@@ -168,10 +201,10 @@ space and economic constrains)
 \noindent
 
 In order to understand the severity of the problem we have to understand the
-magnitude of it, we have to understand that the rise of the internet of things
+magnitude of it, we have to understand that the rise of the IoT
 is real.  According to a study by the International Data Corporation (IDC)
 \cite{IDC}, a market research analysis and advisory firm specialized in
-information technology estimate the number of IoT devices is approaching  200
+information technology, the estimated number of IoT devices is approaching  200
 billion. And the number of sensors that track, monitor, or feed data to those
 things is already more than 50 billion, with scientists talking about
 trillion-sensor networks within 10 years. Of course, not all of those 200
@@ -195,10 +228,7 @@ the space in an airplane is limited and expensive, moreover the electric
 energy. A cloud base solution (adding servers inside the airplane) will require
 both space and electric energy.
 
-Besides that, the power consumption of these  IoT's Cloud Data Centers is a key
-part to considerate. If current trends continue, a petaflop system will require 
-100 megawatts to manage the IoT data \cite {Xizhou} (imagine that power
-consumption in an airplane)
+
 
 The rise of IoT will lead to an explosion in the volume of data collected,
 transmitted and processed.This will require novel and optimized solutions.  How
@@ -209,7 +239,7 @@ data centers because the number of IoT systems is not efficient ( in terms of
 energy and performance)? What kind of applications are good candidates for
 these kind of solution? All these questions will be addressed in this work. 
 
-\section{General Objective}
+\section{Main Objective}
 \noindent
 
 The main objective is to find the maximum number of low ultra-low-voltage

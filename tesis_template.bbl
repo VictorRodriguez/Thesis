@@ -21,112 +21,82 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
-    \bibitem{Bergelt}Bergelt, R. 
-    (2014). Energy efficient handling of big data in embedded,
-    wireless sensor networks. 53-58. doi:10.1109/SAS.2014.6798916
+\bibitem{Benkhelifa}
+E.~B. et~al, ``The internet of things: The eco-system for sustainable growth,''
+  \emph{International Conference on Computer Systems and Applications
+  (AICCSA)}, no.~11, 2014.
 
-    \bibitem{Hennessy} Hennessy, J., \&  Patterson, D.
-    (2007). Computer architecture a quantitative approach (4th ed.). Amsterdam:
-    Elsevier/Morgan Kaufmann.
-        
-    \bibitem{AMDAHL} Amdahl, G. (n.d.). Validity of the Single Processor Approach to
-    Achieving Large Scale Computing Capabilities, Reprinted from the AFIPS
-    Conference Proceedings, Vol. 30 (Atlantic City, N.J., Apr. 18-20), AFIPS
-    Press, Reston, Va., 1967, pp. 483-485, when Dr. Amda. IEEE Solid-State
-    Circuits Newsletter, 19-20.
-        
-    \bibitem{MATTSON} Mattson, T., \& Sanders, B. (2005). Patterns for parallel
-    programming. Boston: Addison-Wesley.
+\bibitem{Xizhou}
+X.~F. et~al, ``Power and energy profiling of scientific applications on
+  distributed systems,'' \emph{Parallel and Distributed Processing Symposium},
+  no.~19, p.~34, 2005.
 
-    \bibitem{Saldana} M. Saldana, A. Patel, C. Madill, N. D., A. Wang, A. Putnam, R
-    . Wittig, and P. Chow, “MPI as an abstraction for software-hardware
-    interaction for HPRCs,” in International Workshop on High-Performance
-    Reconfig-F urable Computing Technology and Applications , Nov. 2008, pp.
-    1–10.
+\bibitem{Michio}
+M.~Kaku, \emph{Physics of the Future: How Science Will Shape Human Destiny and
+  Our Daily Lives by the Year 2100}.\hskip 1em plus 0.5em minus 0.4em\relax
+  Doubleday, 2011.
 
-    \bibitem{McMahon} T. P. McMahon and A. Skjellum, “eMPI/eMPICH: Embedding MPI” in
-    MPI Developers Conference , 1996, pp. 180–184.
-    
-    \bibitem{Gallego} J. Rico-Gallego, J. Alvarez-Llorente, F. Perogil-Duqu e, P.
-    Antunez-Gomez, and J. Diaz-Martin, “A Pthreads-Based MPI-1 Implementation
-    for MMU-Less Machines,” in International Conference on Reconfigurable
-    Computing and FPGAs , Dec. 2008, pp. 277–282.
+\bibitem{DIU}
+L.~D. et~al, ``Intelligent agriculture greenhouse environment monitoring system
+  based on iot technology,'' \emph{Intelligent Transportation, Big Data and
+  Smart City (ICITBS)}, pp. 487 -- 490, 2015.
 
-    \bibitem{Liu} J. Liu, MPI for Embedded Systems: A Case Study. 2003
+\bibitem{Du}
+Z.~D. et~al, ``Design and implementation of safety management system for oil
+  depot based on internet of things,'' \emph{Green Computing and Communications
+  (GreenCom)}, pp. 449 -- 252, 2012.
 
-    \bibitem{Sinha}Sinha, P. (1997). Distributed operating systems: Concepts and
-    design. New York: IEEE Press.
+\bibitem{Wun}
+W.~C.~L. et~al, ``Autonomous industrial tank floor inspection robot,''
+  \emph{International Conference on Signal and Image Processing Applications
+  (ICSIPA)}, pp. 473 -- 475, 2015.
 
-    \bibitem{Hallinan} Embedded Linux primer: a practical, real-world approach
-    By: Hallinan, Christopher. Prentice Hall 2007
+\bibitem{Beraelt}
+R.~B. et~al, ``Energy efficient handling of big data in embedded, wireless
+  sensor networks,'' \emph{Sensors Applications Symposium (SAS)}, pp. 53 -- 58,
+  2014.
 
-    \bibitem{Hallinan} Embedded Linux primer: a practical, real-world approach
-    By: Hallinan, Christopher. Prentice Hall 2007
+\bibitem{Virgin}
+\BIBentryALTinterwordspacing
+M.~Finnegan, ``Boeing 787s to create half a terabyte of data per flight, says
+  virgin atlantic.'' [Online]. Available:
+  \url{http://www.computerworlduk.com/news/data/boeing-787s-create-half-terabyte-of-data-per-flight-says-virgin-atlantic-3433595/}
+\BIBentrySTDinterwordspacing
 
-    \bibitem{Bahga} Internet of things: a hands-on approach By: Bahga,
-    Arshdeep, and V. Madisetti. Arsheep Bahga \& Vijay Madisetti 2014
+\bibitem{Hennessy}
+J.~L. Hennessy and D.~A. Patterson, \emph{Computer Architecture A Quantitative
+  Approach}.\hskip 1em plus 0.5em minus 0.4em\relax Denise E. M. Penrose, 2007.
 
-    \bibitem{OIC} Delivering Industry Standards and Open Source Solutions (Open
-    Interconnect Consortium |) http://openinterconnect.org/
+\bibitem{Nur}
+N.~H.~A. et~al, ``Advanced ubiquitous computing to support smart city smart
+  village applications,'' \emph{Electrical Engineering and Informatics
+  (ICEEI),}, pp. 720 -- 725, 2015.
 
-    \bibitem{AllJoyn}Documentation (AllJoyn™ Standard Core)
-    https://allseenalliance.org/framework/documentation/learn/core/standard-core
+\bibitem{Hallinan}
+C.~Hallinan, \emph{Embedded Linux Primer: A Practical Real-World
+  Approach}.\hskip 1em plus 0.5em minus 0.4em\relax Prentice Hall, 2006.
 
-    \bibitem{IDC}IDC Home: The premier global market intelligence firm.
-    (www.idc.com) https://www.idc.com/
+\bibitem{Mark}
+\BIBentryALTinterwordspacing
+M.~Weiser, ``Some computer science issues in ubiquitous computing,'' pp. 75 --
+  84, 1993. [Online]. Available:
+  \url{http://www.ubiq.com/hypertext/weiser/UbiCACM.html}
+\BIBentrySTDinterwordspacing
 
-    \bibitem{EMC1}The Digital Universe of Opportunities: Rich Data and the
-    Increasing Value of the Internet of Things (The Internet of Things: Data
-    from Embedded Systems Will Account for 10\% of the Digital Universe by 2020)
-    http://www.emc.com/leadership/digital-universe/2014iview/internet-of-things.html
+\bibitem{Bahga}
+A.~Bahga and V.~Madisetti, \emph{Internet of things: a hands-on
+  approach}.\hskip 1em plus 0.5em minus 0.4em\relax VPT, 2014.
 
-    \bibitem{Finnegan} Boeing 787s to create half a terabyte of data per
-    flight, says Virgin Atlantic (ComputerworldUK) By: Matthew Finnegan, March 6th
-    2013
-    http://www.computerworlduk.com/news/data/boeing-787s-create-half-terabyte-of-data-per-flight-says-virgin-atlantic-3433595/
+\bibitem{Terry}
+\BIBentryALTinterwordspacing
+T.~Myerson, ``New open connectivity foundation will further innovation of the
+  internet of things.'' [Online]. Available:
+  \url{https://blogs.windows.com/windowsexperience/2016/02/19/new-open-connectivity-foundation-will-further-innovation-of-the-internet-of-things/}
+\BIBentrySTDinterwordspacing
 
-    \bibitem{Xizhou} Power and Energy Profiling of Scientific Applications on
-    Distributed Systems By: Feng, Xizhou, Rong Ge, and K.w. Cameron.
-    19th IEEE International Parallel and Distributed Processing Symposium
-
-    \bibitem{Burd} Energy efficient CMOS microprocessor design     By: Burd, T.d.,
-    and R.w. Brodersen.  Proceedings of the Twenty-Eighth Annual Hawaii
-    International Conference on System Sciences
-
-    \bibitem{Weglarz} Minimizing energy consumption for high-performance processing
-    By: Weglarz, E.f., K.k. Saluja, and M.h. Lipasti.  Proceedings of
-    ASP-DAC/VLSI Design 2002. 7th Asia and South Pacific Design Automation
-    Conference and 15h International Conference on VLSI Design
-
-    \bibitem {lam-mpi}LAM / MPI parallel computing. http://www.- lam-mpi.org.
-
-    \bibitem{mpi-forum} Message passing interface forum.
-    http://www.mpi-forum.org.
-
-    \bibitem{Abgaria}LMPI: MPI for heterogeneous embedded distributed systems By:
-    Agbaria, A., Dong-In Kang, and K. Singh.  12th International Conference on
-    Parallel and Distributed Systems - (ICPADS'06)
-
-    \bibitem{yocto-project}Yocto Project (Yocto Project) https://www.yoctoproject.org
-
-    \bibitem{E3825}Intel\makeatletter @ Atom Processor E3825 Especificaciones
-    http://ark.intel.com/es/products/78474/Intel-Atom-Processor-E3825-1M-Cache-1\_33-GHz
-    \bibitem{CERN}CERN Open Hardware Licence
-    http://www.ohwr.org/attachments/2388/cern\_ohl\_v\_1\_2.txt
-
-    \bibitem{minnowboard} Meet MinnowBoard MAX (minnowboardorg)
-    http://www.minnowboard.org/meet-minnowboard-max/
-
-    \bibitem{fedora}Fedora project
-    https://getfedora.org/
-
-    \bibitem{clear-linux} Clear Linux Project
-    https://clearlinux.org/
-
-    \bibitem{minnowmax-firmware} Minnowboard Max Firmware
-    https://firmware.intel.com/projects/minnowboard-max
-
-    \bibitem{mpibench}MPIbench Home Page (MPIbench Home Page)
-    http://icl.cs.utk.edu/projects/llcbench/mpbench.html
+\bibitem{Massimo}
+M.~Villari, ``Alljoyn lambda: An architecture for the management of smart
+  environments in iot,'' \emph{Smart Computing Workshops (SMARTCOMP
+  Workshops)}, pp. 9 -- 14, 2014.
 
 \end{thebibliography}
