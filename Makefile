@@ -1,4 +1,5 @@
 all:
+	pdflatex tesis_template.tex
 	bibtex tesis_template
 	pdflatex tesis_template.tex
 clean:
