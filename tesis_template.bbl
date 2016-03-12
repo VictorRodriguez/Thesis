@@ -36,7 +36,7 @@ M.~Kaku, \emph{Physics of the Future: How Science Will Shape Human Destiny and
   Our Daily Lives by the Year 2100}.\hskip 1em plus 0.5em minus 0.4em\relax
   Doubleday, 2011.
 
-\bibitem{DIU}
+\bibitem{Liu-Dan}
 L.~D. et~al, ``Intelligent agriculture greenhouse environment monitoring system
   based on iot technology,'' \emph{Intelligent Transportation, Big Data and
   Smart City (ICITBS)}, pp. 487 -- 490, 2015.
@@ -98,5 +98,83 @@ T.~Myerson, ``New open connectivity foundation will further innovation of the
 M.~Villari, ``Alljoyn lambda: An architecture for the management of smart
   environments in iot,'' \emph{Smart Computing Workshops (SMARTCOMP
   Workshops)}, pp. 9 -- 14, 2014.
+
+\bibitem{Yang}
+Y.-S.~C. et~al, ``Integrated ddos attack defense infrastructure for effective
+  attack prevention,'' \emph{Information Technology Convergence and Services
+  (ITCS),}, pp. 1 --8, 2010.
+
+\bibitem{Jun}
+J.~M. et~al, ``An analytical framework for estimating scale-out and scale-up
+  power efficiency of heterogeneous manycores,'' \emph{Computers, IEEE
+  Transactions on}, pp. 367 -- 381, 2016.
+
+\bibitem{Dong}
+D.~H. Woo and H.-H.~S. Lee, ``Extending amdahl's law for energy-efficient
+  computing in the many-core era,'' \emph{Computer}, pp. 24 --31, 2008.
+
+\bibitem{Saldana}
+M.~Saldana, ``Mpi as an abstraction for software-hardware interaction for
+  hprcs,'' \emph{High-Performance Reconfigurable Computing Technology and
+  Applications}, pp. 1 -- 10, 2008.
+
+\bibitem{Abgaria}
+A.~A. et~al, ``Lmpi: Mpi for heterogeneous embedded distributed systems,''
+  \emph{Parallel and Distributed Systems}, pp. 8 pp --, 2006.
+
+\bibitem{McMahon}
+T.~P. McMahon and A.~Skjellum, ``empi/empich: embedding mpi,'' \emph{MPI
+  Developer's Conference}, pp. 180 -- 184, 1996.
+
+\bibitem{Liu}
+\BIBentryALTinterwordspacing
+J.~Liu, ``Mpi for embedded systems: A case study.'' [Online]. Available:
+  \url{www.ece.uci.edu/~jinfengl/course/ECE238F02.pdf}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Salim}
+S.~Y.~P. et~al, ``A multithreaded message-passing system for high performance
+  distributed computing applications,'' pp. 258--265, 1998.
+
+\bibitem{Gropp}
+M.~Saldana, ``Mpi as an abstraction for software-hardware interaction for
+  hprcs,'' \emph{High-Performance Reconfigurable Computing Technology and
+  Applications}, pp. 1 -- 10, 2008.
+
+\bibitem{Gallego}
+J.~A. R.-G. et~al, ``A pthreads-based mpi-1 implementation for mmu-less
+  machines,'' \emph{Reconfigurable Computing and FPGAs}, pp. 277 -- 282, 2008.
+
+\bibitem{Tang}
+H.~T. et~al, ``Program transformation and runtime support for threaded mpi
+  execution on shared memory machines,'' \emph{ACM Transactions on Programming
+  Languages and Systems}, pp. 673--700, 2000.
+
+\bibitem{Demaine}
+E.~D. Demaine, ``A threads-only mpi implementation for the development of
+  parallel programs,'' \emph{International Symposium on High Performance
+  Computing Systems}, pp. 153--163, 1997.
+
+\bibitem{Saldana-Chow}
+M.~Saldana and P.~Chow, ``Tmd-mpi: An mpi implementation for multiple
+  processors across multiple fpgas,'' \emph{IEEE International Conference on
+  Field-Programmable Logic and Applications (FPL)}, pp. 329--334, 2006.
+
+\bibitem{Williams}
+J.~W. et~al, ``A reconfigurable cluster-on-chip architecture with mpi
+  communication layer,'' \emph{Proceedings of the 14th Annual IEEE Symposium on
+  `Field-Programmable Custom Computing Machines (FCCM'06)}, pp. 1 --6, 2006.
+
+\bibitem{Weglarz}
+E.~F. e.~a. Weglarz, ``Minimizing energy consumption for high-performance
+  processing,'' \emph{Design Automation Conference, 2002. Proceedings of
+  ASP-DAC}, pp. 199 -- 204, 2002.
+
+\bibitem{Victor-Marcos}
+\BIBentryALTinterwordspacing
+V.~Rodriguez and M.~de~Alba, ``Embedded distributed systems: A case of study.''
+  [Online]. Available:
+  \url{https://www.overleaf.com/articles/embedded-distributed-systems-a-case-of-study-with-clear-linux-projectfor-intel-r-architecture/wpcgjhykxdmj/viewer.pdf}
+\BIBentrySTDinterwordspacing
 
 \end{thebibliography}
