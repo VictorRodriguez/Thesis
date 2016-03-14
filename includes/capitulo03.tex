@@ -16,37 +16,220 @@
 \normalsize
 \noindent
 
-This is a new topic that will require quite a few topics to fully understand
-further experiments and why we decided to do them. We will try to cover as much
-of the topics needed to fully understand the problem and the proposed
-solution. However will not cover deep topics as Operating Systems architecture
-nor parallel programming concepts.
+This chapter will describe some basic topics to fully understand further
+experiments and why we decided to do them. We will try to cover as much of the
+topics needed to fully understand the problem and the proposed solution.
+However will not cover deep topics as Operating Systems architecture nor
+parallel programming concepts.
 
 
 \section{The need of parallel computing}
 \noindent
 
-Computer technology has made incredible progress in the roughly 60 years since
-the first general-purpose electronic computer was created. Today, less than 500
-USD will purchase a personal computer that has more performance, more main
-memory, and more disk storage than a computer bought in 1985 for 1 million
-dollars. This rapid improvement has come both from advances in the technology
-used to build computers and from innovation in computer design. \cite{Hennessy}
+Based on all the current advantages we have today ( smart-phones, tablets,
+smart cars and more ) thanks to the power the computer has achieve, one coudl
+think that the computer design has been evolving like any other technology.
+However the progress in the computer architectures has been much less
+consistent.  During the first 25 years of electronic computers \footnote{since
+1951 with the introduction of UNIVAC} the improvement in performance increase
+about 25\% per year \cite{Hennesy}. 
 
-As we have seen it was around the years 2003 to 2005 that a dramatic change
-seized the semiconductor industry and the manufactures of processors. The
-increasing of computing performance in processors, based on simply screwing up
-the clock frequency, could not longer be holded. The answer of the industry to
-that development, in order to still meet Moore's law, was the shifting to real
-parallelism by doubling the number of processors on one chip die. This was the
-birth of the multi-core area. 
 
-Where do we find parallelism  examples in embedded systems? A good example are
-automotive applications multi-core technology in combination with a broadband
-efficient network system offers the possibility to save components too by
-migrating functionality that is now distributed among a quite large number of
-compute devices to fewer cores.
+It was until the late 1970s  when the world saw the emergence of the
+microprocessor. This major change in technology aloud the industry to improve
+the scalability of the integrated circuits. After the introduction of the
+microprocessor the improvement in performance per year in the computer
+architectures increase to 35\% \cite{Henesy}   
 
+But the advances in computer architecture were not the only one responsible for
+this great increase in performance. In particular two significant changes make
+the life of users easy. First, the elimination of assembly language with the
+invention of the C programing language, a much more easy to read and use
+programing language. The C programing language give the user the power to
+handle memory and peripheral devices in a much more friendly way. Second, the
+creation of standardized and free  operating systems, such as UNIX and its
+clone, Linux. These operating systems lowered the cost and risk of bringing out
+to the market brand new products
+
+In the decade of 1980 the idea of making the microprocessor architecture faster
+starts to take form with the RISC (Reduced Instruction Set Computer)
+architecture .  The RISC microprocessor is designed to perform a smaller number
+of types of computer instructions so that it can operate at a higher speed. 
+The RISC-based computers raised the performance bar. This architecture
+principle in conjunction with the transistor size reduction ( allowing to have
+much more compute power in less space) led to 16 years of sustained growth in
+performance at an annual rate of over 50i\%
+
+It was around the years 2003 to 2005 that a dramatic change seized the
+semiconductor industry and the manufactures of processors. The increasing of
+computing performance in processors, based on simply screwing up the clock
+frequency, could not longer be sustainable. The problem with increasing the
+frequency in the microprocessor is that the heat in the chip also increase.  In
+fact in 2004 Intel canceled its high-performance projects declaring that
+\textit{the road to higher performance would be via multiple processors per
+chip rather than via faster uniprocessors}
+
+The answer of the industry to that development, in order to still meet Moore's
+law \footnote{the number of transistors in a dense integrated circuit doubles
+approximately every two years.}, was the shifting to real parallelism by
+doubling the number of processors on one chip die. This was the birth of the
+multi-core area. 
+
+With the multi core are there was a need to change the paradigm in programing
+languages. The programs that had been designed before this change were mostly a
+sequence of instructions to calculate or control a system. With the multi core
+architecture came the birth of the parallel programing. The parallel programing
+codes are properly designed to take advantage of parallelism can execute faster 
+
+However not all the problems can be solved using parallel programing
+techniques. In order to use this approach the problem need to be represented as
+a collection of simultaneously executing tasks. This is especially the case in
+many areas of scientific, mathematical, and artificial intelligence
+programming. After the birth of the parallel computing all these technology
+areas had a growth never seen before
+
+At the same time that the parallel computing came many other technologies was
+already established: the emergence of the Internet and the World Wide Web, the
+popularity of cell-phones since 2000 and the broadly use of laptops. According
+to \cite{Henessy} all  these technologies have led to three different computing
+markets: desktop computing, servers and embedded. 
+
+The problem we have will require a deep understanding of the server and
+embedded components. So far we have seen why the world needed the parallel
+computing as well as the evolution of the computer architecture that aloud us
+to arrive here.
+
+\section{Servers Systems}
+\noindent
+
+The growth of mobile personal computers coupled with the popularity of
+cellphones changed the role of servers to provide scale and reliable storage
+and computing services. The emerge of faster Internet connections accelerate
+the demand of web-based services make the transition of compute power from
+personal computers to servers
+
+But the fact of provide storage and compute services to thousands of users came
+with a lot of responsibility. A failure of server systems is far more
+catastrophic than failure of a single desktop, since these servers must operate
+seven days a week, 24 hours a day Is because of this that reliability is a key
+factor for a server system.
+
+A second key feature of server systems is scalability. With the number of users
+changing every minute the ability to scale up the computing capacity
+in server is crucial. A web sale page should be able to response every as well
+as during a peak hour for Christmas shoppings.
+
+The third key feature is throughput. Servers are designed for efficient
+throughput \footnote{Throughput is a measure of how many units of information a
+system can process in a given amount of time} in terms of transactions per
+minute or Web pages served per second. From the user perspective point of view
+is the speed of response.
+
+Is because of these three factors that the server technology has change. The
+cloud era is dominating the computing and storage services.  According to \cite
+{Farhan} \textit{"Cloud computing is set of resources and services offered
+through the Internet"}. Cloud services are delivered from data centers located
+around the world.  Cloud computing provides virtual resources via internet. The
+best example of cloud computing is the streaming video services. Nowadays users
+can stream online videos  at any time, without the need to storage the movie at
+home. All the resources and infrastructure are provided upon request. With this
+the scalability, reliability and manageability are guaranteed by the compute
+service providers. 
+
+\section{Embedded Systems}
+\noindent
+
+The birth of multi core architecture not only provide the servers with much
+more compute power it also break the paradigm of use low compute power
+microprocessors for embedded platforms. Now it was possible to have more
+compute power with less frequency. Thanks to this radical change there has been
+a rapid evolution of the compute and multimedia capabilities of embedded
+systems. At the point where have more computer power in our cellphones than all
+of NASA back in 1969 \cite{Michio}
+
+According to \cite{Hallinan} \textit{"An embedded system is a special-purpose
+system in which the computer is completely encapsulated by the device it
+controls"} Unlike a general-purpose computer, such as a personal computer, an
+embedded system performs pre-defined tasks, usually with very specific
+requirements. Examples of these are:microwaves, washing machines, printers, and
+GPS (Global Positioning System) systems. All those electronic gadgets that
+started to emerge 15 years ago \cite{Nur}.
+
+The variety of the embedded applications requires at the widest spread
+of processing power and cost. They include 8-bit and 16-bit processors that may
+cost few cents, 32-bit microprocessors that execute 100 million instructions
+per second and cost less than few dollars, and high-end processors for the
+newest video games or network switches that cost at least 100 dollars and can
+execute a billion instructions per second.\cite{Hennessy}
+
+Since its origins, the RISC technology has been the default technology in the
+more complex embedded architectures. Due to the fact that The RISC
+microprocessor is designed to perform a smaller number of types of computer
+instructions the power consumption can be much more lower. This architecture
+concept was fine until the new embedded applications such as smart-phones,
+tablets and smart TVs start to appear.
+
+The increment in the complexity of the new embedded applications started to
+require more specialized integrated circuits that could help the microprocessor
+with all these task in parallel . Wireless networking cards, Digital Signal
+Processors, I/O controls, peripherals ( such as USB controllers ) and analog
+interfaces (including ADCs and DACs) became part of the requirements of an
+embedded platform. Soon the architecture designers realize that the
+communication with all these components decrease the performance and increase
+the power consumption. Is because of this that the last decade saw the emerge
+of the System of a Chip (SOC)  embedded platforms. 
+
+The SoC is an integrated circuit with all these components into a single chip.
+With all these components in the same integrated circuit the communication
+latency and power consumption was reduced considerably. Since the birth of the
+SoC architecture the variety of gadgets using embedded platforms has increasing
+every year.  Every year some basic goals are pursued:  increment in compute
+performance, cost,  size and power density reduction.
+
+\section{Ubiquitous Computing and IoT}
+\noindent
+
+The combination of all these factors (the cost, size, and power density
+reduction) in combination with the increase in computing power and connectivity
+has caused the computing technology to evolve into ubiquitous computing.
+According to Mark \cite{Mark}, ubiquitous computing is \textit{"the method of
+enhancing computer use by making many computers available throughout the
+physical environment, but making them effectively invisible to the user"}. This
+mean that the computing power is available anywhere and at any time
+
+
+According to \cite{Nur} currently we are moving from ubiquitous computing into
+advanced ubiquitous computing. An advanced ubiquitous computing is an extension
+of ubiquitous environment that improve connectivity between devices. The major
+characteristics of this environment can be stated as follows: 
+
+\begin{itemize}
+\item Large number of heterogeneous devices
+\item New communication technology
+\end{itemize}
+
+This  devices include devices such as notebook computers, tablets, smartphones
+and wearable computers. Most of these devices operate under many different
+operating systems. New communication technology 4G , 5G and the introduction of
+IPv6 provides bigger and faster of data bandwidth and much better than 3G in
+data performance.
+
+One of the most accurate definitions of the IoT is the one given by
+\cite{Bahga} where it mentions that "Internet of Things refers to physical and
+virtual objects that have unique identities and are connected to the internet
+to facilitate intelligent applications [...] smarter". The IoT enables the
+interconnection via the Internet of computing devices embedded in everyday
+objects, enabling them to send and receive data. As you can see the differences
+with traditional embedded systems are the internet connectivity and less power
+consumption.  IoT systems must always be connected to the internet which
+require a lower power consumption
+
+The IoT computing is new era of computing technology that we have to explore.In
+collaboration with the cloud computing the capability to have smart
+applications in multiple scenarios is imminent. In the middle of all these
+technology an invisible architecture design was established , transparent for
+the user , but always there sustaining the reliability, scalability and
+reliability of the systems, it was the distributed architecture systems.
 
 \section{Distributed Systems}
 \noindent
@@ -132,14 +315,13 @@ system.
 
 \end{enumerate}
 
+
 \section{Embedded Linux systems}
 
-Computers are everywhere , this fact, of course, is not a surprise to anyone 
-who hasn't been living in a cave during the past 25 years or so. And you
-probably know that computers aren't just on our desktops, in our kitchens, and, 
-increasingly, in our living rooms holding our music collections. They're also 
-in our microwave ovens, our regular ovens, our cellphones, and our portable 
-digital music players.
+Computers are everywhere , we already know that computers aren't just on our
+desktops, they are in our kitchens  and increasingly in our living rooms
+holding our music collections. They're also in our microwave ovens, our regular
+ovens, our cellphones, and our portable digital music players.
 
 Until not too long time ago, embedded systems were not very powerful, and they
 ran special-purpose, proprietary operating systems that were very different
@@ -149,36 +331,44 @@ computer. (Consider the high-end gaming consoles, for example.)
 
 Along with this power comes the capability to run a full-fledged operating
 system such as Linux. Using a system such as Linux for an embedded product
-makes a lot of sense. A large community of developers are making it possible.
-The development environment and the deployment environment can be surprisingly
-similar, which makes your life as a developer much easier. And you have both
-the security of a protected address space that a virtual memory-based system
-gives you, and the power and flexibility of a multiuser, multiprocessor system.
-That's a good deal all around. For this reason, companies all over the world
-are using Linux on many devices
+makes a lot of sense. It was thanks to the free operating system UNIX and its
+easy user experience, that the number of users of computer increase in the
+early birth of personal computers. The evolution of UNIX, Linux, has been one
+of the most sustainable projects in the history of computing. The fact that a
+large community of developers find novel ways to improve performance and fix
+critical failures every day are the key to think that Linux could be the best
+solution in terms of sustainability for embedded platforms.
 
-In the beginning embedded systems were most commonly resource constrained
-compared to the typical desktop PC. Embedded systems often had limited memory,
-small or no hard drives, and sometimes no external network connectivity.
-Frequently, the only user interface was a serial port and some LED's. But today
-there has been a change in the last point: external network connectivity.
 
-The internet of things is the evolution of the embedded world in terms of
-connectivity. The IoT systems keep being resource constrained but with the
-capability to be connected to an internet network where to send the data to
-external servers (where it will be analyzed, stored and presented in a web base
-user interface to the end user)
+According to \cite{} there are multiple reasons why Linux is the best choise
+for current embedded platforms 
 
-In this new world the advantages (flexibility and scalability) of using Linux
-as the core of the OS Embedded Distributions turn out to make a nightmare for
-the embedded developers with too many options and no standard work to re use.
-In the end, the developer ended with a ''Frankenstein'' embedded Linux
-distribution with very low maintainability and robustness. In 2010 there was a
-change in the industry of embedded systems, the announce of a project to solve
-these kind of problems: The Yocto project.
+\begin{enumerate}
+\item Linux supports a huge variety of applications and networking protocols.
+Linux is scalable, from small consumer-oriented devices to large, heavy-iron,
+carrier-class switches and routers.
+\item Linux can be deployed without the royalties required by traditional proprietary
+embedded operating systems.
+\item Linux has attracted a huge number of active developers, enabling rapid support
+of new hardware architectures, platforms, and devices.
+\item An increasing number of hardware and software vendors, including virtually all
+the top-tier manufacturers and ISVs, now support Linux.
+\end{enumerate}
 
-\section{The Yocto project}
-\noindent
+For these and other reasons, we are seeing an accelerated adoption rate of
+Linux in many common embedded platforms. With the birth of the SoC systems the
+use of these complete operating systems was necessary due to the need of handle
+process concurrency, memory management and network connectivity.
+
+Although the idea of using Linux as main operating system for embedded platform
+was easy in reality it was not. With too many configure options and no standard
+methodologies or templates to reuse the process to customize a Linux Operating
+System for embedded platforms became a complex work for software engineers.
+Every new embedded company create his own version ( according to his needs
+without any standards) with very low maintainability and robustness. In 2010
+there was a change in the industry of embedded systems, the announce of a
+project to solve these kind of problems: The Yocto project.
+
 The Yocto Project is an open source collaboration project that provides
 templates, tools and methods to help you create custom Linux-based systems for
 embedded products regardless of the hardware architecture. It was founded in
@@ -192,14 +382,14 @@ Richard Purdie, a Linux Foundation fellow. This enables the project to remain
 independent of any one of its member organizations, who participate in various
 ways and provide resources to the project.
 
-Why to use the Yocto Project? It's a complete embedded Linux development
-environment with tools, meta-data, and documentation. The
-free tools are easy to get started with, powerful to work with (including
-emulation environments, debuggers, an Application Toolkit Generator, etc.) and
-they allow projects to be carried forward over time without causing you to loose
-optimizations and investments made during the project's prototype phase. The
-Yocto Project fosters community adoption of this open source technology
-allowing its users to focus on their specific product features and development.
+The Yocto project  is a  complete embedded Linux development environment with
+tools, meta-data, and documentation. The free tools are easy to get started
+with, powerful to work with (including emulation environments, debuggers, an
+Application Toolkit Generator, etc.) and they allow projects to be carried
+forward over time without causing you to loose optimizations and investments
+made during the project's prototype phase. The Yocto Project fosters community
+adoption of this open source technology allowing its users to focus on their
+specific product features and development.
 
 The Yocto Project through the Poky build tool provides an open source
 development environment (figure~\ref{fig:3.1}). targeting the ARM, MIPS,
@@ -224,7 +414,7 @@ our solution will be deployable into multiple IoT devices due to the bast
 amount of platforms ( sensors and processing devices ) that use the Yocto
 project everyday.
 
-\section{Power and Performance}
+\section{Performance and Power Efficiency}
 
 \noindent
 When we say one computer is faster than another , what do we mean? The user
