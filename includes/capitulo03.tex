@@ -406,6 +406,53 @@ it for the Yocto project. If we do this our solution will be deployable into
 multiple IoT devices due to the bast amount of platforms ( sensors and
 processing devices ) that use the Yocto project everyday.
 
+\section{Message-passing library interface}
+\noindent
+
+The Message-Passing Interface (MPI) is a message-passing library interface
+specification. MPI addresses primarily the message-passing parallel programming
+model, in which data is moved from the address space of one process to that of
+another process through cooperative operations on each process
+
+MPI is not a language, and all MPI operations are expressed as functions,
+subroutines, or methods, according to the appropriate language bindings which,
+for C and FORTRAN, are part of the MPI standard. The standard has been defined
+through an open process by a community of parallel computing vendors, computer
+scientists, and application developers
+
+Despite all the advantages that MPI has it is not widely used in embedded
+systems (due to the fact that these abstraction layers require extensive
+system resources with comprehensive operating systems support, which may not be
+available to an embedded platform) but as we have seen this is now possible. We
+do have a powerful ultra-low-voltage microprocessor platform
+\cite{minnowboard} and we do have robust distributed operating systems running on
+those platforms. The missing part now is to set up the message passing library
+interface on the top of all the system. 
+
+Recent researches \cite{Saldana} \cite{Gallego} \cite{McMahon} describe
+proof-of-concept MPI implementations targeting embedded systems, showing an
+increasing interest in the topic. However none of theme has been implemented in
+the current embedded Linux operating systems (like the ones generated with
+Yocto project\cite{yocto-project}) nor the standard Linux (like
+Fedora\cite{fedora})
+
+After a quick review on the current operating systems we found that the only
+one missing the MPI implementation was actually the Yocto project.
+
+
+\begin{center}
+\begin{tabular}{ | l | r |}
+    \hline
+    Operating System & MPI library  \\ \hline
+    Fedoras & Implemented  \\ \hline
+    Clear Linux for Intel Architecture & Implemented  \\ \hline
+    OS generated with Yocto project & Not Implemented  \\ \hline
+\end{tabular}
+\captionof{table}{MPI implementation in Linux OS supported by Minnow board}
+\label{tab:4.2}
+\end{center}
+
+
 \section{Performance and Power Efficiency}
 
 \noindent
@@ -524,5 +571,214 @@ performance of parallel machines. Based on the results in \cite{Grove} we
 decided to use MPIbench as our default benchmark testing framework. MPIbench is
 a benchmark that allows to evaluate the performance of MPI on MPP's and cluster
 of workstations. MPIbench tests different MPI calls.
+
+\section{MPIbench}
+\noindent
+
+The benchmarks we are going to run are the MPIbench (or MPbench) version 4
+\cite{mpibench}.This is a program to measure the performance of some critical
+MPI functions. By critical we mean that the behavior of these functions can
+dominate the run time of a distributed application.
+
+MPIBench currently tests eight different MPI calls. The following functions are
+measured:
+
+\begin{itemize}
+    \item Bandwidth (BB/second)
+    \item Gap Time (time to launch a message and continue) (Us)
+    \item Roundtrip or 2 * Latency (transactions/second)
+    \item Asynchronous Bidirectional bandwidth (KB/second)
+    \item Broadcast (KB/second)
+    \item Sum reduction (KB/second)
+    \item All-reduce (KB/second)
+    \item AlltoAll (KB/second)
+\end{itemize}
+
+
+
+All tests are timed in the following manner.
+
+\begin{itemize}
+    \item Set up the test.
+    \item Start the timer.
+    \item Loop of operations over the message size as a power of two and the
+iteration count.
+    \item Verify that those operations have completed.
+    \item Stop the timer.
+    \item Compute the appropriate metric
+\end{itemize}
+
+By default, MPIBench measures messages from 4 bytes to 216 bytes, in powers of
+two for 100 iterations. Each test is run a single time before testing to allow
+for cache setup and routing. The cache is then flushed before each repetition
+and before each new message size is tested. The cache is not flushed however
+between iterations on the same message size, which are averaged
+
+We will describe each one of the tests in order to understand the experiments.
+
+
+\subsection{Bandwidth}
+
+MPIBench measures bandwidth with a doubly nested loop. The outer loop varies the
+message size, and the inner loop measures the send operation over the
+iteration count. After the iteration count is reached, the slave process
+acknowledges the data it has received by sending a four byte message back to
+the master. 
+
+The master's pseudo code for this test is as follows:
+
+\begin{lstlisting}[frame=single,numbers=left]
+do over all message sizes 
+    start timer
+    do over iteration count 
+        send(message size) 
+        recv (4)
+    stop timer
+\end{lstlisting}
+
+The slaves' pseudo code is as follows:
+
+\begin{lstlisting}[frame=single,numbers=left]
+do over all message sizes 
+    start timer
+    do over iteration count 
+        recv(message size) 
+        send(4)
+    stop timer
+\end{lstlisting}
+
+\subsection{Bidirectional Bandwidth}
+
+MPIBench measures bidirectional bandwidth with a doubly nested loop. The outer
+loop varies the message size, and the inner loop measures the send operation
+over the iteration count. Both processes execute a non-blocking receive, then a
+non-blocking send, and then a wait for each iteration. The next iteration is
+prevented from proceeding until the previous one is finished by the MPLWaitall0
+call, which will not allow execution to continue until both messages have been
+completed.
+
+The code for this test is as follows:
+ 
+\begin{lstlisting}[frame=single,numbers=left]
+ do over all message sizes
+    start timer
+    do over iteration count
+        immediate (nonblocking) receive(message size)
+        immediate (nonblocking) send(message size)
+        wait until messages on both ends have been received
+    stop timer
+\end{lstlisting}
+
+
+\subsection{Roundtrip}
+
+Roundtrip times are measured in much the same way as bandwidth, except that,
+the slave process, after receiving the message, echoes it back to the master.
+This benchmark is often referred to as ping-pong. Here our metric is
+transactions per second, which is a common metric for database and server
+applications. No acknowledgment is needed with this test as it is implicit
+given its semantics.
+
+The master's pseudo code for this test is as follows:
+
+\begin{lstlisting}[frame=single,numbers=left]
+  do over all message sizes 
+    start timer
+    do over iteration count
+        send(message size)
+        recv(message size) 
+        stop timer
+\end{lstlisting}
+
+The slaves' pseudo code is as follows:
+
+\begin{lstlisting}[frame=single,numbers=left]
+do over all message sizes 
+    start timer
+    do over iteration count
+        recv(message size)
+        send(message size)
+    stop timer
+\end{lstlisting}
+
+\subsection{Application Latency}
+
+Application latency is something relatively unique to MPBench. This benchmark
+can properly be described as one that measures the time for an application
+to issue a send and continue computing. This benchmark is the same as
+bandwidth except that we do not acknowledge the data and we report our
+results in units of time.
+
+The master's pseudo code for this test is as follows:
+
+\begin{lstlisting}[frame=single,numbers=left]
+do over all message sizes 
+    start timer
+    do over iteration count 
+        send(message size) 
+    stop timer
+\end{lstlisting}    
+
+The slaves' pseudo code is as follows:
+
+\begin{lstlisting}[frame=single,numbers=left]
+   do over all message sizes 
+        start timer
+        do over iteration count 
+            recv(message size) 
+        stop timer
+\end{lstlisting}
+
+\subsection{Broadcast and Reduce}
+
+Both of these benchmarks return the number of megabytes per second computed
+from the iteration count and the length argument given to function call.
+
+Here is the pseudo code for both the master and the slave:
+
+
+\begin{lstlisting}[frame=single,numbers=left]
+   do over all message sizes 
+        start timer
+        do over iteration count
+            reduce or broadcast(message size)
+        stop timer
+\end{lstlisting}
+
+\subsection{AllReduce}
+
+AllReduce is a derivative of an all-to-all communication, where every
+process has data for every other. While this operation could easily be
+implemented with a reduce followed by a broadcast, that would be highly
+inefficient for large message sizes. 
+
+Here is the pseudo code for both the master and the slave:
+
+\begin{lstlisting}[frame=single,numbers=left]
+    do over all message sizes 
+        start timer
+        do over iteration count 
+            allreduce(message size) 
+        stop timer
+\end{lstlisting}
+
+
+\subsection{All-to-all}
+
+MPBench measures a kind of round-robin communication among multiple
+processes. The outer loop varies the message size, and the inner loop
+measures the send operation over the iteration count. Each process sends a
+message of the size of the total message size divided by the number of
+processes to every other process.
+
+The code for this test is as follows:
+
+\begin{lstlisting}[frame=single,numbers=left]
+    do over all message sizes 
+        start timer
+        do over iteration count 
+            all-to-all(message size)
+        stop timer
+\end{lstlisting}
 
 \clearpage

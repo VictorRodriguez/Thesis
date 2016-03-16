@@ -14,55 +14,53 @@
 \normalsize
 \noindent
 
-Nowadays there are multiple examples of IoT systems with enough processing
-capabilities to avoid the cost of send data to a centralized processing system.
-Despite the variety of IoT applications, which goes from greenhouse monitoring
-systems \cite{Liu-Dan} to safety management systems for oil depots \cite{Du}, all
-of them are based on the same IoT principle of send data over the internet to a
-centralized processing system without using the processing capabilities of the
-IoT device 
+Nowadays, there are multiple examples of IoT systems with large processing
+capabilities, which could be exploited to avoid sending data to a centralized
+processing system. Despite of this characteristic, we frequently see that there
+is a large variety of IoT applications that continue sending data over the
+Internet to a centralized processing system, without using the processing
+capabilities of the IoT device.
 
-Taking the greenhouse example of \cite{Du}, where the system realizes the
-remote intelligent control of the environment through the internet. Is easy to
-see how applying the IoT technology is possible to improve the operation and
-system flexibility by using the wireless sensor network instead of the
-traditional wired network. Nevertheless, it uses a dedicated microprocessor
-just to transmit data to the centralized control system; meanwhile, the
-intelligence in this centralized control system is just a simple conditional
-rule.
+There are several IoT examples in which the system performs remote control of
+the environment through the Internet. In all of them it can be seen that
+applying the IoT technology it is possible to improve the operation and system
+flexibility by using the wireless sensor network instead of the traditional
+wired network. In several cases, it is observed that such systems dedicate a
+general-purpose microprocessor just to transmit data to the centralized control
+system; even though, the problem being solved in such type of centralized
+control systems is a simple conditional rule.
 
-However, there are other projects where they  use the full compute power of the
-ultra-low power microprocessors. Such is the case of \cite{Wun} where they use
-an embedded system as the computing platform of an autonomous industrial tank
-floor inspection robot. In this project, the Microprocessor is running the
-Robot Operating System (ROS) for tank floor mapping and navigation of the
-robot. The reason why an embedded platform was selected is due to his low power
-consumption and enough processing capabilities. 
+However, there are other projects that use ultra-low power microprocessors.
+There are several industrial applications that use embedded systems for
+autonomous robots. In such scenarios embedded platforms are chosen due to their
+low power consumption and adequate processing capabilities. 
 
-But projects where the embedded system became the central processing unit are
-not common. This is generating an excessive use of resources for transmission
-and process of data.  If the trend continues the rise of IoT will lead to an
-explosion in the volume of data collected, transmitted and processed. According
-to \cite{Beraelt}, the total amount of user data (data payload) to be stored or
-processed doubles every two years.The first problems due to this trend  are
-currently being faced by industry; such is the case of the aircraft industry
+Projects where an embedded system is the central processing unit are not
+common. Due to the fact that traditional centralized processing systems are
+used to collect data, there is an excessive use of IoT devices for transmitting
+that data. If this trend continues the increase in the number of IoT systems
+will lead to an explosion in the volume of data collected, transmitted and
+processed.
 
-In 2013, the Virgin Atlantic \cite{Virgin} airline announced that the Boeing 787
-aircraft was going to be one of the first highly connected planes. Each one of
-these planes was expected to create over half a terabyte of data per
-transatlantic flight.  Due to the costs of handle and transmit that much data
-every day, the airline started to look for cloud base solutions inside the
-airplanes. This is an expensive solution since the cost in space and energy
-required to handle a cloud base solution inside an airplane are high.
+There are sources that demonstrate that the total amount of user data to be
+stored, or processed doubles every two years. The first problems due to this
+trend are currently being faced by industry; such is the case of the aircraft
+industry.
 
-As we can see the current IoT architectures are not efficiently using the
-compute resources they have. In addition to this the lack of standard
-methodologies to create self sustainable (in terms of data processing) IoT
-networks is creating real problems among the industry.  This gave us the
-justification to generate a comparison of how many low power compute systems
-might be necessary to have the same data processing capabilities than in an
-external computer. Hopefully, with this information future projects might
-consider the option of do not send data over the internet, reducing the data
-payload.
+In 2013, the Virgin Atlantic airline announced that the Boeing 787 aircraft was
+going to be one of the first highly connected planes. Each one of these planes
+was expected to create over half a terabyte of data per transatlantic flight.
+Due to the costs of handling and transmitting such amount of data daily, the
+airline started to look for cloud based solutions inside the airplanes. This is
+an expensive solution; because the cost in space and energy required to handle
+a cloud based solution inside an airplane is too high.
+
+As we can see, current IoT architectures are not efficiently using the
+computing resources they have. In addition to this, the lack of standard
+methodologies to design distributed self-sustainable networks of IoT systems is
+causing problems in the industry. Such and other reasons, which will be
+discussed through the document, justify pursuing a quantitative comparison of
+distributed low power computing systems to high performance computing systems
+in terms of power efficiency. 
 
 \clearpage
