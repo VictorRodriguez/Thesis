@@ -196,6 +196,60 @@ run in a cluster of embedded platforms  by just recompilation.  Even for
 \cite{Gallego} the support of an operating system plays here seems to be
 essential if the portability is a key part to consider.
 
+\section{Multicore Communication}
+
+In all the examples showed before one fact is constant, modern embedded
+applications are becoming increasingly complex. The increment in the complexity
+of the new embedded applications started to require more specialized integrated
+circuits that could help the microprocessor with all these task in parallel. As
+we know modern embedded platforms use multi-core microprocessors to solve this
+problem.
+
+The burn of multi-core microprocessors bring another problem. The lack of a
+framework to share the workload among the multi core of these new embedded
+applications. One of the first Multicore Communication systems is MCPI.
+According to \cite{MCAPI} the purpose of MCAPI, which is a message-passing API,
+is \textit{to capture the basic elements of communication and synchronization
+that are required for closely distributed (multiple cores on a chip and/or
+chips on a board) embedded systems} 
+
+There are already several programming models and tools for multiprocessor
+System-on-Chip (MPSoC) programming \cite{Wolf} \cite{Matilainen}. These tools help  in
+partitioning and mapping the problem to the specific platform. However, these
+solutions are too heavy-weight and doesn't support a wide range of embedded
+platforms. 
+
+On the other side MCAPI provides a limited number of calls with sufficient
+communication functionality. Extra functionality can be put on top of the API
+if the application requires it. MCAPI is scalable and can support virtually any
+number of cores, each with a different processing architecture and each running
+the same or a different operating system.
+
+Some inter-processor communications protocols \cite{Wolf} require a full TCP/IP
+stack to exchange data, creating a bloated memory footprint. MCAPI, on the
+other hand, does not require this and is much more lightweight. At the end, an
+application using MCAPI will see an standard set of function calls to send and
+receive data to and from any core in the system. 
+
+The important thing to note is that MCAPI is not a protocol specification. This
+is an implementation issue, due to the fact that with multiple vendors of
+embedded platforms a standard is becoming a necessity. Another disadvantage is
+that MCAPI just send an receive data within the cores of the embedded platform
+not among multiple embedded platforms. 
+
+As we have seen for that purpose exist MPI (either process or thread base ).
+There are key differences between the two technologies. MPI can be used to
+create programs that adapt to the resources available in a dynamic network of
+devices (embedded platforms, servers, computers). If one system goes down the
+workload is re distributed the next time. Besides, MPI focuses on the share of
+workload (wither process base or thread base ) and exchanging messages between
+them. It doesn't matter if the devices are side-by-side or half a world apart. 
+
+On the other hand MPI is not a good fit for communication within the cores of a
+server, where different cores might run and avoid bottlenecks in bus and memory
+access. This is where MCAPI comes in, Allowing a light communication among the
+cores 
+
 \section{Current clusters of embedded systems}
 
 Despite the fact of the MPI implementation (either process-base or
@@ -231,9 +285,9 @@ As we can see there is a need to make new experiments with the latest
 technology available. Nowadays we have ultra-low-voltage microprocessors
 platforms, customized operating systems for these platforms and  innovative
 technologies for achieving MPI implementations. Few works \cite{Victor-Marcos}
-have been done address the problem of parallel and distributing compute with
-embedded platforms using these new technologies. All these variables will be
-considered into the development of this current work.
+\cite{Victor-Marcos-elc} have been done address the problem of parallel and
+distributing compute with embedded platforms using these new technologies. All
+these variables will be considered into the development of this current work.
 
 \newpage
 
