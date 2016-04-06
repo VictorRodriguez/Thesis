@@ -8,6 +8,7 @@
 \fancyhead[LO,LE]{\footnotesize\emph{\leftmark}}
 \fancyhead[RO,RE]{\thepage}
 \fancyfoot[CO,CE]{}
+\setcounter{secnumdepth}{5}
 %Termina configuracion de capitulo
 
 \chapter{Theoretical Framework}
@@ -186,6 +187,95 @@ SoC architecture the variety of gadgets using embedded platforms has increasing
 every year.  Every year some basic goals are pursued:  increment in compute
 performance, cost,  size and power density reduction.
 
+\section{Embedded Linux Systems}
+
+Computers are everywhere, we already know that computers aren't just on our
+desktops, they are in our kitchens  and increasingly in our living rooms
+holding our music collections. They're also in our microwave ovens, our regular
+ovens, our cellphones, and our portable digital music players.
+
+Until not too long time ago, embedded systems were not very powerful, and they
+ran special-purpose, proprietary operating systems that were very different
+from industry-standard ones. (Plus, they were much harder to develop for.)
+Today, embedded computers are as powerful as, if not more than, a modern home
+computer. (Consider the high-end gaming consoles, for example.)
+
+Along with this power comes the capability to run a full-fledged operating
+system such as Linux. Using a system such as Linux for an embedded product
+makes a lot of sense. It was thanks to the free operating system UNIX and its
+easy user experience, that the number of users of computer increase in the
+early birth of personal computers. The evolution of UNIX, Linux, has been one
+of the most sustainable projects in the history of computing. The fact that a
+large community of developers find novel ways to improve performance and fix
+critical failures every day are the key to think that Linux could be the best
+solution in terms of sustainability for embedded platforms.
+
+According to \cite{Hallinan} there are multiple reasons why Linux is the best choise
+for current embedded platforms 
+
+\begin{enumerate}
+\item Linux supports a huge variety of applications and networking protocols.
+Linux is scalable, from small consumer-oriented devices to large, heavy-iron,
+carrier-class switches and routers.
+\item Linux can be deployed without the royalties required by traditional proprietary
+embedded operating systems.
+\item Linux has attracted a huge number of active developers, enabling rapid support
+of new hardware architectures, platforms, and devices.
+\item An increasing number of hardware and software vendors, including virtually all
+the top-tier manufacturers and ISVs, now support Linux.
+\end{enumerate}
+
+For these and other reasons, we are seeing an accelerated adoption rate of
+Linux in many common embedded platforms. With the birth of the SoC systems the
+use of these complete operating systems was necessary due to the need of handle
+process concurrency, memory management and network connectivity.
+
+Although the idea of using Linux as main operating system for embedded platform
+was easy in reality it was not. With too many configure options and no standard
+methodologies or templates to reuse the process to customize a Linux Operating
+System for embedded platforms became a complex work for software engineers.
+Every new embedded company create his own version ( according to his needs
+without any standards) with very low maintainability and robustness. In 2010
+there was a change in the industry of embedded systems, the announce of a
+project to solve these kind of problems: The Yocto project.
+
+The Yocto Project is an open source collaboration project that provides
+templates, tools and methods to help you create custom Linux-based systems for
+embedded products regardless of the hardware architecture\cite{yocto-project}.
+It was founded in 2010 as a collaboration among many hardware manufacturers,
+open-source operating systems vendors, and electronics companies to bring some
+order to the chaos of embedded Linux development.\cite{Leppakoski}
+
+The Yocto project  is a  complete embedded Linux development environment with
+tools, meta-data, and documentation. The free tools are easy to get started
+with, powerful to work with (including emulation environments, debuggers, an
+Application Toolkit Generator, etc.) and they allow projects to be carried
+forward over time without causing you to loose optimizations and investments
+made during the project's prototype phase. The Yocto Project fosters community
+adoption of this open source technology allowing its users to focus on their
+specific product features and development.
+
+The Yocto Project through the Poky build tool provides an open source
+development environment (figure~\ref{fig:3.1})  targeting the ARM, MIPS,
+Power-PC and x86 architectures for a variety of platforms including x86-64 and
+emulated ones.  You can use components from the Yocto Project to design,
+develop, build, debug, simulate, and test the complete software stack using
+Linux, the X Window System, GNOME Mobile-based application frameworks, and Qt
+frameworks. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{images/yocto-environment.png}
+\caption{The Yocto Project Development Environment}
+\label{fig:3.2}
+\end{figure}
+
+As we can see the Yocto project will play an important role in the IoT world.
+If we want to develop a solution standard for multiple platforms we might adapt
+it for the Yocto project. If we do this our solution will be deployable into
+multiple IoT devices due to the bast amount of platforms ( sensors and
+processing devices ) that use the Yocto project everyday.
+
 \section{Ubiquitous Computing and IoT}
 \noindent
 
@@ -315,98 +405,7 @@ system.
 
 \end{enumerate}
 
-
-\section{Embedded Linux systems}
-
-Computers are everywhere , we already know that computers aren't just on our
-desktops, they are in our kitchens  and increasingly in our living rooms
-holding our music collections. They're also in our microwave ovens, our regular
-ovens, our cellphones, and our portable digital music players.
-
-Until not too long time ago, embedded systems were not very powerful, and they
-ran special-purpose, proprietary operating systems that were very different
-from industry-standard ones. (Plus, they were much harder to develop for.)
-Today, embedded computers are as powerful as, if not more than, a modern home
-computer. (Consider the high-end gaming consoles, for example.)
-
-Along with this power comes the capability to run a full-fledged operating
-system such as Linux. Using a system such as Linux for an embedded product
-makes a lot of sense. It was thanks to the free operating system UNIX and its
-easy user experience, that the number of users of computer increase in the
-early birth of personal computers. The evolution of UNIX, Linux, has been one
-of the most sustainable projects in the history of computing. The fact that a
-large community of developers find novel ways to improve performance and fix
-critical failures every day are the key to think that Linux could be the best
-solution in terms of sustainability for embedded platforms.
-
-
-According to \cite{Hallinan} there are multiple reasons why Linux is the best choise
-for current embedded platforms 
-
-\begin{enumerate}
-\item Linux supports a huge variety of applications and networking protocols.
-Linux is scalable, from small consumer-oriented devices to large, heavy-iron,
-carrier-class switches and routers.
-\item Linux can be deployed without the royalties required by traditional proprietary
-embedded operating systems.
-\item Linux has attracted a huge number of active developers, enabling rapid support
-of new hardware architectures, platforms, and devices.
-\item An increasing number of hardware and software vendors, including virtually all
-the top-tier manufacturers and ISVs, now support Linux.
-\end{enumerate}
-
-For these and other reasons, we are seeing an accelerated adoption rate of
-Linux in many common embedded platforms. With the birth of the SoC systems the
-use of these complete operating systems was necessary due to the need of handle
-process concurrency, memory management and network connectivity.
-
-Although the idea of using Linux as main operating system for embedded platform
-was easy in reality it was not. With too many configure options and no standard
-methodologies or templates to reuse the process to customize a Linux Operating
-System for embedded platforms became a complex work for software engineers.
-Every new embedded company create his own version ( according to his needs
-without any standards) with very low maintainability and robustness. In 2010
-there was a change in the industry of embedded systems, the announce of a
-project to solve these kind of problems: The Yocto project.
-
-The Yocto Project is an open source collaboration project that provides
-templates, tools and methods to help you create custom Linux-based systems for
-embedded products regardless of the hardware architecture\cite{yocto-project}.
-It was founded in 2010 as a collaboration among many hardware manufacturers,
-open-source operating systems vendors, and electronics companies to bring some
-order to the chaos of embedded Linux development.\cite{Leppakoski}
-
-The Yocto project  is a  complete embedded Linux development environment with
-tools, meta-data, and documentation. The free tools are easy to get started
-with, powerful to work with (including emulation environments, debuggers, an
-Application Toolkit Generator, etc.) and they allow projects to be carried
-forward over time without causing you to loose optimizations and investments
-made during the project's prototype phase. The Yocto Project fosters community
-adoption of this open source technology allowing its users to focus on their
-specific product features and development.
-
-The Yocto Project through the Poky build tool provides an open source
-development environment (figure~\ref{fig:3.1})  targeting the ARM, MIPS,
-Power-PC and x86 architectures for a variety of platforms including x86-64 and
-emulated ones.  You can use components from the Yocto Project to design,
-develop, build, debug, simulate, and test the complete software stack using
-Linux, the X Window System, GNOME Mobile-based application frameworks, and Qt
-frameworks. 
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.75\textwidth]{images/yocto-environment.png}
-\caption{The Yocto Project Development Environment}
-\label{fig:3.2}
-\end{figure}
-
-As we can see the Yocto project will play an important role in the IoT world.
-If we want to develop a solution standard for multiple platforms we might adapt
-it for the Yocto project. If we do this our solution will be deployable into
-multiple IoT devices due to the bast amount of platforms ( sensors and
-processing devices ) that use the Yocto project everyday.
-
-\section{Message-passing library interface}
+\section{Message-Passing Interface Library}
 \noindent
 
 The Message-Passing Interface (MPI) is a message-passing library interface
@@ -572,7 +571,7 @@ decided to use MPIbench as our default benchmark testing framework. MPIbench is
 a benchmark that allows to evaluate the performance of MPI on MPP's and cluster
 of workstations. MPIbench tests different MPI calls.
 
-\section{MPIbench}
+\subsection{MPIbench}
 \noindent
 
 The benchmarks we are going to run are the MPIbench (or MPbench) version 4
@@ -617,7 +616,7 @@ between iterations on the same message size, which are averaged
 We will describe each one of the tests in order to understand the experiments.
 
 
-\subsection{Bandwidth}
+\subsubsection{Bandwidth}
 
 MPIBench measures bandwidth with a doubly nested loop. The outer loop varies the
 message size, and the inner loop measures the send operation over the
@@ -647,7 +646,7 @@ do over all message sizes
     stop timer
 \end{lstlisting}
 
-\subsection{Bidirectional Bandwidth}
+\subsubsection{Bidirectional Bandwidth}
 
 MPIBench measures bidirectional bandwidth with a doubly nested loop. The outer
 loop varies the message size, and the inner loop measures the send operation
@@ -670,7 +669,7 @@ The code for this test is as follows:
 \end{lstlisting}
 
 
-\subsection{Roundtrip}
+\subsubsection{Roundtrip}
 
 Roundtrip times are measured in much the same way as bandwidth, except that,
 the slave process, after receiving the message, echoes it back to the master.
@@ -701,7 +700,7 @@ do over all message sizes
     stop timer
 \end{lstlisting}
 
-\subsection{Application Latency}
+\subsubsection{Application Latency}
 
 Application latency is something relatively unique to MPBench. This benchmark
 can properly be described as one that measures the time for an application
@@ -729,7 +728,7 @@ The slaves' pseudo code is as follows:
         stop timer
 \end{lstlisting}
 
-\subsection{Broadcast and Reduce}
+\subsubsection{Broadcast and Reduce}
 
 Both of these benchmarks return the number of megabytes per second computed
 from the iteration count and the length argument given to function call.
@@ -745,7 +744,7 @@ Here is the pseudo code for both the master and the slave:
         stop timer
 \end{lstlisting}
 
-\subsection{AllReduce}
+\subsubsection{AllReduce}
 
 AllReduce is a derivative of an all-to-all communication, where every
 process has data for every other. While this operation could easily be
@@ -763,7 +762,7 @@ Here is the pseudo code for both the master and the slave:
 \end{lstlisting}
 
 
-\subsection{All-to-all}
+\subsubsection{All-to-all}
 
 MPBench measures a kind of round-robin communication among multiple
 processes. The outer loop varies the message size, and the inner loop
