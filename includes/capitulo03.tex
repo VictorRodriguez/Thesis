@@ -266,7 +266,7 @@ frameworks.
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.75\textwidth]{images/yocto-environment.png}
-\caption{The Yocto Project Development Environment}
+\caption{The Yocto project development environment}
 \label{fig:3.2}
 \end{figure}
 
@@ -447,7 +447,7 @@ one missing the MPI implementation was actually the Yocto project.
     Clear Linux for Intel Architecture & Implemented  \\ \hline
     OS generated with Yocto project & Not Implemented  \\ \hline
 \end{tabular}
-\captionof{table}{MPI implementation in Linux OS supported by Minnow board}
+\captionof{table}{Linux OS supported MPI implementation on MinnowBoard MAX}
 \label{tab:4.2}
 \end{center}
 
@@ -622,10 +622,12 @@ MPIBench measures bandwidth with a doubly nested loop. The outer loop varies the
 message size, and the inner loop measures the send operation over the
 iteration count. After the iteration count is reached, the slave process
 acknowledges the data it has received by sending a four byte message back to
-the master. 
+the master. The master's pseudo code for this test is as follows:
 
-The master's pseudo code for this test is as follows:
+\begin{minipage}{\textwidth}
+\end{minipage}
 
+\begin{minipage}{\linewidth}
 \begin{lstlisting}[frame=single,numbers=left]
 do over all message sizes 
     start timer
@@ -634,9 +636,14 @@ do over all message sizes
         recv (4)
     stop timer
 \end{lstlisting}
+\end{minipage}
 
 The slaves' pseudo code is as follows:
 
+\begin{minipage}{\textwidth}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
 \begin{lstlisting}[frame=single,numbers=left]
 do over all message sizes 
     start timer
@@ -645,6 +652,7 @@ do over all message sizes
         send(4)
     stop timer
 \end{lstlisting}
+ \end{minipage}
 
 \subsubsection{Bidirectional Bandwidth}
 
@@ -658,6 +666,10 @@ completed.
 
 The code for this test is as follows:
  
+\begin{minipage}{\textwidth}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
 \begin{lstlisting}[frame=single,numbers=left]
  do over all message sizes
     start timer
@@ -667,7 +679,7 @@ The code for this test is as follows:
         wait until messages on both ends have been received
     stop timer
 \end{lstlisting}
-
+\end{minipage}
 
 \subsubsection{Roundtrip}
 
@@ -680,6 +692,10 @@ given its semantics.
 
 The master's pseudo code for this test is as follows:
 
+\begin{minipage}{\textwidth}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
 \begin{lstlisting}[frame=single,numbers=left]
   do over all message sizes 
     start timer
@@ -688,9 +704,14 @@ The master's pseudo code for this test is as follows:
         recv(message size) 
         stop timer
 \end{lstlisting}
+\end{minipage}
 
 The slaves' pseudo code is as follows:
 
+\begin{minipage}{\textwidth}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
 \begin{lstlisting}[frame=single,numbers=left]
 do over all message sizes 
     start timer
@@ -699,6 +720,7 @@ do over all message sizes
         send(message size)
     stop timer
 \end{lstlisting}
+\end{minipage}
 
 \subsubsection{Application Latency}
 
@@ -710,6 +732,10 @@ results in units of time.
 
 The master's pseudo code for this test is as follows:
 
+\begin{minipage}{\textwidth}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
 \begin{lstlisting}[frame=single,numbers=left]
 do over all message sizes 
     start timer
@@ -717,9 +743,14 @@ do over all message sizes
         send(message size) 
     stop timer
 \end{lstlisting}    
+\end{minipage}
 
 The slaves' pseudo code is as follows:
 
+\begin{minipage}{\textwidth}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
 \begin{lstlisting}[frame=single,numbers=left]
    do over all message sizes 
         start timer
@@ -727,6 +758,7 @@ The slaves' pseudo code is as follows:
             recv(message size) 
         stop timer
 \end{lstlisting}
+\end{minipage}
 
 \subsubsection{Broadcast and Reduce}
 
@@ -735,7 +767,10 @@ from the iteration count and the length argument given to function call.
 
 Here is the pseudo code for both the master and the slave:
 
+\begin{minipage}{\textwidth}
+\end{minipage}
 
+\begin{minipage}{\textwidth}
 \begin{lstlisting}[frame=single,numbers=left]
    do over all message sizes 
         start timer
@@ -743,6 +778,7 @@ Here is the pseudo code for both the master and the slave:
             reduce or broadcast(message size)
         stop timer
 \end{lstlisting}
+\end{minipage}
 
 \subsubsection{AllReduce}
 
@@ -753,6 +789,10 @@ inefficient for large message sizes.
 
 Here is the pseudo code for both the master and the slave:
 
+\begin{minipage}{\textwidth}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
 \begin{lstlisting}[frame=single,numbers=left]
     do over all message sizes 
         start timer
@@ -760,7 +800,7 @@ Here is the pseudo code for both the master and the slave:
             allreduce(message size) 
         stop timer
 \end{lstlisting}
-
+\end{minipage}
 
 \subsubsection{All-to-all}
 
@@ -772,6 +812,10 @@ processes to every other process.
 
 The code for this test is as follows:
 
+\begin{minipage}{\textwidth}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
 \begin{lstlisting}[frame=single,numbers=left]
     do over all message sizes 
         start timer
@@ -779,5 +823,6 @@ The code for this test is as follows:
             all-to-all(message size)
         stop timer
 \end{lstlisting}
+\end{minipage}
 
 \clearpage
