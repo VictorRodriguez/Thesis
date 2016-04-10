@@ -55,7 +55,11 @@ In order to find the enviroment that gives better performance of the MPIbench
 tests, first is necesary to run the basic and simple MPI test. A simple code to
 prove that the MPI implementation is working as espected is:
 
-\begin{lstlisting}[frame=single,numbers=left,breaklines=true,basicstyle=\tiny]
+\begin{minipage}{\textwidth}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
+\begin{lstlisting}[frame=single,numbers=left,breaklines=true]
 #include "mpi.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -77,19 +81,29 @@ int main (int argc, char *argv[])
 
 }
 \end{lstlisting}
+\end{minipage}
 
 The way to compile it is: 
 
-\begin{lstlisting}[frame=single,language=bash]
+\begin{minipage}{\textwidth}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
+\begin{lstlisting}[frame=single]
   $ mpicc -o mpi_hello_world mpi_hello_world.c
 \end{lstlisting}
-
+\end{minipage}
 
 The way to run it is: 
 
-\begin{lstlisting}[frame=single,language=bash]
+\begin{minipage}{\textwidth}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
+\begin{lstlisting}[frame=single]
   $ mpirun -n 4 -f host_file ./mpi_hello_world
 \end{lstlisting}
+\end{minipage}
 
 After your program is compiled, it is ready to be executed. Now comes the part
 where you might have to do some additional configuration. If you are running
@@ -102,16 +116,26 @@ execute. For ease of execution, you should be sure that all of these computers
 have SSH access, and you should also setup an authorized keys file to avoid a
 password prompt for SSH. A simple host file looks like this.
 
-\begin{lstlisting}[frame=single,language=bash]
+\begin{minipage}{\textwidth}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
+\begin{lstlisting}[frame=single]
   $ cat hostfile
     node1
     node2
     node3
 \end{lstlisting}
+\end{minipage}
 
 Each one of these node is descrbed in an ssh file like this:
 
-\begin{lstlisting}[frame=single,language=bash]
+\begin{minipage}{\textwidth}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
+
+\begin{lstlisting}[frame=single]
   $ cat ~/.ssh/config
     Host node1
         HostName node1-ip-or-hostname
@@ -119,12 +143,18 @@ Each one of these node is descrbed in an ssh file like this:
         Port port-if-nedded
 \end{lstlisting}
 
+\end{minipage}
+
 To run on a single system is not necesary to have a hostfile , however for our
 experiments we will need more than one system.
 
 The result of this experiment is as follows:
 
-\begin{lstlisting}[frame=single,language=bash]
+\begin{minipage}{\textwidth}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
+\begin{lstlisting}[frame=single]
 victor@minnow-1 tmp $ mpirun -n 4  ./hello
 Hello from task 0 on minnow-1
 MASTER: Number of MPI tasks is: 4
@@ -133,6 +163,7 @@ Hello from task 2 on minnow-1
 Hello from task 3 on minnow-1
 \end{lstlisting}
 
+\end{minipage}
 
 \subsection{Results}
 
@@ -168,12 +199,16 @@ While MPBench can be run from the command line, it is designed to be run from
 via the Makefile. Running it via the makefile automates the collection and
 presentation process. The steps to run the benchmark are: 
 
+\begin{minipage}{\textwidth}
+\end{minipage}
 
-\begin{lstlisting}[frame=single,language=bash]
+\begin{minipage}{\textwidth}
+\begin{lstlisting}[frame=single]
 victor@minnow-1 $ llcbench $ make linux-mpich
 victor@minnow-1 $ llcbench $ make mp-bench
 victor@minnow-1 $ llcbench $ make mp-run
 \end{lstlisting}
+\end{minipage}
 
 After this last command the benchmark start to run under the MinnowBoard MAX, the
 resutls are gather in a tar ball. The results can be ploted with gnuplot.
@@ -209,11 +244,16 @@ complex applications that span across the entire OS stack.
 
 The way we run the experiments was the same as before: 
 
-\begin{lstlisting}[frame=single,language=bash]
+\begin{minipage}{\textwidth}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
+\begin{lstlisting}[frame=single]
 victor@minnow-1 $ llcbench $ make linux-mpich
 victor@minnow-1 $ llcbench $ make mp-bench
 victor@minnow-1 $ llcbench $ make mp-run
 \end{lstlisting}
+\end{minipage}
 
 \subsection{Results}
 
@@ -257,6 +297,10 @@ message under test.  This is mainly because of the nature of the test , if we
 remember both the "all reduce" and the "bandwidth" test execute the similar
 tasks. Meanwhile bandwidth executes send and receives: 
 
+\begin{minipage}{\textwidth}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
 \begin{lstlisting}[frame=single,numbers=left]
 do over all message sizes 
     start timer
@@ -265,10 +309,16 @@ do over all message sizes
         recv (4)
     stop timer
 \end{lstlisting}
+\end{minipage}
 
 On the other hand mpi allreduce will reduce the values and distribute the
 results to all processes. The function prototype is the following:
 
+
+\begin{minipage}{\textwidth}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
 \begin{lstlisting}[frame=single,numbers=left]
 MPI_Allreduce(
     void* send_data,
@@ -278,6 +328,7 @@ MPI_Allreduce(
     MPI_Op op,
     MPI_Comm communicator)
 \end{lstlisting}
+\end{minipage}
 
 MPI all reduce does the operation in each process and then broadcast the result
 of the operation to all the individuals of the distributed system. This can be
@@ -341,6 +392,10 @@ measures the time for an application to issue a send and continue computing.
 
 The master's pseudo code for this test is as follows:
 
+\begin{minipage}{\textwidth}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
 \begin{lstlisting}[frame=single,numbers=left]
 do over all message sizes 
     start timer
@@ -349,8 +404,14 @@ do over all message sizes
     stop timer
 \end{lstlisting}    
 
+\end{minipage}
+
 The slaves' pseudo code is as follows:
 
+\begin{minipage}{\textwidth}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
 \begin{lstlisting}[frame=single,numbers=left]
    do over all message sizes 
         start timer
@@ -359,6 +420,7 @@ The slaves' pseudo code is as follows:
         stop timer
 \end{lstlisting}
 
+\end{minipage}
 
 As we can see in the figure \ref{mpi_latency_clr_fedora} there the latency in
 both operating systems is pretty similar. The significant change is at the
@@ -386,6 +448,10 @@ implicit given its semantics.
 
 The master's pseudo code for this test is as follows:
 
+\begin{minipage}{\textwidth}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
 \begin{lstlisting}[frame=single,numbers=left]
   do over all message sizes 
     start timer
@@ -395,8 +461,14 @@ The master's pseudo code for this test is as follows:
         stop timer
 \end{lstlisting}
 
+\end{minipage}
+
 The slaves' pseudo code is as follows:
 
+\begin{minipage}{\textwidth}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
 \begin{lstlisting}[frame=single,numbers=left]
 do over all message sizes 
     start timer
@@ -405,6 +477,8 @@ do over all message sizes
         send(message size)
     stop timer
 \end{lstlisting}
+
+\end{minipage}
 
 We can see similar results in round trip test ( figure
 \ref{mpi_roundtrip_clr_fedora} ) due to the same reasons in latency test. In
@@ -452,8 +526,12 @@ embedded system. The way you add a new capability to the system is by adding a
 new receipt. This is described in the Yocto documentation. The receipt we
 implemented for MPI is: 
 
-\begin{lstlisting}[frame=single,numbers=left,breaklines=true,basicstyle=\tiny]
+\begin{minipage}{\textwidth}
+\end{minipage}
 
+\begin{minipage}{\textwidth}
+
+\begin{lstlisting}[frame=single,numbers=left,breaklines=true]
 SUMMARY = "Message Passing Interface (MPI) implementation"
 HOMEPAGE = "http://www.mpich.org/"
 SECTION = "devel"
@@ -464,24 +542,17 @@ LIC_FILES_CHKSUM = "file://COPYRIGHT;md5=2106f0435056f3dd9349747a766e5816"
 SRC_URI = " \
 	http://www.mpich.org/static/downloads/${PV}/mpich-${PV}.tar.gz \
 "
-
 SRC_URI[md5sum] = "40dc408b1e03cc36d80209baaa2d32b7"
 SRC_URI[sha256sum] = "455ccfaf4ec724d2cf5d8bff1f3d26a958ad196121e7ea26504fd3018757652d"
-
 CACHED_CONFIGUREVARS += "BASH_SHELL=${base_bindir}/bash"
 
 RDEPENDS_${PN} += "bash perl libxml2"
 S = "${WORKDIR}/${BP}"
 
-EXTRA_OECONF = "--enable-debuginfo \
-                --enable-fast \
-                --enable-shared  \
-                --with-pm=gforker  \
-		--disable-rpath \
-                --disable-f77 \
-                --disable-fc \
-                --disable-fortran \
-                --disable-cxx"
+EXTRA_OECONF = "--enable-debuginfo --enable-fast \
+                --enable-shared --with-pm=gforker  \
+		        --disable-rpath --disable-f77 \
+                --disable-fc --disable-fortran --disable-cxx"
 
 inherit autotools-brokensep gettext
 
@@ -492,6 +563,8 @@ do_configure_prepend() {
 }
 
 \end{lstlisting}
+
+\end{minipage}
 
 This receipt is part of the meta-openembedded layer, (
 \url{http://cgit.openembedded.org/cgit.cgi/meta-openembedded/tree/meta-oe/recipes-devtools/mpich/mpich_3.1.1.bb?h=master})
@@ -563,6 +636,10 @@ than 32000 Bytes. This is pretty much because of the nature of the test. As we
 remember the test measures a kind of round-robin communication among multiple
 processes.
 
+\begin{minipage}{\textwidth}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
 \begin{lstlisting}[frame=single,numbers=left]
     do over all message sizes 
         start timer
@@ -570,6 +647,8 @@ processes.
             all-to-all(message size)
         stop timer
 \end{lstlisting}
+
+\end{minipage}
 
 The all to all systems is described in figure \ref{mpi_all_to_all_example}.
 MPI all to all  is a collective operation in which all processes send the same
@@ -696,8 +775,12 @@ of the cluster is described bellow in figure \ref{fig:4.4}.
 
 All these systems execute the MPIBenchmarks with the following ssh config file:
 
+\begin{minipage}{\textwidth}
+\end{minipage}
 
-\begin{lstlisting}[frame=single,language=bash]
+\begin{minipage}{\textwidth}
+
+\begin{lstlisting}[frame=single]
   $ cat ~/.ssh/config
     Host node1
         HostName node1-ip-or-hostname
@@ -716,15 +799,23 @@ All these systems execute the MPIBenchmarks with the following ssh config file:
 
 \end{lstlisting}
 
+\end{minipage}
+
 And the following MPI config file:
 
 
-\begin{lstlisting}[frame=single,language=bash]
+\begin{minipage}{\textwidth}
+\end{minipage}
+
+\begin{minipage}{\textwidth}
+\begin{lstlisting}[frame=single]
   $ cat hostfile
     node1
     node2
     node3
 \end{lstlisting}
+
+\end{minipage}
 
 This is necessary to make the systems communicate each other through MPI , if we
 don't include this configuration there will not be any communications due to the
