@@ -17,73 +17,67 @@
 
 \noindent
 
-This chapter presents a detailed report of the latest works in terms of parallel
-and distributed computing in embedded platforms. The chapter will cover the
-latest technological advances in terms of  parallel and distributed compute
-protocols for embedded platforms and clusters of embedded systems
+This chapter describes recent research work on parallel and distributed 
+computing in embedded platforms and clusters of embedded systems.
 
-\section{Distributed Computing For Embedded Systems}
+\section{Embedded Distributed Computing}
 %introduction-> MPI
 
 With the proliferation of high performance workstations and the emergence of
-high speed networks in early 1990's, the rise of interest in parallel and
-distributed computing was natural. The first clusters of computers start to
-require a communication protocol to share the workload among them. In
-\cite{Salim} one of the first solutions for that was presented: A message
-passing interface (MPI) for parallel and distributed computing (PDC) .The main
-objective of the PDC environment was to provide parallel and distributed
-applications with message passing primitives as well as the host-network
-interface required to share the workload among the workstation over the
-emerging high speed networks
+high speed networks in the early 1990s, the rise of interest in parallel and
+distributed computing grow rapidly . The first clusters of computers 
+required communication protocols to share data and workload. In
+\cite{Salim} one of the most popular paradigms for parallel and distributed
+computing is described: Message Passing Interface, MPI. The main
+objective of MPI was to provide a library for the development of parallel and
+distributed applications with message passing primitives, as well as to deploy
+a host network to share the workload among the workstations.
 
 %MPICH
 
-After the publication of \cite{Salim} the first practical implementation of the
-MPI protocol came, it was MPICH. MPICH is a high performance and widely portable
-implementation of the Message Passing Interface (MPI) standard.\cite{Gropp}.
-MPI was designed for high performance on both massively parallel machines and
-on workstation clusters.\footnote{More details about MPICH in Chapter 3}. It
-provides libraries for C and fortran programing language that aloud the
-developer to share the workload among multiple workstation (nodes). From the
-point of view of the coder  is just necessary to specify what section of the
-code needs to be run in parallel among the nodes. Although MPICH was one of the
-first MPI implementations, it is not the only one. Nowadays there are multiple
-examples of MPI implementations that follow the same principles.
+In \cite{Salim}, it is published MPICH,  the first practical implementation of
+the MPI protocol. MPICH is a high performance and widely portable
+implementation of the MPI .\cite{Gropp}. MPI was designed for high performance
+computing on both, massively parallel machines and on workstation
+clusters.\footnote{More details about MPICH are covered in Chapter 3}. It
+provides libraries for C and Fortran programing languages. It allows the
+development of applications to share data and workload between multiple
+computing nodes. From the point of view of the programmer it is necessary to
+specify what section of the code needs to be run in parallel at the nodes.
+Although MPICH was one of the first MPI implementations, it is not the only
+one; nowadays, there are multiple that follow the same principles.
 
 %First MPICH for Embedded
 
-All the MPI implementations are designed for cluster of high performance
-computers. Cluster where is expected to have a hight amount of resources in
-terms of memory, power consumption and distributed operating system (able to
-manage multiple processes and threads competing for the same resources).
-Despite the fact that many researchers turn the eyes onto these MPI
-implementations in the high performance
-computing community, there was an small group of people interested in the same
-approach of parallel and distributed computing applied in embedded systems. One
-of these first approaches was eMPICH.  \cite{McMahon}. In this early MPI
-implementation for embedded systems  two design paradigms for embedding MPI are
-described: top-down and bottom-up.
+MPI implementations are designed for clusters of high performance
+computers. Clusters where it is expected to have a large amount of resources
+with operating systems that enable distributed computing; however they consume.
+Despite of the fact that many researchers use MPI implementations in the high performance
+computing community, there is a small group of people interested in the same
+approach of parallel and distributed computing applied to embedded systems. One
+of the first approaches was eMPICH \cite{McMahon}. eMPICH has two design
+paradigms for embedded MPI: top-down and bottom-up.
 
 \begin{itemize}
-\item For the top-down approach, they concentrated on removing and simplifying
-features of the full MPI implementations, and reorganizing the code in order to
-decrease the amount of unnecessary code linked in to an application. Examples
-of changes are: remove the support for data heterogeneity, removing the error
-checking and reduce the multiple send modes. All these changes reduce the
-complexity of MPI to send, receive and handle a package.
+\item The top-down approach, focused on removing and simplifying
+features of full MPI implementations, and reorganizing the code in order to
+decrease the amount of unneeded code linked into an application. Some examples
+of changes include: to remove support for data heterogeneity, removing error
+checking and reducing multiple send modes. These changes reduce the
+complexity of MPI to send, receive and handle messages.
 
-\item For the bottom-up approach, a full re write of the MPI protocol was
-implemented. For the bottom-up approach, they began with a very small, six
-function version of eMPICH, and then created a sequence of eMPICH libraries
-of increasing size by adding various functionality to this "base" implementation
+\item The bottom-up approach implemented a full rewrite of the MPI protocol
+First it was a very small, six-function version of eMPICH. Latter it was
+created a sequence of eMPICH libraries by adding various functionality to the
+base implementation.
 \end{itemize}
 
-At the end \cite{McMahon} concludes than apart from  reducing the executable
-code sizes of the MPI layer, there are other issues that need
-to be addressed within the scope of embedded MPI. Many of them are related with
+In \cite{McMahon} it is discussed that besides reducing the executable
+code size of the MPI layer, there are other issues that need
+to be addressed within the scope of embedded MPI. Many of them are related to
 the lack of proper operating system for embedded platforms. The operating
-system is the one responsible to manage techniques for inter-processor
-communication.  In order to create a parallel and distributed computing system
+systems is responsible to manage techniques for inter-processor
+communication. In order to create a parallel and distributed computing system
 among embedded platforms is necessary to solve these problems first.
 
 % Thread base solutions

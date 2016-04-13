@@ -46,7 +46,7 @@ distributed embedded system could improve the energy efficiency
         Platform under test &  MinnowBoard MAX \\ \hline
         Number of platforms  & 1  \\ \hline
         Operating System & 2  \\ \hline
-        SW to Test & Hello world GHz  \\ \hline
+        SW to Test & Hello world \\ \hline
     \end{tabular}
     \end{center}
 
@@ -263,7 +263,7 @@ benchmarks. These results are presented in the next figures:
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.75\textwidth]{images/mpbench_clr_experiments/mpi_allreduce.pdf}
+\includegraphics[width=1 \textwidth]{images/mpbench_clr_experiments/mpi_allreduce.pdf}
 \caption{\textit{MPI all reduce} benchmark running in MinnowBoard MAX with Clear Linux and
 Fedora (higher is better)}
 \label{mpi_allreduce_clr_fedora}
@@ -275,7 +275,7 @@ performance running in a custom OS.  This can be seen in the drop of speed
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.75\textwidth]{images/mpbench_clr_experiments/mpi_alltoall.pdf}
+\includegraphics[width=1 \textwidth]{images/mpbench_clr_experiments/mpi_alltoall.pdf}
 \caption{\textit{MPI all to all} benchmark running in MinnowBoard MAX with Clear Linux and
 Fedora (higher is better)}
 \label{mpi_alltoall_clr_fedora}
@@ -284,7 +284,7 @@ Fedora (higher is better)}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.75\textwidth]{images/mpbench_clr_experiments/mpi_bandwidth.pdf}
+\includegraphics[width=1 \textwidth]{images/mpbench_clr_experiments/mpi_bandwidth.pdf}
 \caption{\textit{MPI bandwidth} benchmark running in MinnowBoard MAX with Clear Linux and
 Fedora (higher is better)}
 \label{mpi_bandwidth_clr_fedora}
@@ -331,15 +331,7 @@ MPI_Allreduce(
 \end{minipage}
 
 MPI all reduce does the operation in each process and then broadcast the result
-of the operation to all the individuals of the distributed system. This can be
-seen in the figure \ref{mpi_allreduce_example}: 
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.75\textwidth]{images/mpi_allreduce_1.png}
-\caption{\textit{MPI all reduce} example }
-\label{mpi_allreduce_example}
-\end{figure}
+of the operation to all the individuals of the distributed system.
 
 As we can see both test exercise the send and receive functions of the OS. The
 Clear Linux OS has specific implementations in the kernel that improve the
@@ -353,7 +345,7 @@ latency is executed in the future.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.75\textwidth]{images/mpbench_clr_experiments/mpi_bibw.pdf}
+\includegraphics[width=1 \textwidth]{images/mpbench_clr_experiments/mpi_bibw.pdf}
 \caption{\textit{MPI Bi directional} bandwidth running in  MinnowBoard MAX with Clear Linux
 and Fedora (higher is better)}
 \label{mpi_bibw_clr_fedora}
@@ -362,7 +354,7 @@ and Fedora (higher is better)}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.75\textwidth]{images/mpbench_clr_experiments/mpi_broadcast.pdf}
+\includegraphics[width=1 \textwidth]{images/mpbench_clr_experiments/mpi_broadcast.pdf}
 \caption{\textit{MPI broadcast} benchmark running in  MinnowBoard MAX with Clear Linux and
 Fedora (higher is better)}
 \label{mpi_broadcast_clr_fedora}
@@ -382,7 +374,7 @@ running in Fedora , the number is 30\% higher. This can bee seen in the figure
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.75\textwidth]{images/number_forks.png}
+\includegraphics[width=1 \textwidth]{images/number_forks.png}
 \caption{Number of forks since booting process reported in /proc/stat file }
 \label{number_forks_fedora_clr}
 \end{figure}
@@ -431,7 +423,7 @@ simplicity of our network (message send is received immediately)
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.75\textwidth]{images/mpbench_clr_experiments/mpi_latency.pdf}
+\includegraphics[width=1 \textwidth]{images/mpbench_clr_experiments/mpi_latency.pdf}
 \caption{\textit{MPI latency} benchmark running in  MinnowBoard MAX with Clear Linux and
 Fedora }
 \label{mpi_latency_clr_fedora}
@@ -487,7 +479,7 @@ network results ( latency,roundtrip,bandwidth) might show different behaivor
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.75\textwidth]{images/mpbench_clr_experiments/mpi_roundtrip.pdf}
+\includegraphics[width=1 \textwidth]{images/mpbench_clr_experiments/mpi_roundtrip.pdf}
 \caption{\textit{MPI latency} benchmark running in MinnowBoard MAX with Clear Linux and
 Fedora }
 \label{mpi_roundtrip_clr_fedora}
@@ -607,7 +599,7 @@ running with a Yocto base image:
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.75\textwidth]{images/mpbench_yocto_experiments/mpi_reduce.pdf}
+\includegraphics[width=1 \textwidth]{images/mpbench_yocto_experiments/mpi_reduce.pdf}
 \caption{MPI Reduce benchmark running in MinnowBoard MAX with Clear Linux, Yocto
 and Fedora (higher is better)}
 \label{mpi_reduce_yocto}
@@ -615,7 +607,7 @@ and Fedora (higher is better)}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.75\textwidth]{images/mpbench_yocto_experiments/mpi_allreduce.pdf}
+\includegraphics[width=1 \textwidth]{images/mpbench_yocto_experiments/mpi_allreduce.pdf}
 \caption{\textit{MPI all reduce} benchmark running in  MinnowBoard MAX with Clear Linux,
 Yocto and Fedora (higher is better)}
 \label{mpi_allreduce_yocto}
@@ -623,7 +615,7 @@ Yocto and Fedora (higher is better)}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.75\textwidth]{images/mpbench_yocto_experiments/mpi_alltoall.pdf}
+\includegraphics[width=1 \textwidth]{images/mpbench_yocto_experiments/mpi_alltoall.pdf}
 \caption{\textit{MPI all to all} benchmark running in  MinnowBoard MAX with Clear Linux, Yocto
 and Fedora (higher is better)}
 \label{mpi_all_to_all_yocto}
@@ -650,19 +642,11 @@ processes.
 
 \end{minipage}
 
-The all to all systems is described in figure \ref{mpi_all_to_all_example}.
 MPI all to all  is a collective operation in which all processes send the same
 amount of data to each other, and receive the same amount of data from each
 other. As we can see on the figure each process has its own data , at the end,
 all the processes has the same amount of data from each one. In the figure we
 can see how each process distribute its data among the other processes.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.75\textwidth]{images/mpi_all_to_all.png}
-\caption{\textit{MPI all to all} mechanism diagram}
-\label{mpi_all_to_all_example}
-\end{figure}
 
 Each of these process are blocking processes, which mean that the number of
 processes does not affect the performance of the test. However when we check
@@ -690,7 +674,7 @@ require it.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.75\textwidth]{images/mpbench_yocto_experiments/mpi_bandwidth.pdf}
+\includegraphics[width=1 \textwidth]{images/mpbench_yocto_experiments/mpi_bandwidth.pdf}
 \caption{\textit{MPI bandwidth} benchmark running in Minnowboard with Clear Linux,
 Yocto and Fedora (higher is better)}
 \label{mpi_bandwidth_yocto}
@@ -699,7 +683,7 @@ Yocto and Fedora (higher is better)}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.75\textwidth]{images/mpbench_yocto_experiments/mpi_bibw.pdf}
+\includegraphics[width=1 \textwidth]{images/mpbench_yocto_experiments/mpi_bibw.pdf}
 \caption{\textit{MPI Bi directional} bandwidth running in MinnowBoard MAX with Clear Linux,
 Yocto and Fedora (higher is better)}
 \label{mpi_bibw_yocto}
@@ -708,7 +692,7 @@ Yocto and Fedora (higher is better)}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.75\textwidth]{images/mpbench_yocto_experiments/mpi_broadcast.pdf}
+\includegraphics[width=1 \textwidth]{images/mpbench_yocto_experiments/mpi_broadcast.pdf}
 \caption{\textit{MPI Broadcast} benchmark running in Minnowboard with Clear Linux, Yocto
 and Fedora }
 \label{mpi_broadcast_yocto}
@@ -724,14 +708,14 @@ lower than Fedora . This can bee seen in the figure \ref{number_forks_yocto}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.75\textwidth]{images/number_forks_yocto.png}
+\includegraphics[width=1 \textwidth]{images/number_forks_yocto.png}
 \caption{Number of forks since booting process reported in /proc/stat file }
 \label{number_forks_yocto}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.75\textwidth]{images/mpbench_yocto_experiments/mpi_latency.pdf}
+\includegraphics[width=1 \textwidth]{images/mpbench_yocto_experiments/mpi_latency.pdf}
 \caption{\textit{MPI latency} running in  MinnowBoard MAX  with Clear Linux,
 Yocto and Fedora (higher is better)}
 \label{mpi_latency_yocto}
@@ -740,7 +724,7 @@ Yocto and Fedora (higher is better)}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.75\textwidth]{images/mpbench_yocto_experiments/mpi_roundtrip.pdf}
+\includegraphics[width=1 \textwidth]{images/mpbench_yocto_experiments/mpi_roundtrip.pdf}
 \caption{\textit{MPI Bi directional} bandwidth running in  MinnowBoard MAX  with Clear Linux,
 Yocto and Fedora }
 \label{mpi_roundtrip_yocto}
@@ -1016,7 +1000,7 @@ this can bee seen in the next graph\ref{power_average_minnow}:
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.75\textwidth]{images/power_average.png}
+\includegraphics[width=1 \textwidth]{images/power_average.png}
 \caption{Average power consumption in cluster of MinnowBoard MAX platforms}
 \label{power_average_minnow}
 \end{figure}
@@ -1029,7 +1013,7 @@ Number of platforms
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.75\textwidth]{images/energy_results/allreduce.png}
+\includegraphics[width=1 \textwidth]{images/energy_results/allreduce.png}
 \caption{Energy efficiency comparison on MPI \textit{All reduce} benchmark}
 \label{all_reduce_energy}
 \end{figure}
@@ -1037,7 +1021,7 @@ Number of platforms
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.75\textwidth]{images/energy_results/reduce.png}
+\includegraphics[width=1 \textwidth]{images/energy_results/reduce.png}
 \caption{Energy efficiency comparison on MPI \textit{Reduce} benchmark}
 \label{reduce_energy}
 \end{figure}
@@ -1045,7 +1029,7 @@ Number of platforms
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.75\textwidth]{images/energy_results/all_to_all.png}
+\includegraphics[width=1 \textwidth]{images/energy_results/all_to_all.png}
 \caption{Energy efficiency comparison on MPI \textit{All to all} benchmark}
 \label{alltoall_energy}
 \end{figure}
@@ -1053,14 +1037,14 @@ Number of platforms
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.75\textwidth]{images/energy_results/bandwidth.png}
+\includegraphics[width=1 \textwidth]{images/energy_results/bandwidth.png}
 \caption{Energy efficiency comparison on MPI \textit{Bandwidth} benchmark}
 \label{bandwidth_energy}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.75\textwidth]{images/energy_results/bibw.png}
+\includegraphics[width=1 \textwidth]{images/energy_results/bibw.png}
 \caption{Energy efficiency comparison on MPI \textit{Bi directional Bandwidth} benchmark}
 \label{bibw_energy}
 \end{figure}
@@ -1068,7 +1052,7 @@ Number of platforms
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.75\textwidth]{images/energy_results/broadcast.png}
+\includegraphics[width=1 \textwidth]{images/energy_results/broadcast.png}
 \caption{Energy efficiency comparison on MPI \textit{Broadcast Bandwidth} benchmark}
 \label{broadcast_energy}
 \end{figure}
