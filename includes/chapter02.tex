@@ -25,13 +25,13 @@ computing in embedded platforms and clusters of embedded systems.
 
 With the proliferation of high performance workstations and the emergence of
 high speed networks in the early 1990s, the rise of interest in parallel and
-distributed computing grow rapidly . The first clusters of computers 
-required communication protocols to share data and workload. In
-\cite{Salim} one of the most popular paradigms for parallel and distributed
-computing is described: Message Passing Interface, MPI. The main
-objective of MPI was to provide a library for the development of parallel and
-distributed applications with message passing primitives, as well as to deploy
-a host network to share the workload among the workstations.
+distributed computing grow rapidly . The first clusters of computers required
+communication protocols to share data and workload. In \cite{Salim} one of the
+most popular paradigms for parallel and distributed computing is described:
+Message Passing Interface, MPI. The main objective of MPI was to provide a
+library for the development of parallel and distributed applications with
+message passing primitives, as well as to deploy a host network to share the
+workload among the workstations.
 
 %MPICH
 
@@ -49,173 +49,169 @@ one; nowadays, there are multiple that follow the same principles.
 
 %First MPICH for Embedded
 
-MPI implementations are designed for clusters of high performance
-computers. Clusters where it is expected to have a large amount of resources
-with operating systems that enable distributed computing; however they consume.
-Despite of the fact that many researchers use MPI implementations in the high performance
-computing community, there is a small group of people interested in the same
-approach of parallel and distributed computing applied to embedded systems. One
-of the first approaches was eMPICH \cite{McMahon}. eMPICH has two design
-paradigms for embedded MPI: top-down and bottom-up.
+MPI implementations are designed for clusters of high performance computers.
+Clusters where it is expected to have a large amount of resources with
+operating systems that enable distributed computing; however they consume.
+Despite of the fact that many researchers use MPI implementations in the high
+performance computing community, there is a small group of people interested in
+the same approach of parallel and distributed computing applied to embedded
+systems. One of the first approaches was eMPICH \cite{McMahon}. eMPICH has two
+design paradigms for embedded MPI: top-down and bottom-up.
 
-\begin{itemize}
-\item The top-down approach, focused on removing and simplifying
+\begin{itemize} 
+\item The top-down approach focused on removing and simplifying
 features of full MPI implementations, and reorganizing the code in order to
 decrease the amount of unneeded code linked into an application. Some examples
 of changes include: to remove support for data heterogeneity, removing error
-checking and reducing multiple send modes. These changes reduce the
-complexity of MPI to send, receive and handle messages.
+checking and reducing multiple send modes. These changes reduce the complexity
+of MPI to send, receive and handle messages.
 
 \item The bottom-up approach implemented a full rewrite of the MPI protocol
 First it was a very small, six-function version of eMPICH. Latter it was
 created a sequence of eMPICH libraries by adding various functionality to the
-base implementation.
+base implementation.  
 \end{itemize}
 
-In \cite{McMahon} it is discussed that besides reducing the executable
-code size of the MPI layer, there are other issues that need
-to be addressed within the scope of embedded MPI. Many of them are related to
-the lack of proper operating system for embedded platforms. The operating
-systems is responsible to manage techniques for inter-processor
-communication. In order to create a parallel and distributed computing system
-among embedded platforms is necessary to solve these problems first.
+In \cite{McMahon} it is discussed that besides reducing the executable code
+size of the MPI layer, there are other issues that need to be addressed within
+the scope of embedded MPI. Many of them are related to the lack of proper
+operating system for embedded platforms. The operating systems is responsible
+to manage techniques for inter-processor communication. In order to create a
+parallel and distributed computing system for embedded platforms it is
+necessary to solve these problems first.
 
 % Thread base solutions
 
-\subsection{Thread Base Solutions}
+\subsection{Thread-based approach}
 
-The problem was that the mechanisms to achieve the implementation of MPI for
-embedded platforms require extensive system resources (volatile and none
-volatile memory as well as the use of a microprocessor instead of a low voltage
-microcontroler) with comprehensive operating systems support. All these
-elements were not available in an embedded platform at those years (end of
-1990's). Is because of this that another approach came; thread base solutions.
-One of the projects that follow this approach was AzequiaMPI \cite{Gallego}.
+To achieve the implementation of MPI for embedded platforms it is required to
+have several system resources for example: volatile and non-volatile memory, as
+well as the use of a microprocessor instead of a low-voltage microcontroler
+with comprehensive operating system support. Those resources were not available
+in an embedded platform at the end of 1990s.  One of the projects that follows
+this approach is AzequiaMPI \cite{Gallego}.
 
-AzequiaMPI is an MPI implementation that uses threads instead of processes
-making MPI applications more lightweight. The AzequiMPI protocol runs on the
-entire Texas Instruments TMS320C6000 family of digital signal processors
-(DSPs). \footnote{The DSP is a specialized microprocessor
-with its architecture optimized for digital signal processing tasks. Thes DSPs
-are broadly used in high performance real time signal processing
-applications.}. Threads are used for small tasks, whereas processes are used
-for more 'heavyweight' tasks. Another
-difference between a thread and a process is that threads within the same
-process share the same address space, whereas different processes do not
+AzequiaMPI is an MPI implementation that uses threads instead of processes,
+making MPI applications lighter . The AzequiaMPI protocol runs on the Texas
+Instruments\textregistered\ TMS320C6000\textregistered\ family of digital
+signal processors (DSPs). \footnote{The DSP is a specialized microprocessor
+with its architecture optimized for digital signal processing tasks. DSPs are
+broadly used in high performance real time signal processing applications.}.
+Threads are used for small tasks, whereas processes are used for larger tasks.
+Another difference between a thread and a process is that threads that run
+within the same process share the same address space, whereas different
+processes do not.
 
-According to \cite{Gallego} running an MPI node as a process imposes some
-disadvantages because firstly, process context switch and synchronization are
-expensive, and secondly, message passing between two MPI nodes in the same
-machine must go through a system buffer, affecting  the communication
-efficiency. 
+According to \cite{Gallego}, running an MPI node as a process imposes some
+disadvantages, process context switches and synchronization are expensive.
+Second, message passing between two MPI nodes in the same machine must go
+through a system buffer, affecting  the communication efficiency. 
 
-The idea that \cite{Gallego} proposed was radical, the fact of use threads
-instead of processes, removes the need of a operating system. In the original
-idea presented by \cite{Salim} the MPI node  is a process \footnote{Another
-common  MPI implementation do the same such as MPICH and OpenMPI},  in contrast
-in \cite{Gallego} the MPI node is a thread in a thread-based implementation.
+The idea that \cite{Gallego} proposed was radical, using threads instead of
+processes. In the original idea presented by \cite{Salim}, the MPI node  is a
+process \footnote{Other MPI implementations that do the same include MPICH and
+OpenMPI}, in contrast in \cite{Gallego} the MPI node is a thread in a
+thread-based implementation.
 
-Before the publication of \cite{Gallego} the idea of thread was popular.
-Paper \cite{Tang} proposes TMPI (for threaded MPI), a technique that  allow MPI
+Before the publication of \cite{Gallego} the idea of thread was popular.  In
+\cite{Tang} it is proposed TMPI (threaded MPI), a technique that  allows MPI
 nodes to be executed safety and efficiently as threads. According to
-\cite{Tang} MPI current MPI implementations on shared-memory machines map each
-MPI node to an OS process, which can suffer serious performance degradation in
-the presence of multiprogramming. Because of this they propose a runtime
+\cite{Tang}, current MPI implementations on shared-memory machines map each MPI
+node to an OS process, which can suffer serious performance degradation in the
+presence of multiprogramming. To reduce the problem they propose a runtime
 support that includes an efficient communication protocol that uses lock-free
-data structure and takes advantage of address space sharing among threads. The
+data structures and takes advantage of address space sharing among threads. The
 experiments on \cite{Tang} show that TMPI has significant performance
 advantages in comparison to a traditional MPI approach.
 
-Another example of thread base techniques is \cite{Demaine} . In this work
-TOMPI (for thread only MPI) is presented. TOMPI is a threads only
-implementation of MPI. While the implementation is partial it supports the
-commonly used MPI features. The communication is designed to be efficient by
-using asynchronous communication by default. The idea was to extend TOMPI to
-efficiently support he entire MPI standard; however it was just an early proof
-of concept prototype that implements just a reduced set of MPI primitives. 
+Another example of thread-based techniques is \cite{Demaine} . In such work
+TOMPI (thread only MPI) is presented. TOMPI is a threads only implementation of
+MPI. While the implementation is partial it supports the commonly used MPI
+features. The communication is designed to be efficient by using asynchronous
+communication by default. The idea was to extend TOMPI to efficiently support
+the entire MPI standard; however it was just an early proof of concept
+prototype that implements just a reduced set of MPI primitives. 
 
 Some tests (Figure 3 in \cite{Gallego}) compare the performance of AzequiaMPI,
-TOMPI and MPICH in a single Linux PC. The results shows that the thread-based
+TOMPI and MPICH in a single Linux PC. The results show that the thread-based
 implementations double the performance of MPICH, on other hand, the performance
 of AzequiaMPI is quite similar to the TOMPI project. 
 
-Is because of this results, that in the end \cite{Gallego} conclude that a better
-threads support would contribute to simplify the AzequiaMPI solution,
-eliminating the need of an operating system, improving the performance and
-reducing its memory footprint. 
+The results in \cite{Gallego} conclude that better threads support would
+contribute to simplify the AzequiaMPI solution, eliminating the need of an
+operating system, improving the performance and reducing its memory footprint. 
 
 %Process base approach
-\subsection{Process Base Solutions}
+\subsection{Process-based Approach}
 
-Other papers \cite{Saldana-Chow} \cite{Williams} demonstrate that MPI is the
-right programming model in order to build a hybrid cluster of embedded
-platforms hiding hardware complexities from the programmer and promoting code
-portability. In \cite{Saldana-Chow} the authors describe a lightweight subset
-MPI standard implementation called TMD-MPI to execute parallel C programs
-across multiple FPGAs. A simple NoC \footnote{Network on a chip} was developed
-to enable communications within and across FPGAs, on top of which TMD-MPI can
-send and receive messages. 
+The work discussed in \cite{Saldana-Chow} and \cite{Williams} demonstrates that
+MPI is the correct programming model in order to build a hybrid cluster of
+embedded platforms hiding hardware complexities from the programmer and
+promoting code portability. In \cite{Saldana-Chow} the authors describe a
+lightweight subset MPI standard implementation called TMD-MPI to execute
+parallel C programs across multiple FPGAs. A simple NoC \footnote{Network on a
+chip (NoC) is a communication subsystem on an integrate in a system in a chip}
+was developed to enable communications within and across FPGAs, on top of which
+TMD-MPI can send and receive messages. 
 
 The experiments in \cite{Saldana-Chow}  show that, for short messages,
 communications between multiple processors can perform better than the network
 of Pentium 3 machines using a 100Mb/s Ethernet network. TMD-MPI, does not
 depend on the existence of an operating system for the functions implemented.
-TMD-MPI is small enough that can work with internal RAM in an FPGA. Currently
-the library is 8.7 KB, which makes it suitable for embedded systems.
+TMD-MPI is small enough that can work with internal RAM in an FPGA. Currently,
+the size of the library is 8.7 KB, which makes it suitable for embedded
+systems.
 
-One of the most advanced process MPI implementations for embedded
-systems is the Lightweight Message Passing Interface(LMPI)\cite{Abgaria}. The
-idea of LMPI is separation of its server part (LMPI server) and the very thin
-client part (LMPI client). Both parts can reside on different hardware or on
-the same hardware. Multiple clients can be associated with a server. LMPI
-servers support full capability of MPI and can be implemented using
-pre-existing MPI implementation. 
+One of the most advanced process MPI implementations for embedded systems is
+the Lightweight Message Passing Interface (LMPI)\cite{Abgaria}. The idea of
+LMPI is separation of its server part (LMPI server) and the very thin client
+part (LMPI client). Both parts can reside on different hardware, or on the same
+hardware. Multiple clients can be associated with a server. LMPI servers
+support full capability of MPI and can be implemented using pre-existing MPI
+implementations. 
 
 Although LMPI is dedicated to embedded systems, to demonstrate the benefits of
-LMPI and show some initial results, \cite{Abgaria} built an LMPI server using
-MPICH on a non-embedded system. LMPI client consumes far less computation and
-communication bandwidth than typical implementations of MPI, such as MPICH.  As
-a result, LMPI client is suitable for embedded systems with limited computation
-power and memory. They demonstrated the low overhead of LMPI clients on Linux
-workstations, which is as low as 10\% of MPICH for two benchmark applications.
-LMPI clients are highly portable because they don't rely on the operating
-system support. All they require from the embedded system is networking support
-to the LMPI server.
+LMPI and to show some initial results, in \cite{Abgaria} it was  built an LMPI
+server using MPICH on a non-embedded system. LMPI client consumes far less
+computation and communication bandwidth than typical implementations of MPI,
+like MPICH.  As a result, LMPI client is suitable for embedded systems with
+limited computation power and memory. That work demonstrated the low overhead
+of LMPI clients on Linux workstations, which is as low as 10\% of MPICH for two
+benchmark applications.  LMPI clients are highly portable because they don't
+rely on the operating system support. All they require from the embedded system
+is networking support to the LMPI server.
 
-All these light and limited versions (either process-base or thread base ) of
-MPI are relevant proofs of the raising role of MPI in embedded world. However
-they have an issue: portability. The portability is a key part to consider, all
-the MPI programs that run in a traditional Linux cluster should also be able to
-run in a cluster of embedded platforms  by just recompilation.  Even for
-\cite{Gallego} the support of an operating system plays here seems to be
-essential if the portability is a key part to consider.
+These light and limited versions of MPI either process-based or thread-based
+are relevant proofs of the raising role of MPI in the embedded world. However,
+they have challanges, one of them is portability. The portability of code among
+different platforms needs to be considered. For example MPI programs that run
+in a traditional Linux cluster (eg. a Bewolf Cluster) should also be able to
+run in a cluster of embedded platforms  by code recompilation.  In
+\cite{Gallego} it is shown that the support of an operating system is essential
+for portability to success.
 
 \section{Multicore Communication Application Program Interface (MCAPI)}
 
-In all the examples showed before one fact is constant, modern embedded
-applications are becoming increasingly complex. The increment in the complexity
-of the new embedded applications started to require more specialized integrated
-circuits that could help the microprocessor with all these task in parallel. As
-we know modern embedded platforms use multi-core microprocessors to solve this
-problem.
+The increment in the complexity of the new embedded applications started to
+require more specialized integrated circuits that could help the microprocessor
+with all these task in parallel. As we know modern embedded platforms use
+multi-core microprocessors to solve this problem.
 
-The burn of multi-core microprocessors bring another problem. The lack of a
-framework to share the workload among the multi core of these new embedded
-applications. One of the first Multicore Communication systems is MCPI.
+The lack of a framework to share the workload among the multi core of these new embedded
+applications was an initial problem. One of the first Multicore Communication systems is MCPI.
 According to \cite{MCAPI} the purpose of MCAPI, which is a message-passing API,
-is \textit{to capture the basic elements of communication and synchronization
+is \textit{To capture the basic elements of communication and synchronization
 that are required for closely distributed (multiple cores on a chip and/or
 chips on a board) embedded systems} 
 
 There are already several programming models and tools for multiprocessor
-System-on-Chip (MPSoC) programming \cite{Wolf} \cite{Matilainen}. These tools help  in
-partitioning and mapping the problem to the specific platform. However, these
-solutions are too heavy-weight and doesn't support a wide range of embedded
-platforms. 
+System-on-Chip (MPSoC) programming \cite{Wolf} \cite{Matilainen}. These tools
+help in partitioning and mapping the problem to the specific platform.
+However, these solutions are too heavy-weight and doesn't support a wide range
+of embedded platforms. 
 
 On the other side MCAPI provides a limited number of calls with sufficient
-communication functionality. Extra functionality can be put on top of the API
-if the application requires it. MCAPI is scalable and can support virtually any
+communication functionality. MCAPI is scalable and can support virtually any
 number of cores, each with a different processing architecture and each running
 the same or a different operating system.
 
@@ -225,7 +221,7 @@ other hand, does not require this and is much more lightweight. At the end, an
 application using MCAPI will see an standard set of function calls to send and
 receive data to and from any core in the system. 
 
-The important thing to note is that MCAPI is not a protocol specification. This
+MCAPI is not a protocol specification. This
 is an implementation issue, due to the fact that with multiple vendors of
 embedded platforms a standard is becoming a necessity. Another disadvantage is
 that MCAPI just send an receive data within the cores of the embedded platform
@@ -239,49 +235,49 @@ workload is re distributed the next time. Besides, MPI focuses on the share of
 workload (wither process base or thread base ) and exchanging messages between
 them. It doesn't matter if the devices are side-by-side or half a world apart. 
 
-On the other hand MPI is not a good fit for communication within the cores of a
+MPI is not a good fit for communication within the cores of a
 server, where different cores might run and avoid bottlenecks in bus and memory
 access. This is where MCAPI comes in, Allowing a light communication among the
-cores 
+cores.
 
-\section{Current Clusters of Embedded Systems}
+\section{Clusters of Embedded Systems}
 
-Despite the fact of the MPI implementation (either process-base or
-thread-base), one thing is sure, in all of them is proved that when multiple
-embedded processors are available, the workload can be distributed such that
-each processor runs at a very low-power level; meanwhile the performance is
-compensated by parallelism. Based on this idea some efforts has been done
-\cite{Liu} \cite{Weglarz} proposing the idea of partition the computation onto
-a multi-processor architecture that consumes significantly less power than a
+Despite of the type of MPI implementation either process-based or,
+thread-based, it is proved that when multiple embedded processors are
+available, the workload can be distributed in such away that each processor
+runs at a very low-power level; meanwhile, the performance is compensated by
+parallelism.  Based on this idea some efforts have been done in \cite{Liu} and
+\cite{Weglarz}. Those propose the idea of partitioning the computation onto a
+multi-processor architecture that consumes significantly less power than a
 single processor.
 
 In \cite{Weglarz} the authors examine the use of multiple constrained
 processors running at lowered voltage and frequency to perform a similar amount
-of work in less time and lower power than a uniprocessor.  The workload used in
-this paper is a video encoder. As a result they prove than 4 processors sharing
-the workload at a lower frequency can save up to an 56\% energy compared to a
-uniprocessor running the workload. According to \cite{Weglarz} a future work
-will involve developing an analytical model that estimates the minimum amount
-of parallelism that is needed for a multiprocessor to save energy
+of work in a shorter time and lower power than a uniprocessor.  The workload
+studied in that work is a video encoder. As a result it is proved that four
+processors sharing the workload at a lower frequency can save up to as 56\% of
+energy compared to a uniprocessor running the workload. According to
+\cite{Weglarz} a future work will involve developing an analytical model that
+estimates the minimum amount of parallelism that is needed for a multiprocessor
+to save energy.
 
-Another example of a distributed embedded applications is presented in
-\cite{Liu}. In \cite{Liu} the author implemented an image Processing algorithm
+Another example of a distributed embedded application is presented in
+\cite{Liu}. In that work the author implemented an image processing algorithm
 with MPI on a low voltage computer. As a result the author shows that when
 multiple low-voltage processors are available, the workload can be distributed
-such that each processor runs at a very low-power level; meanwhile the
-performance is compensated by parallelism. The author also confirm that
-distributed programming tools are readily available to facilitate the design
-and exploration of distributed embedded applications. However emphasize that
-the communication mechanism of MPI needs further study ( \cite{Abgaria} was not
-implemented yet at that point). 
+in such a way that each processor runs at a very low-power level; meanwhile the
+performance is compensated by parallelism. The author also confirms that
+distributed programming tools are available to leverage the design and
+exploration of distributed embedded applications. However he emphasizes that
+the communication mechanism of MPI needs further study.
 
-As we can see there is a need to make new experiments with the latest
-technology available. Nowadays we have ultra-low-voltage microprocessors
+As can be seen there is a need to make new experiments with the latest
+technology available. Nowadays, we have ultra-low-voltage microprocessor
 platforms, customized operating systems for these platforms and  innovative
-technologies for achieving MPI implementations. Few works \cite{Victor-Marcos}
-\cite{Victor-Marcos-elc} have been done address the problem of parallel and
-distributing compute with embedded platforms using these new technologies. All
-these variables will be considered into the development of this current work.
+technologies for achieving MPI implementations. Few works, like those described
+in \cite{Victor-Marcos} and \cite{Victor-Marcos-elc} have address the problem
+of parallel and distributing computing with embedded platforms. These design
+parameters are considered for the development of this work.
 
 \newpage
 
