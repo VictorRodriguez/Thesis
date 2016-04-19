@@ -216,38 +216,35 @@ Linux in many common embedded platforms. With the birth of SoC systems the
 use of complete operating systems was needed due to the requirement of handling
 processes concurrency, memory management, and network connectivity.
 
-Although the idea of using Linux as main operating system for embedded platform
-was easy in reality it was not. With too many configure options and no standard
-methodologies or templates to reuse the process to customize a Linux Operating
-System for embedded platforms became a complex work for software engineers.
-Every new embedded company create his own version (according to his needs
-without any standards) with very low maintainability and robustness. In 2010
-there was a change in the industry of embedded systems, the announce of a
-project to solve these kind of problems: The Yocto project.
+The Linux operating system was chosen for the studied embedded platform.
+It has many configure options, there are no standard
+methodologies or templates to reuse the process to customize a Linux
+embedded environment which is a complex job for software engineers.
+Every new embedded computing company creates its own version according to its
+needs, without any standards, with very low maintainability and robustness. In 2010
+there was a change in the industry of embedded systems, it was announced of a
+project to leverage environment configuration: The Yocto project.
 
-The Yocto Project is an open source collaboration project that provides
-templates, tools and methods to help you create custom Linux-based systems for
+The Yocto Project is an open source collaboration that provides
+templates, tools and methods to create customized Linux systems for
 embedded products regardless of the hardware architecture\cite{yocto-project}.
-It was founded in 2010 as a collaboration among many hardware manufacturers,
-open-source operating systems vendors, and electronics companies to bring some
-order to the chaos of embedded Linux development \cite{Leppakoski}.
+It started in 2010 as a collaboration between hardware manufacturers,
+open-source operating systems vendors, and electronics companies to standardize 
+embedded Linux development \cite{Leppakoski}.
 
 The Yocto project  is a  complete embedded Linux development environment with
-tools, meta-data, and documentation. The free tools are easy to get started
-with, powerful to work with (including emulation environments, debuggers, an
-Application Toolkit Generator, etc.) and they allow projects to be carried
-forward over time without causing you to loose optimizations and investments
-made during the project's prototype phase. The Yocto Project fosters community
-adoption of this open source technology allowing its users to focus on their
+tools, meta-data, and documentation. The free tools (eg. emulation
+environments, debuggers, application toolkit generators) are easy to use,
+powerful and allow projects development with optimization at the project
+prototype phase. The Yocto Project allows its users to focus on
 specific product features and development.
 
-The Yocto Project through the Poky build tool provides an open source
-development environment (figure~\ref{fig:3.1})  targeting the ARM, MIPS,
-Power-PC and x86 architectures for a variety of platforms including x86-64 and
-emulated ones.  You can use components from the Yocto Project to design,
+The Yocto Project software development environment in Figure \ref{fig:3.1})
+shows targeting the ARM, MIPS, Power-PC and x86 architectures for a variety of
+platforms, including x86-64 and emulated ones. It has a set of components to design,
 develop, build, debug, simulate, and test the complete software stack using
-Linux, the X Window System, GNOME Mobile-based application frameworks, and Qt
-frameworks. 
+Linux. The X window system, GNOME mobile-based application frameworks, and Qt
+frameworks are examples of pieces of software that can be developed with Yocto.
 
 \begin{figure}[H]
 \centering
@@ -256,11 +253,10 @@ frameworks.
 \label{fig:3.2}
 \end{figure}
 
-As we can see the Yocto project will play an important role in the IoT world.
-If we want to develop a solution standard for multiple platforms we might adapt
-it for the Yocto project. If we do this our solution will be deployable into
-multiple IoT devices due to the bast amount of platforms ( sensors and
-processing devices ) that use the Yocto project everyday.
+Yocto project plays an important role in the IoT. To develop a standard
+solution for multiple platforms Yocto is the best choice. Such solution enables
+deployement to multiple IoT devices. 
+
 
 \section{Ubiquitous Computing and IoT}
 \noindent
@@ -389,45 +385,43 @@ solutions of distributed systems into IoT distributed systems.
 \noindent
 
 The Message-Passing Interface (MPI) is a message-passing library interface
-specification. MPI addresses primarily the message-passing parallel programming
-model, in which data is moved from the address space of one process to that of
-another process through cooperative operations on each process.
+specification\cite{MPI-standard}. MPI addresses primarily the message passing
+parallel programming model, in which data is moved from the address space of
+one process to that of another process through cooperative operations on each
+process.
 
-MPI is not a language, and all MPI operations are expressed as functions,
+MPI is not a language, all its operations are expressed as functions,
 subroutines, or methods, according to the appropriate language bindings which,
 for C and FORTRAN, are part of the MPI standard. The standard has been defined
 through an open process by a community of parallel computing vendors, computer
 scientists, and application developers.
 
-Despite all the advantages that MPI has it is not widely used in embedded
-systems (due to the fact that these abstraction layers require extensive
-system resources with comprehensive operating systems support, which may not be
-available to an embedded platform) but as we have seen this is now possible. We
-do have a powerful ultra-low-voltage microprocessor platform
-\cite{minnowboard} and we do have robust distributed operating systems running on
-those platforms. The missing part now is to set up the message passing library
-interface on the top of all the system. 
+Despite of all the advantages that MPI has, it is not widely used in embedded
+systems due to the fact that abstraction layers require extensive system
+resources with comprehensive operating systems support, which may not be
+available to an embedded platform. This work uses a powerful ultra-low-voltage
+microprocessor platform \cite{minnowboard}. It was a challenge to set up MPI
+for such system.
 
-Recent researches \cite{Saldana} \cite{Gallego} \cite{McMahon} describe
-proof-of-concept MPI implementations targeting embedded systems, showing an
-increasing interest in the topic. However none of theme has been implemented in
-the current embedded Linux operating systems (like the ones generated with
-Yocto project\cite{yocto-project}) nor the standard Linux (like
-Fedora\cite{fedora}).
+Recent research work \cite{Saldana} \cite{Gallego} \cite{McMahon} describes
+proofs-of-concepts MPI implementations for embedded systems. It has been an
+increase of interest in the topic. However, none of those has been implemented
+in current embedded Linux operating systems (like Yocto \cite{yocto-project})
+or Fedora\cite{fedora}).
 
-After a quick review on the current operating systems we found that the only
-one missing the MPI implementation was actually the Yocto project.
+Review of current operating systems shows that the only
+one missing  MPI is Yocto.
 
 
 \begin{center}
 \begin{tabular}{ | l | r |}
     \hline
-    Operating System & MPI library  \\ \hline
-    Fedoras & Implemented  \\ \hline
-    Clear Linux for Intel Architecture & Implemented  \\ \hline
-    OS generated with Yocto project & Not Implemented  \\ \hline
+    \textbf{Operating System} & \textbf{MPI library version 3.1}  \\ \hline
+    Fedora & Yes  \\ \hline
+    Clear Linux for Intel Architecture & Yes \\ \hline
+    OS generated with Yocto project & No \\ \hline
 \end{tabular}
-\captionof{table}{Linux OS supported MPI implementation on MinnowBoard MAX}
+\captionof{table}{MinnowBoard MAX Linux distributions with MPIr}
 \label{tab:4.2}
 \end{center}
 
@@ -436,34 +430,34 @@ one missing the MPI implementation was actually the Yocto project.
 
 \noindent
 
-The meaning of performance may be different according to the application.
-The user of a desktop computer may say a computer is faster when a program runs in less
-time, while an Amazon.com administrator may say a computer is faster when it
+According to \cite{Hennessy} the meaning of performance may be different according to the application.
+The user of a desktop computer may says that  a computer is faster when a program runs in less
+time; a Website administrator may says that a computer is faster when it
 completes more transactions per hour. The computer user is interested in 
 reducing response time (the time between the start and the completion of an 
-event) \cite{Hennessy} also referred to as execution time. The administrator of a large data 
+event) \cite{Hennessy}, also referred as execution time. The administrator of a large data 
 processing center may be interested in increasing throughput (the total amount 
-of work done in a given time.) \cite{Hennessy}. 
+of work done in a given time) \cite{Hennessy}. 
 
-According to \cite{Hennessy} in comparing design alternatives, we often want to
-relate the performance of two different computers, say, X and Y. The phrase ''X
-is faster than Y'' is used here to mean that the response time or execution
+According to \cite{Hennessy}, \textit{ To compare design alternatives, the
+performance of two different computers, say, X and Y is related}. The phrase ''X
+is faster than Y'' is used to refer that the response, or execution
 time is lower on X than on Y for the given task. In particular, ''X is n times
-faster than ''  will mean \ref{eq:2}:
+faster than ''  is represented by equation \ref{eq:2} from \cite{Hennessy}.
 
 \begin{equation}\label{eq:2}
 n = \frac{Execution time x}{Execution time y}
 \end{equation}
 
 Since execution time is the reciprocal of performance, the following
-relationship holds in formula \ref{eq:3}:
+relationship holds in formula \ref{eq:3} from \cite{Hennessy}.
 
 \begin{equation}\label{eq:3}
 n = \frac{Execution time x}{Execution time y} = \frac{\frac{1}{Performance
 x}}{\frac{1}{Performance y}} = \frac{Performnace x}{Performance y}
 \end{equation}
 
-Another metric to considerate is the throughput. According to \cite{Hennessy}
+Another metric to consider is throughput. According to \cite{Hennessy}
 \textit{"the throughput of X is 1.3 times higher than Y signifies that the
 number of tasks completed per unit time on computer X is 1.3 times the number
 completed on Y"} . Unfortunately, time is not always the metric quoted in
@@ -473,63 +467,64 @@ measure of performance is the execution time of real programs.
 The most straightforward definition of execution time is given by
 \cite{Hennessy} \textit{"it is called wall-clock time, response time, or elapsed
 time, which is the latency to complete a task, including disk accesses, memory
-accesses, input/output activities, operating system over head everything"}.
-Even in current multi processors world this is transparent for the users,  the
-response time seen by the user is the elapsed time of the program, not the CPU
+accesses, input/output activities and operating system overhead everything"}.
+The response time considered by the user is the elapsed time of the program, not the CPU
 time.
 
-But in parallel programing the performance metric is measure in a different
-way.  With the current compute power of compute devices is possible to create a
-cluster of computers. All of the inter-connected in a network that provides the
-maximum level of performance with the less amount of power consumption. This
-characteristic is determined by the power efficiency of the network. The power
-efficiency is quantified by performance per watt \cite{Jun}.
+In parallel programing the performance metric is measure in a different way.
+With current computing power of devices it is possible to create a cluster of
+computers. For example, a set of interconnected embedded systems in a network
+that provides a large amount of performance with the smaller power consumption
+than a higher performance computing system. This characteristic is determined
+by the power efficiency of the network. The power efficiency is quantified by
+performance per watt \cite{Jun}.
 
-The critical part is to determine the breaking point where is better to send
-the data to the cloud data centers. How many systems is the maximum that these
-kind of network could support and still being a good option in terms of energy
-efficiency.
+The goal is to determine what is the optimal point at which it is better to send
+data to a server instead of doing local processing. It is important to answer
+the question : What is the maximum number of systems that such type of cluster
+can support to keep savings energy efficiency? 
 
 The development of metrics to evaluate energy efficiency on the basis of
 performance and power models is described in \cite{Dong}. According to
-\cite{Dong} the formula for computing the theoretical maximum speedup (or
-performance) achievable through parallelization is \ref{eq:4}.
+\cite{Dong}, the formula for computing the theoretical maximum speedup (or
+performance) achievable through parallelization is given by the following
+equation \ref{eq:4}:
 
 \begin{equation}\label{eq:4}
 Perf = \frac{1}{(1 - f) + \frac{f}{n}}
 \end{equation}
 
 Where \textit{n} is the number of processors,  \textit{f} is the fraction of
-computation that programmers can parallelize  ( form 0 to 1 ) . To model the
-power consumption for a \textit{P} many-core processor, \cite{Dong} introduce a
+computation that programmers can parallelize  (from 0 to 1). To model the
+power consumption of a \textit{P} many-core processor, \cite{Dong} introduces a
 new variable, \textit{k}, to represent the fraction of power the processor
-consumes in idle state \ref{eq:5}. 
+consumes in idle. It is expressed by equation \ref{eq:5} bellow:
 
 \begin{equation}\label{eq:5}
 \frac{Perf}{W} = \frac{1}{(1 + (n -1 ) k (1 - f))}
 \end{equation}
 
-In \cite{Dong} their analysis clearly demonstrates that a symmetric many-core
+In \cite{Dong}, it is demonstrated that a symmetric many-core
 processor can easily  lose its energy efficiency as the number of cores
-increases. To achieve the  best possible energy efficiency, their  work
+increases. To achieve the  best possible energy efficiency, their work
 suggests a many-core alternative, featuring many small, energy-efficient cores
-integrated with a full-blown processor. They also show that by knowing the
-amount of parallelism available in an application prior to execution, is
+integrated with a full-blown processor. It shows that having knowledge on the
+amount of parallelism available in an application before its execution, it is
 possible to  find the optimal number of active cores for maximizing performance
 for a given cooling capacity and energy in a system.
 
 \section{Benchmarks}
 
-In computer science a benchmark is a test to measure the performance of
-multiple applications over the same standard way. The best choice of benchmarks
-to measure performance are real applications. Due to the complexity of the
-current applications the software engineers are making small versions of them
-to be used as benchmarks. According to \cite{Hennessy} there are three kind of
-them: 
+In computer science a benchmark is a set of programs utilized to measure
+software or hardware or performance of applications using a standard
+methodology. The best choice of benchmarks to measure performance is to select
+end user applications. Due to the complexity of current applications software
+engineers are using small versions of them as benchmarks. According to
+\cite{Hennessy}, there are three kind of them: 
 
 \begin{itemize}
-\item kernels, which are small, key pieces of real applications.
-\item Toy programs, which are 100-line programs from beginning programming
+\item Kernels, which are small, key pieces of real applications.
+\item Toy programs, which are 100-line programs from simple programming
 assignments.
 \item Synthetic benchmarks, which are fake programs invented to try to match the
 profile and behavior of real applications.
@@ -537,70 +532,70 @@ profile and behavior of real applications.
 
 One of the most successful attempts to create standardized benchmark
 application suites has been the SPEC (Standard Performance Evaluation
-Corporation), which had its roots in the late 1980s efforts to deliver better
-benchmarks for workstations\cite{Hennessy}. All the SPEC benchmark suites and
-their results are found at www.spec.org.
+Corporation), which had its roots in the late 1980. SPEC's intention is to deliver better
+benchmarks for workstations. \footnote{All the SPEC benchmark suites and
+their results are found at www.spec.org.}
 
-In terms of parallel and distributed computing (MPI) there are already numerous
-MPI benchmark suites available , such as Mpptest \cite{Gropp}, MP-Bench
-\cite{Calderon} and  SKaMPI \cite{Hoefler} are examples of them. Many of give
-timing results for message passing routines. This is useful for performance
-modelling and analysis of parallel programs, as well as for understanding the
-performance of parallel machines. Based on the results in \cite{Grove} we
-decided to use MPIbench as our default benchmark testing framework. MPIbench is
-a benchmark that allows to evaluate the performance of MPI on MPP's and cluster
-of workstations. MPIbench tests different MPI calls.
+In terms of parallel and distributed computing, there are numerous MPI
+benchmark suites available, such as Mpptest \cite{Gropp}, MP-Bench
+\cite{Calderon}, and  SKaMPI \cite{Hoefler}. Many of them provide timing
+results for message passing routines. This is useful for performance modelling
+and analysis of parallel programs, as well as for understanding the performance
+of parallel machines. Based on results of \cite{Grove} it was decided to use
+MPIbench as the default benchmark testing framework. MPIbench is a benchmark
+suite that allows performance assessment of MPI on clusters of
+workstations. MPIbench tests MPI calls.
 
 \subsection{MPIbench}
 \noindent
 
-The benchmarks we are going to run are the MPIbench (or MPbench) version 4
-\cite{mpibench}.This is a program to measure the performance of some critical
-MPI functions. By critical we mean that the behavior of these functions can
-dominate the run time of a distributed application.
+The benchmark suite utilized on this work is MPIbench (or MPbench) version 4
+\cite{mpibench}. It is a set of programs to measure the performance of dominant
+MPI functions. The runtime behavior of these functions dominates the total
+execution time of a distributed application.
 
-MPIBench currently tests eight different MPI calls. The following functions are
+
+MPIBench tests eight MPI calls. The following functions are
 measured:
 
 \begin{itemize}
     \item Bandwidth (BB/second)
-    \item Gap Time (time to launch a message and continue) (Us)
+    \item Gap Time (time to launch a message and continue) ($\mu$s)
     \item Roundtrip or 2 * Latency (transactions/second)
-    \item Asynchronous Bidirectional bandwidth (KB/second)
+    \item Asynchronous bidirectional bandwidth (KB/second)
     \item Broadcast (KB/second)
     \item Sum reduction (KB/second)
     \item All-reduce (KB/second)
     \item AlltoAll (KB/second)
 \end{itemize}
 
-
-All tests are timed in the following manner.
+Each of these tests performs the following steps:
 
 \begin{itemize}
     \item Set up the test.
     \item Start the timer.
-    \item Loop of operations over the message size as a power of two and the
-iteration count.
+    \item Loop of MPI operations.
     \item Verify that those operations have completed.
     \item Stop the timer.
-    \item Compute the appropriate metric
 \end{itemize}
 
-By default, MPIBench measures messages from 4 bytes to 216 bytes, in powers of
-two for 100 iterations. Each test is run a single time before testing to allow
-for cache setup and routing. The cache is then flushed before each repetition
+By default, MPIBench programs measures transmission and reception of messages 
+of different sizes, from 4 to 216 bytes. It repeats such process for 100 
+iterations. As part of the set up , each test is run a single time, before
+testing, to allow caching and routing set up. The cache is flushed before each repetition
 and before each new message size is tested. The cache is not flushed however
-between iterations on the same message size, which are averaged
+between iterations of the same message size, which are averaged.
 
-We will describe each one of the tests in order to understand the experiments.
-
+Next, each one of the tests is briefly described in order to understand the
+experiments. A detailed description with illustrations and examples is
+presented in \cite{MPI-tutorial} and \cite{MPI-book}.
 
 \subsubsection{Bandwidth}
 
 MPIBench measures bandwidth with a doubly nested loop. The outer loop varies the
-message size, and the inner loop measures the send operation over the
+message size, and the inner loop measures the \textit{send} operation over the
 iteration count. After the iteration count is reached, the slave process
-acknowledges the data it has received by sending a four byte message back to
+acknowledges the data it has received by sending a four-byte message back to
 the master. The master's pseudo code for this test is as follows:
 
 \begin{minipage}{\textwidth}
@@ -635,13 +630,16 @@ do over all message sizes
 
 \subsubsection{Bidirectional Bandwidth}
 
-MPIBench measures bidirectional bandwidth with a doubly nested loop. The outer
-loop varies the message size, and the inner loop measures the send operation
-over the iteration count. Both processes execute a non-blocking receive, then a
-non-blocking send, and then a wait for each iteration. The next iteration is
-prevented from proceeding until the previous one is finished by the MPLWaitall0
-call, which will not allow execution to continue until both messages have been
-completed.
+MPIBench measures bidirectional bandwidth with a doubly nested loop \footnote{
+The bidirectional bandwidth test is similar to the bandwidth test, except that
+both the nodes involved send out a fixed number of back-to-back messages and
+wait for the reply. This test measures the maximum sustainable aggregate
+bandwidth by two nodes \cite{mpibench}.} The outer loop varies the message size, the inner loop
+measures the send operation over the iteration count. Both processes execute a
+non-blocking receive, then a non-blocking send, and then a wait for each
+iteration. The next iteration is prevented from proceeding until the previous
+one is finished by the \texttt{MPLWaitall()} call, which will not allow
+execution to continue until both messages have been completed.
 
 The code for this test is as follows:
  
@@ -655,16 +653,17 @@ The code for this test is as follows:
     do over iteration count
         immediate (nonblocking) receive(message size)
         immediate (nonblocking) send(message size)
-        wait until messages on both ends have been received
+        wait until messages on both ends 
+            have been received (MPLWaitall())
     stop timer
 \end{lstlisting}
 \end{minipage}
 
 \subsubsection{Roundtrip}
 
-Roundtrip times are measured in much the same way as bandwidth, except that,
-the slave process, after receiving the message, echoes it back to the master.
-This benchmark is often referred to as ping-pong. Here our metric is
+Roundtrip times are measured in the same way as in the bandwidth test; except that,
+the slave process, after receiving the message, echoes back to the master.
+This benchmark is often referred to as pingpong. The unit of this metric is
 transactions per second, which is a common metric for database and server
 applications. No acknowledgment is needed with this test as it is implicit
 given its semantics.
@@ -704,10 +703,10 @@ do over all message sizes
 \subsubsection{Application Latency}
 
 Application latency is something relatively unique to MPBench. This benchmark
-can properly be described as one that measures the time for an application
-to issue a send and continue computing. This benchmark is the same as
-bandwidth except that we do not acknowledge the data and we report our
-results in units of time.
+can properly be described as one that measures the time for an application to
+issue a send and continue computing. This benchmark is the same as bandwidth
+except that it does not acknowledge the data and report results in units of
+time.
 
 The master's pseudo code for this test is as follows:
 

@@ -15,23 +15,34 @@
 
 \normalsize
 \noindent
-In this chapter we will cover the architecture of the system, from a hardware
-and software perspective. As well as the MPI implementation we are going to
-use. There is a brief description of the benchmarks (with the fixes
-implemented). In the end we present the description of the topology implemented
+In this chapter it is described the architecture of the embedded system
+employed in this work. It is provided a hardware and software description.
+It also includes an explanation of the MPI implementation utilized 
+use. At the end, it is presented the description of the implemented topology of
+the system.
 
 \section{Selected Embedded System}
 \noindent
 
-As we described in the theoretical framework an embedded system is some
-combination of computer hardware and software, either fixed in capability or
-programmable, that is specifically designed for a particular function. We will
-describe hardware of the development board as well as the software we are going
-to use (operating system and firmware).
+\subsection{Development Board} The development board utilized to perform
+experiments is a MinnowBoard MAX \cite{minnowboard} and it has a processor
+Intel Atom-TM Processor E3825 \textregistered\ \cite{E3825}. The main characteristics are
+described in Table~\ref{tab:4.1}:
 
-\subsection{Development Board} The platform we will use for our experiment is the
-Intel\textregistered\  Atom-TM Processor E3825. Their main characteristics are
-described in (table~\ref{tab:4.1}).\cite{E3825}:
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.75\textwidth]{images/minnow-max.jpg}.png
+        \caption{Minnow board max platform}
+        \label{fig:4.1}
+    \end{figure}
+
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.75\textwidth]{images/minnow-max-2.png}
+        \caption{Connection ports of the  MinnowBoard MAX}
+        \label{fig:4.2}
+    \end{figure}
 
     \begin{center}
     \begin{tabular}{ | l | r |}
@@ -47,66 +58,46 @@ described in (table~\ref{tab:4.1}).\cite{E3825}:
     Specifications} \label{tab:4.1}
     \end{center}
 
-The commercial name of this platform is  MinnowBoard MAX figure~\ref{fig:4.1}
-and  figure~\ref{fig:4.2} This is a development platform for both
-professionals and makers.  MinnowBoard MAX is an open hardware platform. The
-concept of ''open-source hardware'' or ''open hardware'' is not yet as well
-known or widespread as the free software or open-source software concept.
-However, it shares the same principles: anyone should be able to see the source
-(the design documentation in case of hardware), study it, modify it and share
-it.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.75\textwidth]{images/minnow-max.jpg}.png
-\caption{Minnow board max platform}
-\label{fig:4.1}
-\end{figure}
-
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.75\textwidth]{images/minnow-max-2.png}
-\caption{Connection ports of the  MinnowBoard MAX}
-\label{fig:4.2}
-\end{figure}
+Figure~\ref{fig:4.1} and ~\ref{fig:4.2} shows pictures of the MinnowBoard MAX .
+It is a development platform for both professionals and entrepreneurs. The
+MinnowBoard MAX is an open hardware platform: anyone can have access to see the
+source design and documentation, can study it, modify it and share it.
 
 \subsection{Embedded Operating System} 
 
-Typical embedded system does not contain an operating system (ussually); but
-due to the commplexity of current embedded applications is plenty necesary to
-have an operating system that manage all the processes that current embedded
-applications have. In order to perform the experiments we need a full Operating
-System running on the development board. This means that it will require a boot
-manager, a full file system , kernel and user space.  As we can see in
-\cite{minnowboard} the board support multiple kind of Operating Systems. The OS
-we are going to test are : 
+Typical embedded system does not contain an operating system (usually); but due
+to the complexity of current embedded applications is plenty necessary to have
+an operating system that manage all the processes that current embedded
+applications have. 
+
+To perform the experiments on the selected board, it was decided to include a
+full operating system running. It includes a boot manager, a full file system ,
+kernel and user spaces. According to \cite{minnowboard} the board supports
+multiple kind of operating systems. In this work three different, Linux-based,
+operating systems:
 
 \begin{itemize}
-    \item Fedora project (Linux base) \cite{fedora}
-    \item Clear Linux for Intel Architecture (Linux base) \cite{clear-linux}
-    \item Yocto project (Linux base) \cite{yocto-project}
+    \item Fedora \cite{fedora}
+    \item Clear Linux for Intel Architecture \cite{clear-linux}
+    \item Yocto \cite{yocto-project}
 \end{itemize}
 
-We will need to experiment which one is better for our needs. The reason why to
-prove multiple  operating systems is because is necessary to find the best one.
-There are multiple configurations inside each one that makes the performance of
-the distributed system different. 
+The work performs a comparison between the three. There are multiple 
+configurations for each one, such that the performance of implemented embedded
+cluster behaves differently. 
 
 \subsection{Embedded Firmware}
 
-The  MinnowBoard MAX  platform is a low cost, commercially available, reference
-platform for hardware, software and firmware developers who wish to work within
-an open design development environment.  MinnowBoard MAX design specifications
+The  MinnowBoard MAX  board is a low-cost, commercially available, reference
+platform for hardware, software and firmware developers who wish to work with
+an open design development environment. Its design specifications
 and materials have been provided to the open community for the purpose of
-enabling the community to experiment and develop technical solutions based upon
-the  MinnowBoard MAX design.
+enabling experimentation and development of technical solutions based upon
+the  MinnowBoard MAX board.
 
-The  MinnowBoard MAX firmware download page presents firmware components for the
- MinnowBoard MAX reference board. This firmware is provided to the community for
-the purpose of enabling open development and experimentation. For this
-experiment we have downloaded the official BIOS Firmware Binary Images
-\cite{minnowmax-firmware}
+The download page presents firmware components for the reference board. For
+this work were downloaded the official BIOS Firmware Binary Images
+\cite{minnowmax-firmware}.
 
 \section{Selected Traditional Computing System}
 \noindent
@@ -121,7 +112,7 @@ going to use (operating system and firmware).
 
 The platform we will use for our experiment is the
 Intel\textregistered\ NUC D54250WYK Their main characteristics are
-described in (table~\ref{tab:4.2}).\cite{NUC}:
+described in Table~\ref{tab:4.2} \cite{NUC}.
 
     \begin{center}
     \begin{tabular}{ | l | r |}
@@ -150,44 +141,48 @@ features to more complex items that span across the entire operating system
 stack.
 
 
-\section{Studied Embedded Topologies}
+\section{Studied Network Topologies}
 
 In computer networking, topology refers to the layout of connected devices. This
-article introduces the standard topologies of networking
+section describes standard topologies of networking.
 
-Think of a topology as a network's virtual shape or structure. This shape does
-not necessarily correspond to the actual physical layout of the devices on the
-network. For example, the computers on a home network may be arranged in a
-circle in a family room, but it would be highly unlikely to find a ring
-topology there.
+According to \cite{topologies-intro} \textit{"In networking a topology is a
+virtual shape or structure. This shape does not necessarily correspond to the
+actual physical layout of the devices on the network"}. For example, the
+computers on a home network may be arranged in a circle in a family room, but
+it would be highly unlikely to find a ring topology there.
 
-Network topologies are categorized into the following basic types:
+According to \cite{topologies-intro} network topologies are categorized into
+the following basic types:
 
 \begin{itemize}
-    \item bus
-    \item ring
-    \item star
-    \item tree
-    \item mesh
+    \item Bus
+    \item Ring
+    \item Star
+    \item Tree
+    \item Mesh
 \end{itemize}
 
 More complex networks can be built as hybrids of two or more of the above basic
 topologies.
 
-For our experiments we will use the star topology (figure~\ref{fig:4.3}). In
-local area networks with a star topology, each network host is connected to a
-central hub with a point-to-point connection. So it can be said that every
-computer is indirectly connected to every other node with the help of the hub.
-In Star topology every node (computer workstation or any other peripheral) is
-connected to a central node called hub, router or switch. The switch is the
-server and the peripherals are the clients. The network does not necessarily
-have to resemble a star to be classified as a star network, but all of the
-nodes on the network must be connected to one central device. All traffic that
-traverses the network passes through the central hub. The hub acts as a signal
-repeater. The star topology is considered the easiest topology to design and
-implement. An advantage of the star topology is the simplicity of adding
-additional nodes. The primary disadvantage of the star topology is that the hub
-represents a single point of failure.
+For the experiments of this work it is utilized the star topology (see
+Figure~\ref{fig:4.3}). According to \cite{star-top} \textit{ "In a star topology
+, each device on the network connects to a centralized device via a single
+cable. This arrangement creates a point to point network connection between the
+two devices and overall gives the appearance of a star"}.
+
+The network does not necessarily have to have the appearance of a star to be
+classified as a star network, but all of the nodes on the network must be
+connected to one central device. Because each device must have its own cable, a
+star topology requires far more able than other topologies.
+
+The star topology is considered the easiest topology to design and implement.
+One of the biggest advantages of the star topology is that computers can be
+connected to and disconnected without affecting the other systems. However, in
+the star topology, all devices on the network connect to  central device, and
+this central device creates a single point of failure on the network
+\cite{star-top}.
 
 \begin{figure}[H]
 \centering
@@ -199,12 +194,8 @@ represents a single point of failure.
 
 \section{Architecture Diagram}
 
-After understanding all the parts of the system now we can describe the full
-architecture of our experiments. The figure~\ref{fig:4.4} shows the diagram of
-the final architecture in an star topology. As you can see the system can
-increase the numbers of nodes (MinnowBoard MAX platforms) if we want to increase
-the compute capacity.
-
+Figure~\ref{fig:4.4} shows the diagram of the architecture of the embedded
+cluster employed in this research work in an star topology. 
 
 \begin{figure}[H]
 \centering

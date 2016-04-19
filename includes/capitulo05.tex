@@ -16,72 +16,87 @@
 \normalsize
 \noindent
 
-This section will describe the experiments and results we did in order to find
-the best conditions for the embedded distributed system. We will describe each
-experiment in the same order it was tested and explaining the reasons that make
-us run that experiment.The variables that are involved are: 
+This section describes the experiments and results while searching to 
+conditions for the embedded distributed system. Each experiment is described 
+in the same order it was tested and explained the reasons why that it was run.
+The steps that are involved are: 
 
 \begin{itemize}
-\item Run a simple sanity test in the embedded platform
-\item Run the MPI Bebch test suite in the embedded platform
-\item Find out the OS for embedded platform with better performance 
-\item Find out the implementation of MPI library yhat improve the performance
-\item Test MPI benchmark in a cluster of embedded systems
-\item Compare MPI benchmark performance of cluster of embedded systems
-against traditional computing system
-\item Compare power consumption of cluster of embedded systems against
-traditional computing system
-\item Implement cluster of embedded systems for green house application: Once
-that we have found the OS and MPI configuration that give better performance
-results, we will apply this knowledge to solve a real application where a
-distributed embedded system could improve the energy efficiency
+\item To run a simple sanity test in the embedded platform.
+\item To run the MPI Bench test suite in the embedded platform.
+\item To evaluate operating systems for the embedded platform.
+\item To evaluate MPI library.
+\item To test MPI in a cluster of embedded systems.
+\item To compare the performance between a cluster of embedded systems to a
+traditional computing system, using MPI bench.
+\item To compare the power consumption of a cluster of embedded systems to a
+traditional computing system, using MPI bench.
 \end{itemize}
 
 \section{MPI Sanity Testing in an embedded platform}
 
+The system under test (Hardware and Software) for this experiment is described
+in the Table~\ref{tab:mpi_sanity}
 
     \begin{center}
     \begin{tabular}{ | l | r |}
         \hline
-        Platform under test &  MinnowBoard MAX \\ \hline
-        Number of platforms  & 1  \\ \hline
-        Operating System & 2  \\ \hline
-        SW to Test & Hello world \\ \hline
+        \textbf{Platform under test} &  MinnowBoard MAX \\ \hline
+        \textbf{Number of platforms}  & 1  \\ \hline
+        \textbf{Operating System} & Fedora  \\ \hline
     \end{tabular}
+    \captionof{table}{Description of system under test (HW/SW) for MPI sanity testing
+    experiment}\label{tab:mpi_sanity}
     \end{center}
 
+To find the environment that gives better performance of  MPIbench tests, first
+it is necessary to run the basic and simple MPI test. A simple code to prove
+that the MPI implementation is working as expected is shown in
+Figure~\ref{mpi_helloworld}
 
-In order to find the enviroment that gives better performance of the MPIbench
-tests, first is necesary to run the basic and simple MPI test. A simple code to
-prove that the MPI implementation is working as espected is:
 
 \begin{minipage}{\textwidth}
 \end{minipage}
 
 \begin{minipage}{\textwidth}
-\begin{lstlisting}[frame=single,numbers=left,breaklines=true]
+\begin{lstlisting}[frame=single,numbers=left,breaklines=true,language=C]
+/*************************************************************************
+* AUTHOR: Blaise Barney
+* https://computing.llnl.gov/tutorials/mpi/samples/C/mpi_hello.c
+**************************************************************************/
 #include "mpi.h"
 #include <stdio.h>
 #include <stdlib.h>
 #define  MASTER     0
 
-int main (int argc, char *argv[])
-{
+int main (int argc, char *argv[]){
     int   numtasks, taskid, len;
     char hostname[MPI_MAX_PROCESSOR_NAME];
 
+    // Initialize the MPI environment
     MPI_Init(&argc, &argv);
     MPI_Comm_size(MPI_COMM_WORLD, &numtasks);
+
+    // Get the rank of the process
     MPI_Comm_rank(MPI_COMM_WORLD,&taskid);
+
+    // Get the name of the processor
     MPI_Get_processor_name(hostname, &len);
+
+    // Print off a hello world message
     printf ("Hello from task % d on % s!\n", taskid, hostname);
     if (taskid == MASTER)
            printf("MASTER: Number of MPI tasks is: % d\n",numtasks);
+    
+    // Finalize the MPI environment.
     MPI_Finalize();
-
 }
 \end{lstlisting}
+\captionof{figure}{MPI code in C to print taskid, hostname and number of MPI tasks}
+\label{mpi_helloworld} 
 \end{minipage}
+
+\newpage
 
 The way to compile it is: 
 
@@ -105,16 +120,13 @@ The way to run it is:
 \end{lstlisting}
 \end{minipage}
 
-After your program is compiled, it is ready to be executed. Now comes the part
-where you might have to do some additional configuration. If you are running
-MPI programs on a cluster of nodes, you will have to set up a host file. If you
-are simply running MPI on a laptop or a single machine, disregard the next
-piece of information.
+The program is compiled, it is ready to be executed. Running MPI programs on a
+cluster of nodes requires to setup a host file
 
-The host file contains names of all of the computers on which your MPI job will
-execute. For ease of execution, you should be sure that all of these computers
-have SSH access, and you should also setup an authorized keys file to avoid a
-password prompt for SSH. A simple host file looks like this.
+The host file contains names of all of the compute nodes on which the  MPI job will
+execute. For ease of execution, all of the nodes must have SSH access, and should 
+have an \textit{authorized keys} file to avoid password prompts for SSH. A
+simple host file looks like the one shown in Figure~\ref{hostfile}.
 
 \begin{minipage}{\textwidth}
 \end{minipage}
@@ -126,9 +138,12 @@ password prompt for SSH. A simple host file looks like this.
     node2
     node3
 \end{lstlisting}
+\captionof{figure}{MPI hostfile example}
+\label{hostfile}
 \end{minipage}
 
-Each one of these node is descrbed in an ssh file like this:
+Each of the nodes is described in a ssh file as the one shown in
+Figure~\ref{ssh_config}.
 
 \begin{minipage}{\textwidth}
 \end{minipage}
@@ -142,13 +157,14 @@ Each one of these node is descrbed in an ssh file like this:
         User user-of-the-ssh-key
         Port port-if-nedded
 \end{lstlisting}
-
+\captionof{figure}{ssh configuration file example}
+\label{ssh_config}
 \end{minipage}
 
-To run on a single system is not necesary to have a hostfile , however for our
-experiments we will need more than one system.
+To run on a single system is not necessary to have a host file; however, for
+the experiments of this work it was needed more than one system.
 
-The result of this experiment is as follows:
+The result of the basic MPI test is shown in Figure~\ref{mpi_sanity_run}
 
 \begin{minipage}{\textwidth}
 \end{minipage}
@@ -162,42 +178,45 @@ Hello from task 1 on minnow-1
 Hello from task 2 on minnow-1
 Hello from task 3 on minnow-1
 \end{lstlisting}
-
+\captionof{figure}{Results of MPI basic code in Figure~\ref{mpi_helloworld}}
+\label{mpi_sanity_run}
 \end{minipage}
 
 \subsection{Results}
 
-After this experiment running on our embedded platform with a regular GNU/Linux
-OS (Fedora), we prove that is possible to run MPI in an embedded system. But as
-we know there are other options of GNU/Linux Operating Systems
-(Suse/Debian/RedHat). Now the question is: Which one gives the best
-performance under the MPIbenchs? . Before answering that quesiton is necesary
-to answer the question: Is possible to run the MPbench under our system as well
-as the hello world test we just did ?
+After this experiment completed in the embedded platform with a regular GNU/Linux
+OS (Fedora), It was proved that it is possible to run MPI in an embedded
+system. However, there are different GNU/Linux Operating Systems
+(for example, Suse/Debian/RedHat). Next is needed to evaluate whether exists a
+Linux based operating system for embedded systems which would provide the best
+power efficiency. 
 
-
-\section{MPI benchmarks testing in an embedded platform}
+\section{Evaluation of MPI benchmarks testing in an embedded platform}
     
+The system under test (Hardware and Software) for this experiment is described
+in the Table~\ref{tab:mpi_mpibench}
+
     \begin{center}
     \begin{tabular}{ | l | r |}
         \hline
-        Platform under test & Minnow Board  Max \\ \hline
-        Number of platforms  & 1  \\ \hline
-        Operating System & Fedora  \\ \hline
-        SW to Test & MPI benchmark \\ \hline
+        \textbf{Platform under test} &  MinnowBoard MAX \\ \hline
+        \textbf{Number of platforms}  & 1  \\ \hline
+        \textbf{Operating System} & Fedora  \\ \hline
     \end{tabular}
+    \captionof{table}{Description of system under test (HW/SW) for MPI
+    benchmarks experiment}\label{tab:mpi_mpibench}
     \end{center}
 
-The first aproach was to find out if is possible to run a sanity MPI test (MPI
-hellow world) with a regular GNU Linux operating system under the embedded
-system (MinnowBoard MAX \cite{minnowboard}),  From the list of suported GNU/Linux
-based operatining system the minnowboad support, the one we selected was Fedora
-\cite{fedora}.project. 
+The first approach is  to find if it is possible to run a sanity MPI test
+(Figure~\ref{mpi_helloworld}) with a regular GNU Linux operating system on the embedded
+system (MinnowBoard MAX \cite{minnowboard}),  From the list of GNU/Linux
+based operating systems that support the embedded system \cite{minnowboard}
+the one we selected was Fedora \cite{fedora} project due to the fact that it
+has support for MPI libraries.
 
-
-While MPBench can be run from the command line, it is designed to be run from
-via the Makefile. Running it via the makefile automates the collection and
-presentation process. The steps to run the benchmark are: 
+While MPIBench can be run from the command line, it is designed to be run from
+a makefile. Running it with a makefile automates the collection and
+presentation process. The steps to run the benchmark are shown bellow: 
 
 \begin{minipage}{\textwidth}
 \end{minipage}
@@ -210,147 +229,99 @@ victor@minnow-1 $ llcbench $ make mp-run
 \end{lstlisting}
 \end{minipage}
 
-After this last command the benchmark start to run under the MinnowBoard MAX, the
-resutls are gather in a tar ball. The results can be ploted with gnuplot.
-Gnuplot is a portable command-line driven graphing utility for Linux, OS/2, MS
-Windows, OSX, VMS, and many other platforms. 
+After last command the benchmark starts to run under the MinnowBoard MAX, the
+results are gathered in a tarball file. 
 
 \subsection{Results}
-After the success of this experiment we can say that is possible to run the MPI
-benchmarks on the embedded platform with a regular Linux base operating system
-(Fedora Project). Now the ext question was: What if we change the operating
-system? Can we get better numbers if we change the operating system? Is because
-of that question that we decided to measure with multiple Operating systems.
+The experiment was successful, there fore it is possible to run the MPI
+benchmarks on the embedded platform with a regular Linux operating system.
 
+\section{Evaluating MPI Benchmark on Multiple Operating Systems}
 
-\section{MPI Benchmark Testing on Multiple Operating Systems}
+The system under test (Hardware and Software) for this experiment is described
+in the Table~\ref{tab:mpi_multiple_os}
 
     \begin{center}
     \begin{tabular}{ | l | r |}
         \hline
-        Platform under test & Minnow Board  Max \\ \hline
-        Number of platforms  & 1  \\ \hline
-        Operating System & Fedora / Clear Linux  \\ \hline
-        SW to Test & MPI benchmark \\ \hline
+        \textbf{Platform under test} & Minnow Board  Max \\ \hline
+        \textbf{Number of platforms} & 1  \\ \hline
+        \textbf{Operating System} & Fedora and Clear Linux  \\ \hline
     \end{tabular}
+    \captionof{table}{Description of system under test (HW/SW) for MPI
+    benchmark evaluation on multiple operating systems}\label{tab:mpi_multiple_os}
     \end{center}
 
-
-We decided to use another Linux OS designed for Intel Architecture
-\cite{clear-linux}.The Clear Linux Project for Intel Architecture is a
-distribution built for various Cloud use cases. The project  want to showcase
+The Clear Linux Project for Intel Architecture \cite{clear-linux} is a
+distribution built for various cloud computing use cases. The project  want to showcase
 the best of Intel Architecture technology, from low-level kernel features to
 complex applications that span across the entire OS stack.
 
-The way we run the experiments was the same as before: 
-
-\begin{minipage}{\textwidth}
-\end{minipage}
-
-\begin{minipage}{\textwidth}
-\begin{lstlisting}[frame=single]
-victor@minnow-1 $ llcbench $ make linux-mpich
-victor@minnow-1 $ llcbench $ make mp-bench
-victor@minnow-1 $ llcbench $ make mp-run
-\end{lstlisting}
-\end{minipage}
-
 \subsection{Results}
 
-After running this two experiments we found interesting results that make us
-think that maybe a much more custom OS could impprove the numbers of the MPI
-benchmarks. These results are presented in the next figures:
+There were found interesting results that indicate that a customized OS could 
+improve the performance numbers of MPI benchmarks. Results are presented in the
+next figures.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=1 \textwidth]{images/mpbench_clr_experiments/mpi_allreduce.pdf}
 \caption{\textit{MPI all reduce} benchmark running in MinnowBoard MAX with Clear Linux and
-Fedora (higher is better)}
+Fedora.}
 \label{mpi_allreduce_clr_fedora}
 \end{figure}
 
-The all reduce benchmark (\ref{mpi_allreduce_clr_fedora}) shows more stable
-performance running in a custom OS.  This can be seen in the drop of speed
-(KB/sec) close to the test with a message size of 30000 Bytes. 
+In Figure~\ref{mpi_allreduce_clr_fedora}, the \textit{all reduce} benchmark
+shows more stable performance running in a customized OS. This can be seen in
+the drop of speed (KB/sec) close to the test with a message size of 32 KB. 
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=1 \textwidth]{images/mpbench_clr_experiments/mpi_alltoall.pdf}
 \caption{\textit{MPI all to all} benchmark running in MinnowBoard MAX with Clear Linux and
-Fedora (higher is better)}
+Fedora.}
 \label{mpi_alltoall_clr_fedora}
 \end{figure}
 
+In Figure~\ref{mpi_alltoall_clr_fedora}, the \textit{all to all} benchmark
+shows the same performance running in a customized OS than in the Fedora OS. 
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=1 \textwidth]{images/mpbench_clr_experiments/mpi_bandwidth.pdf}
 \caption{\textit{MPI bandwidth} benchmark running in MinnowBoard MAX with Clear Linux and
-Fedora (higher is better)}
+Fedora.}
 \label{mpi_bandwidth_clr_fedora}
 \end{figure}
 
-The same results can bee seen in the "bandwidth" benchmark (figure
-\ref{mpi_bandwidth_clr_fedora}); however in the "all to all" (figure
+The same results as presented in Figure \ref{mpi_allreduce_clr_fedora} can bee
+seen in the \textit{bandwidth} benchmark (Figure
+\ref{mpi_bandwidth_clr_fedora}); however, in the \textit{all to all} (Figure
 \ref{mpi_alltoall_clr_fedora}) there are no drops in speed at any size of the
-message under test.  This is mainly because of the nature of the test , if we
-remember both the "all reduce" and the "bandwidth" test execute the similar
-tasks. Meanwhile bandwidth executes send and receives: 
+message under test.  This is mainly because of the nature of the test
+(Described in Chapter 3). The \textit{all reduce} and the \textit{bandwidth}
+tests execute similar tasks. Meanwhile, \textit{bandwidth} executes send and
+receives.
 
-\begin{minipage}{\textwidth}
-\end{minipage}
+On the other hand MPI \textit{all reduce} will reduce the values and distribute
+the results to all processes. MPI \textit{all reduce} operates in each process
+and then broadcasts the result of the operation to all the individuals of the
+distributed system.
 
-\begin{minipage}{\textwidth}
-\begin{lstlisting}[frame=single,numbers=left]
-do over all message sizes 
-    start timer
-    do over iteration count 
-        send(message size) 
-        recv (4)
-    stop timer
-\end{lstlisting}
-\end{minipage}
+The Clear Linux OS has specific implementations in the kernel that improve the
+network performance, specially in the kernel network area.
 
-On the other hand mpi allreduce will reduce the values and distribute the
-results to all processes. The function prototype is the following:
-
-
-\begin{minipage}{\textwidth}
-\end{minipage}
-
-\begin{minipage}{\textwidth}
-\begin{lstlisting}[frame=single,numbers=left]
-MPI_Allreduce(
-    void* send_data,
-    void* recv_data,
-    int count,
-    MPI_Datatype datatype,
-    MPI_Op op,
-    MPI_Comm communicator)
-\end{lstlisting}
-\end{minipage}
-
-MPI all reduce does the operation in each process and then broadcast the result
-of the operation to all the individuals of the distributed system.
-
-As we can see both test exercise the send and receive functions of the OS. The
-Clear Linux OS has specific implementations in the kernel that improve the
-network performance, specially in the kernel network area
-
-On the other hand the "all to all" sends data from all to all processes, this
-mean that each node of the system need to send and receive data to every one.
-This will mean an increase in the latency of the network. Another test just for
-latency is executed in the future. 
-
+On the other hand, the \textit{all to all} sends data from all the nodes, this
+means that each node of the system needs to send and receive data to every
+other node. This increases the latency of the network.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=1 \textwidth]{images/mpbench_clr_experiments/mpi_bibw.pdf}
 \caption{\textit{MPI Bi directional} bandwidth running in  MinnowBoard MAX with Clear Linux
-and Fedora (higher is better)}
+and Fedora.}
 \label{mpi_bibw_clr_fedora}
 \end{figure}
-
 
 \begin{figure}[H]
 \centering
@@ -360,17 +331,16 @@ Fedora (higher is better)}
 \label{mpi_broadcast_clr_fedora}
 \end{figure}
 
-The same results can be sen in the bi directional bandwidth (figure
-\ref{mpi_bibw_clr_fedora}) and the broadcast (figure
-\ref{mpi_broadcast_clr_fedora}) test. As we remember the MPBench measures
-bidirectional bandwidth with a doubly nested loop. The outer loop varies the
+The same results can be seen in the \textit{bi directional bandwidth} (Figure
+\ref{mpi_bibw_clr_fedora}) and the \textit{broadcast} (figure
+\ref{mpi_broadcast_clr_fedora}) test. The MPBench measures
+bidirectional bandwidth with a nested loop. The outer loop varies the
 message size, and the inner loop measures the send operation over the iteration
 count. Both processes execute a non-blocking receive, then a non-blocking send.
-A non blocking send and receive mean that each process will release the
+A non blocking send and receive means that each process will release the
 communication channel to other processes. If we check the number of processes
-running in Fedora , the number is 30\% higher. This can bee seen in the figure
+running in Fedora , the number is 30\% higher. This can bee seen in the Figure
 \ref{number_forks_fedora_clr}
-
 
 \begin{figure}[H]
 \centering
@@ -379,144 +349,76 @@ running in Fedora , the number is 30\% higher. This can bee seen in the figure
 \label{number_forks_fedora_clr}
 \end{figure}
 
-As we remember tin chapter 4 the latency benchmark can be described as one that
-measures the time for an application to issue a send and continue computing.
+The \textit{latency} benchmark can be described as one that measures the time
+for an application to issue a send and continue computing (More details in
+Chapter 3). 
 
-The master's pseudo code for this test is as follows:
-
-\begin{minipage}{\textwidth}
-\end{minipage}
-
-\begin{minipage}{\textwidth}
-\begin{lstlisting}[frame=single,numbers=left]
-do over all message sizes 
-    start timer
-    do over iteration count 
-        send(message size) 
-    stop timer
-\end{lstlisting}    
-
-\end{minipage}
-
-The slaves' pseudo code is as follows:
-
-\begin{minipage}{\textwidth}
-\end{minipage}
-
-\begin{minipage}{\textwidth}
-\begin{lstlisting}[frame=single,numbers=left]
-   do over all message sizes 
-        start timer
-        do over iteration count 
-            recv(message size) 
-        stop timer
-\end{lstlisting}
-
-\end{minipage}
-
-As we can see in the figure \ref{mpi_latency_clr_fedora} there the latency in
-both operating systems is pretty similar. The significant change is at the
-beginning of the test (before the package size reach the 32 Bytes). This is due
-to the fact that the test we are performing is with just 1 system, so there is
-no network message does not have to travel among multiple points due to the
-simplicity of our network (message send is received immediately) 
+Figure \ref{mpi_latency_clr_fedora} shows the latency in both operating systems
+is similar. The significant change is at the beginning of the test (before the
+package size reach be 32 Bytes). This is due to the fact that the test includes
+one system, therefore there is no network message. It does not have
+to travel through multiple points due to the simplicity of the cluster network
+(the send message is received immediately) 
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=1 \textwidth]{images/mpbench_clr_experiments/mpi_latency.pdf}
 \caption{\textit{MPI latency} benchmark running in  MinnowBoard MAX with Clear Linux and
-Fedora }
+Fedora}
 \label{mpi_latency_clr_fedora}
 \end{figure}
 
+Roundtrip times are measured in much the same way as \textit{bandwidth}, except
+that, the slave process, after receiving the message, echoes it back to the
+master. No acknowledgment is needed with this test as it is implicit given its
+semantics. The master's pseudo code for this test is described in Chapter 3.
 
-
-As we saw in chapter 4 roundtrip times are measured in much the same way as
-bandwidth, except that, the slave process, after receiving the message, echoes
-it back to the master.  This benchmark is often referred to as ping-pong. Here
-our metric is transactions per second, which is a common metric for database
-and server applications. No acknowledgment is needed with this test as it is
-implicit given its semantics.
-
-The master's pseudo code for this test is as follows:
-
-\begin{minipage}{\textwidth}
-\end{minipage}
-
-\begin{minipage}{\textwidth}
-\begin{lstlisting}[frame=single,numbers=left]
-  do over all message sizes 
-    start timer
-    do over iteration count
-        send(message size)
-        recv(message size) 
-        stop timer
-\end{lstlisting}
-
-\end{minipage}
-
-The slaves' pseudo code is as follows:
-
-\begin{minipage}{\textwidth}
-\end{minipage}
-
-\begin{minipage}{\textwidth}
-\begin{lstlisting}[frame=single,numbers=left]
-do over all message sizes 
-    start timer
-    do over iteration count
-        recv(message size)
-        send(message size)
-    stop timer
-\end{lstlisting}
-
-\end{minipage}
-
-We can see similar results in round trip test ( figure
-\ref{mpi_roundtrip_clr_fedora} ) due to the same reasons in latency test. In
-the future we will execute the same tests with up to 6 systems, there the
-network results ( latency,roundtrip,bandwidth) might show different behaivor
+Similar results to \textit{roundtrip} test are shown in Figure \ref{mpi_roundtrip_clr_fedora}
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=1 \textwidth]{images/mpbench_clr_experiments/mpi_roundtrip.pdf}
 \caption{\textit{MPI latency} benchmark running in MinnowBoard MAX with Clear Linux and
-Fedora }
+Fedora.}
 \label{mpi_roundtrip_clr_fedora}
 \end{figure}
 
-Based on the results we got from these experiments we came to the hypothesis
-that a custom Operating System might represent a benefit for a cluster of
-embedded platforms. We did the experiments with two operating systems , une
-commercial ( Fedora ) and one custom (Clear linux for Intel Architecture). We
-consider worth to try with an Operating System designed for Embedded and IoT
-platforms. 
+Based on the results from these experiments it can be observed that customized 
+operating system provides benefits to a cluster of embedded platforms. Experiments 
+with two operating systems, one commercial (Fedora) and one customized (Clear
+linux for Intel Architecture). It was worth trying with an operating system
+designed for embedded and IoT platforms. 
 
-As we know the standard of the embedded industry to generate a custom Linux OS
-is the Yocto project. As we saw in table~\ref{tab:4.2} the operating systems
+The standard of the embedded industry to generate a custom Linux OS
+is the Yocto project. In table~\ref{tab:4.2}, the operating systems
 generated with the Yocto project do not have an implementation of the MPI
-library. 
+library.
 
-If we want to repeat these experiments is necessary to make the MPI
-implementation in the Yocto project. 
+To implement MPI experiments using Yocto is necessary to port the MPI
+implementation.
 
 
-\section{Yocto Project MPI Implementation Testing}
+\section{Porting MPI to Yocto}
+
+The system under test (Hardware and Software) for this experiment is described
+in the Table~\ref{tab:mpi_multiple_os_yocto}
 
     \begin{center}
     \begin{tabular}{ | l | r |}
         \hline
-        Platform under test & Minnow Board  Max \\ \hline
-        Number of platforms  & 1  \\ \hline
-        Operating System & Fedora / Clear Linux / Yocto base OS  \\ \hline
-        SW to Test & MPI benchmark \\ \hline
+        \textbf{Platform under test} & Minnow Board  Max \\ \hline
+        \textbf{Number of platforms} & 1  \\ \hline
+        \textbf{Operating System} & Fedora, Clear Linux and Yocto  \\ \hline
     \end{tabular}
+    \captionof{table}{Description of system under test (HW/SW) for MPI
+    benchmark evaluation on Yocto}\label{tab:mpi_multiple_os_yocto}
     \end{center}
 
-The Yocto project \cite{yocto-project} generate a custom Linux OS for you
-embedded system. The way you add a new capability to the system is by adding a
-new receipt. This is described in the Yocto documentation. The receipt we
-implemented for MPI is: 
+The Yocto project \cite{yocto-project} generates a custom Linux OS for
+embedded systems. The way to add a new capability to the system is by adding a
+new receipt. This is described in the Yocto documentation. In order to make the
+Yocto evaluation it was necessary to implement MPI in Yocto. The receipt
+implemented for MPI is shown in Figure \ref{mpi_yocto}
 
 \begin{minipage}{\textwidth}
 \end{minipage}
@@ -555,38 +457,39 @@ do_configure_prepend() {
 }
 
 \end{lstlisting}
-
+\captionof{figure}{Receipt to enable MPI libraries in Yocto operating systems}
+\label{mpi_yocto} 
 \end{minipage}
 
 This receipt is part of the meta-openembedded layer, (
 \url{http://cgit.openembedded.org/cgit.cgi/meta-openembedded/tree/meta-oe/recipes-devtools/mpich/mpich_3.1.1.bb?h=master})
-a layer for all the embedded tools that the Linux distros mught need , in this
+a layer for all the embedded tools that the Linux distributions might need, in this
 layer the user can add editors and other libraries that the embedded
-application might need. 
+application might need.
 
-The core of the MPI implementation we did is the configure part. Our configure
-is described in the ''EXTRA\_OECONF''. The reasons why we did this are : 
+The core of the developed MPI implementation for this work consist in the
+configuration part. The configuration is described in the ''EXTRA\_OECONF''. 
+The reasons for that are: 
 
 \begin{itemize}
-\item enable-debuginfo: For debugging the system when nedded
+\item \textit{enable-debuginfo}: For debugging the system when needed
 \item enable-fast Turns off error checking and collection of internal timing
 information
-\item enable-shared;Enable shared library support in order to split the MPI
+\item \textit{eenable-shared};Enable shared library support in order to split the MPI
 capabilities in multiple binaries and shared object libraries . This makes the
 compiler and process manager applications smaller in size.
-\item with-pm=gforker:The gforker process manager is primiarily intended as a
+\item \textit{ewith-pm=gforker}:The gforker process manager is primarily intended as a
 debugging aid as it simplifies development and testing of MPI programs on a
 single node or processor.
-\item disable-rpath : Do not link to static libraries, if so the build
-applications generated by this MPI implementations will not run in other MPI
-system with different path of the libraries.
-\item disable-f77:Build the Fortran 77 bindings (enabled by default).
-\item disable-fc : Build the Fortran 90 bindings (enabled by default), since we
-are not supporting Fortran we need to disable it 
-\item disable-fortran: We need to disable fortran because Yocto project does
-not suport Fortran
-\item disable-cxx: Build the C++ bindings (enabled by default). We will not
-support C++ in order to generate a small MPI implementation
+\item \textit{edisable-rpath} : Do not link static libraries, if so the build
+applications generated by this MPI implementation will not run in other MPI
+systems with different paths to libraries.
+\item \textit{edisable-f77}:Build the Fortran 77 bindings (enabled by default).
+\item \textit{edisable-fc}: Build the Fortran 90 bindings (enabled by default),
+This work is not supporting Fortran, it was needed to disable it.
+\item \textit{edisable-fortran}: Yocto project does not support Fortran.
+\item \textit{edisable-cxx}: Build the C++ bindings (enabled by default). This
+work does not support C++ to generate a small MPI implementation.
 \end{itemize}
 
 
@@ -835,7 +738,7 @@ following graphs;
 \begin{figure}[H]
 \centering
 \includegraphics[width=1.0\textwidth]{images/mpbench_cluster_experiments/mpi_all_reduce.png}
-\caption{\textit{All reduce} benchmark in cluster of minnowboards with Yocto OS and NUC
+\caption{\textit{Allreduce} benchmark in cluster of minnowboards with Yocto OS and NUC
 with Clear Linux OS}
 \label{all_reduce_cluster}
 \end{figure}
