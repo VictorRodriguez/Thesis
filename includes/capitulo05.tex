@@ -263,9 +263,11 @@ There were found interesting results that indicate that a customized OS could
 improve the performance numbers of MPI benchmarks. Results are presented in the
 next figures.
 
+
 \begin{figure}[H]
-\centering
-\includegraphics[width=1 \textwidth]{images/mpbench_clr_experiments/mpi_allreduce.pdf}
+\begin{center}
+  \makebox[\textwidth]{\includegraphics[width=\paperwidth]{images/mpbench_clr_experiments/mpi_allreduce.pdf}}
+\end{center}
 \caption{\textit{MPI all reduce} benchmark running in MinnowBoard MAX with Clear Linux and
 Fedora.}
 \label{mpi_allreduce_clr_fedora}
@@ -276,8 +278,9 @@ shows more stable performance running in a customized OS. This can be seen in
 the drop of speed (KB/sec) close to the test with a message size of 32 KB. 
 
 \begin{figure}[H]
-\centering
-\includegraphics[width=1 \textwidth]{images/mpbench_clr_experiments/mpi_alltoall.pdf}
+\begin{center}
+  \makebox[\textwidth]{\includegraphics[width=\paperwidth]{images/mpbench_clr_experiments/mpi_alltoall.pdf}}
+\end{center}
 \caption{\textit{MPI all to all} benchmark running in MinnowBoard MAX with Clear Linux and
 Fedora.}
 \label{mpi_alltoall_clr_fedora}
@@ -287,8 +290,9 @@ In Figure~\ref{mpi_alltoall_clr_fedora}, the \textit{all to all} benchmark
 shows the same performance running in a customized OS than in the Fedora OS. 
 
 \begin{figure}[H]
-\centering
-\includegraphics[width=1 \textwidth]{images/mpbench_clr_experiments/mpi_bandwidth.pdf}
+\begin{center}
+  \makebox[\textwidth]{\includegraphics[width=\paperwidth]{images/mpbench_clr_experiments/mpi_bandwidth.pdf}}
+\end{center}
 \caption{\textit{MPI bandwidth} benchmark running in MinnowBoard MAX with Clear Linux and
 Fedora.}
 \label{mpi_bandwidth_clr_fedora}
@@ -316,8 +320,9 @@ means that each node of the system needs to send and receive data to every
 other node. This increases the latency of the network.
 
 \begin{figure}[H]
-\centering
-\includegraphics[width=1 \textwidth]{images/mpbench_clr_experiments/mpi_bibw.pdf}
+\begin{center}
+  \makebox[\textwidth]{\includegraphics[width=\paperwidth]{images/mpbench_clr_experiments/mpi_bibw.pdf}}
+\end{center}
 \caption{\textit{MPI Bi directional} bandwidth running in  MinnowBoard MAX with Clear Linux
 and Fedora.}
 \label{mpi_bibw_clr_fedora}
@@ -329,8 +334,9 @@ The same results can be seen in the \textit{bi directional bandwidth} (Figure
 \ref{mpi_broadcast_clr_fedora}) test. 
 
 \begin{figure}[H]
-\centering
-\includegraphics[width=1 \textwidth]{images/mpbench_clr_experiments/mpi_broadcast.pdf}
+\begin{center}
+  \makebox[\textwidth]{\includegraphics[width=\paperwidth]{images/mpbench_clr_experiments/mpi_broadcast.pdf}}
+\end{center}
 \caption{\textit{MPI broadcast} benchmark running in  MinnowBoard MAX with Clear Linux and
 Fedora (higher is better)}
 \label{mpi_broadcast_clr_fedora}
@@ -363,8 +369,9 @@ to travel through multiple points due to the simplicity of the cluster network
 (the send message is received immediately) 
 
 \begin{figure}[H]
-\centering
-\includegraphics[width=1 \textwidth]{images/mpbench_clr_experiments/mpi_latency.pdf}
+\begin{center}
+  \makebox[\textwidth]{\includegraphics[width=\paperwidth]{images/mpbench_clr_experiments/mpi_latency.pdf}}
+\end{center}
 \caption{\textit{MPI latency} benchmark running in  MinnowBoard MAX with Clear Linux and
 Fedora}
 \label{mpi_latency_clr_fedora}
@@ -378,8 +385,9 @@ semantics. The master's pseudo code for this test is described in Chapter 3.
 Similar results to \textit{roundtrip} test are shown in Figure \ref{mpi_roundtrip_clr_fedora}
 
 \begin{figure}[H]
-\centering
-\includegraphics[width=1 \textwidth]{images/mpbench_clr_experiments/mpi_roundtrip.pdf}
+\begin{center}
+  \makebox[\textwidth]{\includegraphics[width=\paperwidth]{images/mpbench_clr_experiments/mpi_roundtrip.pdf}}
+\end{center}
 \caption{\textit{MPI Roundtrip} benchmark running in MinnowBoard MAX with Clear Linux and
 Fedora.}
 \label{mpi_roundtrip_clr_fedora}
@@ -505,8 +513,9 @@ doing this can be seen in the following graphs of the MPI benchmarks, now
 running with a Yocto base image.
 
 \begin{figure}[H]
-\centering
-\includegraphics[width=1 \textwidth]{images/mpbench_yocto_experiments/mpi_reduce.pdf}
+\begin{center}
+  \makebox[\textwidth]{\includegraphics[width=\paperwidth]{images/mpbench_yocto_experiments/mpi_reduce.pdf}}
+\end{center}
 \caption{MPI Reduce benchmark running in MinnowBoard MAX with Clear Linux, Yocto
 and Fedora.}
 \label{mpi_reduce_yocto}
@@ -517,8 +526,9 @@ system is installed on the platform. This can be seen in the Figure
 \ref{mpi_reduce_yocto}.
 
 \begin{figure}[H]
-\centering
-\includegraphics[width=1 \textwidth]{images/mpbench_yocto_experiments/mpi_allreduce.pdf}
+\begin{center}
+  \makebox[\textwidth]{\includegraphics[width=\paperwidth]{images/mpbench_yocto_experiments/mpi_allreduce.pdf}}
+\end{center}
 \caption{\textit{MPI all reduce} benchmark running in  MinnowBoard MAX with Clear Linux,
 Yocto and Fedora (higher is better)}
 \label{mpi_allreduce_yocto}
@@ -528,8 +538,9 @@ The performance of \textit{MPI all reduce} test is grater with the Yocto based
 operating system. This can be seen in the Figure \ref{mpi_allreduce_yocto}.
 
 \begin{figure}[H]
-\centering
-\includegraphics[width=1 \textwidth]{images/mpbench_yocto_experiments/mpi_alltoall.pdf}
+\begin{center}
+  \makebox[\textwidth]{\includegraphics[width=\paperwidth]{images/mpbench_yocto_experiments/mpi_alltoall.pdf}}
+\end{center}
 \caption{\textit{MPI all to all} benchmark running in  MinnowBoard MAX with Clear Linux, Yocto
 and Fedora (higher is better)}
 \label{mpi_all_to_all_yocto}
@@ -587,8 +598,9 @@ The performance of \textit{MPI bandwidth} test is higher with the Yocto based
 operating system. This can be seen in the Figure \ref{mpi_bandwidth_yocto}.
 
 \begin{figure}[H]
-\centering
-\includegraphics[width=1 \textwidth]{images/mpbench_yocto_experiments/mpi_bandwidth.pdf}
+\begin{center}
+  \makebox[\textwidth]{\includegraphics[width=\paperwidth]{images/mpbench_yocto_experiments/mpi_bandwidth.pdf}}
+\end{center}
 \caption{\textit{MPI bandwidth} benchmark running in Minnowboard MAX with Clear Linux,
 Yocto and Fedora.}
 \label{mpi_bandwidth_yocto}
@@ -601,16 +613,18 @@ message size is 32KB. The test performance of the test \textit{MPI bandwidth}
 is is higher due to the use of a Yocto operating system. 
 
 \begin{figure}[H]
-\centering
-\includegraphics[width=1 \textwidth]{images/mpbench_yocto_experiments/mpi_bibw.pdf}
+\begin{center}
+  \makebox[\textwidth]{\includegraphics[width=\paperwidth]{images/mpbench_yocto_experiments/mpi_bibw.pdf}}
+\end{center}
 \caption{\textit{MPI Bi directional} bandwidth running in MinnowBoard MAX with Clear Linux,
 Yocto and Fedora.}
 \label{mpi_bibw_yocto}
 \end{figure}
 
 \begin{figure}[H]
-\centering
-\includegraphics[width=1 \textwidth]{images/mpbench_yocto_experiments/mpi_broadcast.pdf}
+\begin{center}
+  \makebox[\textwidth]{\includegraphics[width=\paperwidth]{images/mpbench_yocto_experiments/mpi_broadcast.pdf}}
+\end{center}
 \caption{\textit{MPI Broadcast} benchmark running in Minnowboard with Clear Linux, Yocto and Fedora }
 \label{mpi_broadcast_yocto}
 \end{figure}
@@ -635,8 +649,9 @@ Due to the fact that the test are running in a single platform, latency test (Fi
 operating system.
 
 \begin{figure}[H]
-\centering
-\includegraphics[width=1 \textwidth]{images/mpbench_yocto_experiments/mpi_latency.pdf}
+\begin{center}
+  \makebox[\textwidth]{\includegraphics[width=\paperwidth]{images/mpbench_yocto_experiments/mpi_latency.pdf}}
+\end{center}
 \caption{\textit{MPI latency} running in  MinnowBoard MAX  with Clear Linux,
 Yocto and Fedora.}
 \label{mpi_latency_yocto}
@@ -648,8 +663,9 @@ the performance is the same, due to the fact that they were a single platform.
 
 
 \begin{figure}[H]
-\centering
-\includegraphics[width=1 \textwidth]{images/mpbench_yocto_experiments/mpi_roundtrip.pdf}
+\begin{center}
+  \makebox[\textwidth]{\includegraphics[width=\paperwidth]{images/mpbench_yocto_experiments/mpi_roundtrip.pdf}}
+\end{center}
 \caption{\textit{MPI Bi directional} bandwidth running in  MinnowBoard MAX  with Clear Linux,
 Yocto and Fedora.}
 \label{mpi_roundtrip_yocto}
@@ -744,72 +760,125 @@ comparison results are shown in following figures.
 
 
 \begin{figure}[H]
-\centering
-\includegraphics[width=1.0\textwidth]{images/mpbench_cluster_experiments/mpi_all_reduce.png}
-\caption{\textit{Allreduce} benchmark in cluster of minnowboards with Yocto OS and NUC
+\begin{center}
+  \makebox[\textwidth]{\includegraphics[width=\paperwidth]{images/mpbench_cluster_experiments/mpi_all_reduce.png}}
+\end{center}
+\caption{\textit{Allreduce} benchmark in cluster of embedded platforms with Yocto OS and NUC
 with Clear Linux OS.}
 \label{all_reduce_cluster}
 \end{figure}
 
+The \textit{all reduce} benchmark starts to have a gain in performance with the
+addition of more embedded platforms into the cluster of embedded platforms.
+With two platforms the gain is not seen; however, with three or more the gain is
+substantial.  When the system has five or four platforms it has similar
+performance. With six platforms the performance is similar (even in the drop
+point) that the desktop platform \cite{NUC}
 
 \begin{figure}[H]
-\centering
-\includegraphics[width=1.0\textwidth]{images/mpbench_cluster_experiments/mpi_reduce.png}
-\caption{\textit{Reduce} benchmark in cluster of minnowboards with Yocto OS and NUC
+\begin{center}
+  \makebox[\textwidth]{\includegraphics[width=\paperwidth]{images/mpbench_cluster_experiments/mpi_reduce.png}}
+\end{center}
+\caption{\textit{Reduce} benchmark in cluster of embedded platforms with Yocto OS and NUC
 with Clear Linux OS.}
 \label{reduce_cluster}
 \end{figure}
 
+In the \textit{reduce} benchmark the performance is constant across the
+increment of platforms in the cluster of embedded platforms. Even the similar
+performance that three and four platforms present.
 
 \begin{figure}[H]
-\centering
-\includegraphics[width=1.0\textwidth]{images/mpbench_cluster_experiments/mpi_alltoall.png}
-\caption{\textit{All to All} benchmark in cluster of minnowboards with Yocto OS and NUC
+\begin{center}
+  \makebox[\textwidth]{\includegraphics[width=\paperwidth]{images/mpbench_cluster_experiments/mpi_alltoall.png}}
+\end{center}
+\caption{\textit{All to All} benchmark in cluster of embedded platforms with Yocto OS and NUC
 with Clear Linux OS.}
 \label{all_to_all_cluster}
 \end{figure}
 
+In the \textit{All to all} benchmark presented in
+Figure\ref{all_to_all_cluster} the performance at 218MB is similar despite the
+number of platforms the cluster has. In this test the performance of even six
+platforms is not close to the performance that a NUC \cite{NUC} system can has.
 
 \begin{figure}[H]
-\centering
-\includegraphics[width=1.0\textwidth]{images/mpbench_cluster_experiments/mpi_bandwidth.png}
-\caption{\textit{Bandwidth} benchmark in cluster of minnowboards with Yocto OS and NUC
+\begin{center}
+  \makebox[\textwidth]{\includegraphics[width=\paperwidth]{images/mpbench_cluster_experiments/mpi_bandwidth.png}}
+\end{center}
+\caption{\textit{Bandwidth} benchmark in cluster of embedded platforms with Yocto OS and NUC
 with Clear Linux OS.}
-\label{all_to_all_cluster}
+\label{bandwidth_cluster}
 \end{figure}
 
+In the \textit{Bandwidth} performance test it can be seen an interesting
+behaivor with a cluster of 5 MinnowBoard MAX systems (Figure
+\ref{bandwidth_cluster}). At 218 MB the performance became unstable. The
+performance can be similar to the one presented by four or 6 platforms. Besides
+that the performance with other number of platforms is similar to the one
+presented in Figure \ref{all_to_all_cluster}.  Even the fact that the
+performance at 218MB is similar despite the number of platforms the cluster
+has.
+
 \begin{figure}[H]
-\centering
-\includegraphics[width=1.0\textwidth]{images/mpbench_cluster_experiments/mpi_bibw.png}
-\caption{\textit{Bi directional} bandwidth benchmark in cluster of minnowboards with Yocto OS and NUC
+\begin{center}
+  \makebox[\textwidth]{\includegraphics[width=\paperwidth]{images/mpbench_cluster_experiments/mpi_bibw.png}}
+\end{center}
+\caption{\textit{Bi directional bandwidth} benchmark in cluster of embedded platforms with Yocto OS and NUC
 with Clear Linux OS.}
-\label{all_to_all_cluster}
+\label{bibw_cluster}
 \end{figure}
 
+In the \textit{Bi directional bandwidth} benchmark in Figure \ref{bibw_cluster}
+a similar behavior than in Figure \ref{bandwidth_cluster}.  At 218 MB the
+performance became unstable, with similar performance from four, five and six
+platforms. Besides that the increment in performance is constant. Even with
+three or four platforms the performance improvement is high. From these results
+it can be seen that for applications that requires speeds between 27MB and
+218MB, a cluster of four, five or six embedded platforms can bring similar
+performance that a traditional desktop system, in terms of bi directional
+bandwidth.
 
 \begin{figure}[H]
-\centering
-\includegraphics[width=1.0\textwidth]{images/mpbench_cluster_experiments/mpi_broadcast.png}
-\caption{\textit{Broadcast} benchmark in cluster of minnowboards with Yocto OS and NUC
+\begin{center}
+  \makebox[\textwidth]{\includegraphics[width=\paperwidth]{images/mpbench_cluster_experiments/mpi_broadcast.png}}
+\end{center}
+\caption{\textit{Broadcast} benchmark in cluster of embedded platforms with Yocto OS and NUC
 with Clear Linux OS.}
-\label{all_to_all_cluster}
+\label{broadcast_cluster}
 \end{figure}
 
+The \textit{Broadcast} benchmark in cluster of embedded platforms with Yocto OS
+presents similar performance with three, four, five or six platforms. In this
+case the fluctuation of performance among these configurations starts 27MB
+until 1,7 GB.
+
 \begin{figure}[H]
-\centering
-\includegraphics[width=1.0\textwidth]{images/mpbench_cluster_experiments/mpi_latency.png}
-\caption{\textit{Latency} benchmark in cluster of minnowboards with Yocto OS and NUC
+\begin{center}
+  \makebox[\textwidth]{\includegraphics[width=\paperwidth]{images/mpbench_cluster_experiments/mpi_latency.png}}
+\end{center}
+\caption{\textit{Latency} benchmark in cluster of embedded platforms with Yocto OS and NUC
 with Clear Linux OS.}
-\label{all_to_all_cluster}
+\label{latency_cluster}
 \end{figure}
 
+Latency is higher (Figure \ref{latency_cluster} and Figure
+\ref{roundtrip_cluster})in the cluster of embedded platforms.  This is a side
+effect of the distributed systems.  Total latency is a combination of both
+hardware and software factors, with the software contribution generally being
+much greater than that of the hardware. Latency is really important when the
+program is dominated by communication, and the messages are small.  This can
+happen when scaling to larger numbers of nodes. In the experiments we perform we
+can see that the latency of the cluster of embedded platforms is high in
+comparison to the centralized system \cite{NUC} 
 
 \begin{figure}[H]
-\centering
-\includegraphics[width=1.0\textwidth]{images/mpbench_cluster_experiments/mpi_roundtrip.png}
-\caption{\textit{Roundtrip} benchmark in cluster of minnowboards with Yocto OS and NUC
+\begin{center}
+  \makebox[\textwidth]{\includegraphics[width=\paperwidth]{images/mpbench_cluster_experiments/mpi_roundtrip.png}}
+\end{center}
+\caption{\textit{Roundtrip} benchmark in cluster of embedded platforms with Yocto OS and NUC
 with Clear Linux OS.}
-\label{all_to_all_cluster}
+\label{roundtrip_cluster}
 \end{figure}
 
 \section{Power Efficiency Comparison of Cluster of Embedded Systems to a
@@ -908,9 +977,27 @@ this can bee seen in Figure \ref{power_average_minnow}:
 \label{power_average_minnow}
 \end{figure}
 
+The increment in power consumption can be seen as a linear function in all the
+MPI benchmarks presents in Figure \ref {power_average_minnow}. Starting from
+one MinnowBoard MAX platform with 5 watts until six MinnowBoard MAX platforms
+that consume up to 30 watts. 
 
-The energy efficiency characterization of the systems can be described in the
-following figures 
+To finish the experiments is necesary to measure the power efficiency 
+(equation \ref{eq:5}) of cluster of embdded platforms. The energy efficiency 
+characterization of the systems can be described in the
+following figures.
+
+For the \textit{Allreduce} benchmark the power efficiency is similar to the one
+presented in the hypothesis in Chapter 1 (Figure \ref{all_reduce_energy}).
+Despite the gain in performance with the addition of nodes to cluster of embdded
+platforms the increment in power consumption affects the power efficiency of the
+system.  The power efficiency of one platform is 10,000 KB/s per watt less than
+the desktop system. If the system increase to two the power efficiency
+decreases even more, due to the fact that the power consumption is higher than the
+performance gain.  Is until we have three and four platforms that we can see a
+sustainable gain in performance efficiency. This is correlated with the gain in
+performance we saw in Figure \ref{all_reduce_cluster}. 
+
 
 \begin{figure}[H]
 \centering
@@ -919,6 +1006,11 @@ following figures
 \label{all_reduce_energy}
 \end{figure}
 
+The same behavior presented in Figure \ref{all_reduce_energy}. Even the drop in
+power efficiency at five platforms. This is due to the fact that the power
+consumption with that amount of platforms is compare to the power consumed by
+the NUC system \cite{NUC}, 20 watts.  In both cases is not possible to reach a
+higher power efficiency than the desktop system. 
 
 \begin{figure}[H]
 \centering
@@ -927,6 +1019,14 @@ following figures
 \label{reduce_energy}
 \end{figure}
 
+However, in the Figure \ref{alltoall_energy} with three or four platforms the
+cluster of embedded systems present a higher power efficiency than the desktop
+system \cite{NUC}. This is possible due to the fact that performance of the
+\textit{All to all} benchmark presented in the Figure
+\ref{all_to_all_cluster}is similar despite the number of platforms the cluster
+has. In this test the performance of even six platforms is not close to the
+performance that a NUC \cite{NUC} system can has; however, the power consumtion
+is stable with this experiment.
 
 \begin{figure}[H]
 \centering
@@ -935,19 +1035,40 @@ following figures
 \label{alltoall_energy}
 \end{figure}
 
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=1 \textwidth]{images/energy_results/bandwidth.png}
-\caption{Energy efficiency comparison on MPI \textit{Bandwidth} benchmark}
-\label{bandwidth_energy}
-\end{figure}
+The Figure \ref{bibw_energy} also present the same behavior. With three or four
+platforms the cluster of embedded systems present a higher power efficiency
+than the desktop system \cite{NUC}. This is possible due to the fact that
+performance of the \textit{Bi directional Bandwidth} benchmark performance
+(Figure \ref{bibw_cluster}). At 218 MB the performance became unstable, with
+similar performance from four, five and six platforms. Besides that the
+increment in performance is constant. Even with three or four platforms the
+performance improvement is high. From these results it can be seen that for
+applications that requires speeds between 27MB and 218MB, a cluster of four,
+five or six embedded platforms can bring similar performance that a traditional
+desktop system, in terms of bi directional bandwidth.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=1 \textwidth]{images/energy_results/bibw.png}
 \caption{Energy efficiency comparison on MPI \textit{Bi directional Bandwidth} benchmark}
 \label{bibw_energy}
+\end{figure}
+
+
+The \textit{Bandwidth} and \textit{Broadcast Bandwidth} benchmarks are the ones
+with worst power efficiency.  This is due to the network latency we saw before
+in Figure \ref{latency_cluster} and Figure \ref{roundtrip_cluster}.  Latency is
+really important when the program is dominated by communication, and the
+messages are small.  This can happen when scaling to larger numbers of nodes.
+Despite the fact of an increment in three up to five platforms, the power
+efficiency of the cluster of embedded systems is low in comparison to the
+to the centralized system \cite{NUC}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=1 \textwidth]{images/energy_results/bandwidth.png}
+\caption{Energy efficiency comparison on MPI \textit{Bandwidth} benchmark}
+\label{bandwidth_energy}
 \end{figure}
 
 
