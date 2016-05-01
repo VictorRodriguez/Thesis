@@ -25,7 +25,7 @@ computing in embedded platforms and clusters of embedded systems.
 
 With the proliferation of high performance workstations and the emergence of
 high speed networks in the early 1990s, the rise of interest in parallel and
-distributed computing grow rapidly . The first clusters of computers required
+distributed computing grow rapidly. The first clusters of computers required
 communication protocols to share data and workload. In \cite{Salim} one of the
 most popular paradigms for parallel and distributed computing is described:
 Message Passing Interface, MPI. The main objective of MPI was to provide a
@@ -37,7 +37,7 @@ workload among the workstations.
 
 In \cite{Salim}, it is published MPICH,  the first practical implementation of
 the MPI protocol. MPICH is a high performance and widely portable
-implementation of the MPI .\cite{Gropp}. MPI was designed for high performance
+implementation of the MPI.\cite{Gropp}. MPI was designed for high performance
 computing on both, massively parallel machines and on workstation
 clusters.\footnote{More details about MPICH are covered in Chapter 3}. It
 provides libraries for C and Fortran programing languages. It allows the
@@ -51,7 +51,7 @@ one; nowadays, there are multiple that follow the same principles.
 
 MPI implementations are designed for clusters of high performance computers.
 Clusters where it is expected to have a large amount of resources with
-operating systems that enable distributed computing; however they consume.
+operating systems that enable distributed computing.
 Despite of the fact that many researchers use MPI implementations in the high
 performance computing community, there is a small group of people interested in
 the same approach of parallel and distributed computing applied to embedded
@@ -92,7 +92,7 @@ in an embedded platform at the end of 1990s.  One of the projects that follows
 this approach is AzequiaMPI \cite{Gallego}.
 
 AzequiaMPI is an MPI implementation that uses threads instead of processes,
-making MPI applications lighter . The AzequiaMPI protocol runs on the Texas
+making MPI applications lighter. The AzequiaMPI protocol runs on the Texas
 Instruments\textregistered\ TMS320C6000\textregistered\ family of digital
 signal processors (DSPs). \footnote{The DSP is a specialized microprocessor
 with its architecture optimized for digital signal processing tasks. DSPs are
@@ -124,7 +124,7 @@ data structures and takes advantage of address space sharing among threads. The
 experiments on \cite{Tang} show that TMPI has significant performance
 advantages in comparison to a traditional MPI approach.
 
-Another example of thread-based techniques is \cite{Demaine} . In such work
+Another example of thread-based techniques is \cite{Demaine}. In such work
 TOMPI (thread only MPI) is presented. TOMPI is a threads only implementation of
 MPI. While the implementation is partial it supports the commonly used MPI
 features. The communication is designed to be efficient by using asynchronous
@@ -183,7 +183,7 @@ is networking support to the LMPI server.
 
 These light and limited versions of MPI either process-based or thread-based
 are relevant proofs of the raising role of MPI in the embedded world. However,
-they have challanges, one of them is portability. The portability of code among
+they have challenges, one of them is portability. The portability of code among
 different platforms needs to be considered. For example MPI programs that run
 in a traditional Linux cluster (eg. a Bewolf Cluster) should also be able to
 run in a cluster of embedded platforms  by code recompilation.  In
@@ -244,7 +244,7 @@ cores.
 
 Despite of the type of MPI implementation either process-based or,
 thread-based, it is proved that when multiple embedded processors are
-available, the workload can be distributed in such away that each processor
+available, the workload can be distributed in such a way that each processor
 runs at a very low-power level; meanwhile, the performance is compensated by
 parallelism.  Based on this idea some efforts have been done in \cite{Liu} and
 \cite{Weglarz}. Those propose the idea of partitioning the computation onto a

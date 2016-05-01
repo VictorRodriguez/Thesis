@@ -143,7 +143,7 @@ According to \cite{Hallinan} \textit{"An embedded system is a special-purpose
 system in which the computer is completely encapsulated by the device it
 controls"} Unlike a general-purpose computer, such as a personal computer, an
 embedded system performs pre-defined tasks, usually with very specific
-requirements. Examples of these are:microwaves, washing machines, printers, and
+requirements. Examples of these are: microwaves, washing machines, printers, and
 GPS (Global Positioning System) systems. These electronic gadgets started to
 emerge more than 35 years ago \cite{Nur}.
 
@@ -161,7 +161,7 @@ instructions, the power consumption is smaller.
 
 The increment in the complexity of new embedded applications started to
 require more specialized integrated circuits that could support the microprocessor
-to process tasks in parallel . Wireless networking cards, Digital Signal
+to process tasks in parallel. Wireless networking cards, Digital Signal
 Processors, I/O controls, peripherals (such as USB controllers) and analog
 interfaces (including ADCs and DACs) became part of the requirements of an
 embedded platform. Architecture designers realized that communication with 
@@ -216,10 +216,9 @@ Linux in many common embedded platforms. With the birth of SoC systems the
 use of complete operating systems was needed due to the requirement of handling
 processes concurrency, memory management, and network connectivity.
 
-The Linux operating system was chosen for the studied embedded platform.
-It has many configure options, there are no standard
+However, the Linux has many configure options. There are no standard
 methodologies or templates to reuse the process to customize a Linux
-embedded environment which is a complex job for software engineers.
+embedded environment, which is a complex job for software engineers.
 Every new embedded computing company creates its own version according to its
 needs, without any standards, with very low maintainability and robustness. In 2010
 there was a change in the industry of embedded systems, it was announced of a
@@ -285,9 +284,9 @@ operating systems. New communication technology 4G, 5G and the introduction of
 IPv6 provides larger and faster data bandwidth than 3G.
 
 One of the most accurate definitions of IoT is the one given by \cite{Bahga}
-where it mentions that "Internet of Things refers to physical and virtual
+where it mentions that "\textit{Internet of Things refers to physical and virtual
 objects that have unique identities and are connected to the internet to
-facilitate intelligent applications.". IoT enables the interconnection, via the
+facilitate intelligent applications.}". IoT enables the interconnection, via the
 Internet, of computing devices embedded in everyday use objects, enabling them
 to send and receive data. The main difference of IoT systems with traditional
 embedded systems is the Internet connectivity and less power consumption. IoT
@@ -446,15 +445,15 @@ time is lower on X than on Y for the given task. In particular, ''X is n times
 faster than ''  is represented by equation \ref{eq:2} from \cite{Hennessy}.
 
 \begin{equation}\label{eq:2}
-n = \frac{Execution time x}{Execution time y}
+n = \frac{Execution\ time\ x}{Execution\ time\ y}
 \end{equation}
 
 Since execution time is the reciprocal of performance, the following
 relationship holds in formula \ref{eq:3} from \cite{Hennessy}.
 
 \begin{equation}\label{eq:3}
-n = \frac{Execution time x}{Execution time y} = \frac{\frac{1}{Performance
-x}}{\frac{1}{Performance y}} = \frac{Performnace x}{Performance y}
+n = \frac{Execution\ time\ x}{Execution\ time\ y} = \frac{\frac{1}{Performance\
+x}}{\frac{1}{Performance\ y}} = \frac{Performnace\ x}{Performance\ y}
 \end{equation}
 
 Another metric to consider is throughput. According to \cite{Hennessy}
