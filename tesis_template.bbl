@@ -36,33 +36,6 @@ M.~Kaku, \emph{Physics of the Future: How Science Will Shape Human Destiny and
   Our Daily Lives by the Year 2100}.\hskip 1em plus 0.5em minus 0.4em\relax
   Doubleday, 2011.
 
-\bibitem{Liu-Dan}
-L.~D. et~al, ``Intelligent agriculture greenhouse environment monitoring system
-  based on iot technology,'' \emph{Intelligent Transportation, Big Data and
-  Smart City (ICITBS)}, pp. 487 -- 490, 2015.
-
-\bibitem{Du}
-Z.~D. et~al, ``Design and implementation of safety management system for oil
-  depot based on internet of things,'' \emph{Green Computing and Communications
-  (GreenCom)}, pp. 449 -- 252, 2012.
-
-\bibitem{Wun}
-W.~C.~L. et~al, ``Autonomous industrial tank floor inspection robot,''
-  \emph{International Conference on Signal and Image Processing Applications
-  (ICSIPA)}, pp. 473 -- 475, 2015.
-
-\bibitem{Beraelt}
-R.~B. et~al, ``Energy efficient handling of big data in embedded, wireless
-  sensor networks,'' \emph{Sensors Applications Symposium (SAS)}, pp. 53 -- 58,
-  2014.
-
-\bibitem{Virgin}
-\BIBentryALTinterwordspacing
-M.~Finnegan, ``Boeing 787s to create half a terabyte of data per flight, says
-  virgin atlantic.'' [Online]. Available:
-  \url{http://www.computerworlduk.com/news/data/boeing-787s-create-half-terabyte-of-data-per-flight-says-virgin-atlantic-3433595/}
-\BIBentrySTDinterwordspacing
-
 \bibitem{Hennessy}
 J.~L. Hennessy and D.~A. Patterson, \emph{Computer Architecture A Quantitative
   Approach}.\hskip 1em plus 0.5em minus 0.4em\relax Denise E. M. Penrose, 2007.
@@ -71,6 +44,10 @@ J.~L. Hennessy and D.~A. Patterson, \emph{Computer Architecture A Quantitative
 N.~H.~A. et~al, ``Advanced ubiquitous computing to support smart city smart
   village applications,'' \emph{Electrical Engineering and Informatics
   (ICEEI),}, pp. 720 -- 725, 2015.
+
+\bibitem{Mack}
+C.~A. Mack, ``Keynote: Moore's law 3.0,'' \emph{Microelectronics and Electron
+  Devices (WMED), 2013 IEEE Workshop on}, pp. xiii--xiii, 2013.
 
 \bibitem{Hallinan}
 C.~Hallinan, \emph{Embedded Linux Primer: A Practical Real-World
@@ -104,6 +81,35 @@ Y.-S.~C. et~al, ``Integrated ddos attack defense infrastructure for effective
   attack prevention,'' \emph{Information Technology Convergence and Services
   (ITCS),}, pp. 1 --8, 2010.
 
+\bibitem{Kenward}
+\BIBentryALTinterwordspacing
+A.~Kenward, ``Helpful energy comparisons, a guide to measuring energy,'' 2011.
+  [Online]. Available:
+  \url{http://www.climatecentral.org/blogs/helpful-energy-comparisons-anyone}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Liu-Dan}
+L.~D. et~al, ``Intelligent agriculture greenhouse environment monitoring system
+  based on iot technology,'' \emph{Intelligent Transportation, Big Data and
+  Smart City (ICITBS)}, pp. 487 -- 490, 2015.
+
+\bibitem{Du}
+Z.~D. et~al, ``Design and implementation of safety management system for oil
+  depot based on internet of things,'' \emph{Green Computing and Communications
+  (GreenCom)}, pp. 449 -- 252, 2012.
+
+\bibitem{Wun}
+W.~C.~L. et~al, ``Autonomous industrial tank floor inspection robot,''
+  \emph{International Conference on Signal and Image Processing Applications
+  (ICSIPA)}, pp. 473 -- 475, 2015.
+
+\bibitem{Virgin}
+\BIBentryALTinterwordspacing
+M.~Finnegan, ``Boeing 787s to create half a terabyte of data per flight, says
+  virgin atlantic.'' [Online]. Available:
+  \url{http://www.computerworlduk.com/news/data/boeing-787s-create-half-terabyte-of-data-per-flight-says-virgin-atlantic-3433595/}
+\BIBentrySTDinterwordspacing
+
 \bibitem{Jun}
 J.~M. et~al, ``An analytical framework for estimating scale-out and scale-up
   power efficiency of heterogeneous manycores,'' \emph{Computers, IEEE
@@ -112,6 +118,10 @@ J.~M. et~al, ``An analytical framework for estimating scale-out and scale-up
 \bibitem{Dong}
 D.~H. Woo and H.-H.~S. Lee, ``Extending amdahl's law for energy-efficient
   computing in the many-core era,'' \emph{Computer}, pp. 24 --31, 2008.
+
+\bibitem{Siegenthaler}
+J.~Siegenthaler, \emph{Heating with Renewable Energy, 1st Edition}.\hskip 1em
+  plus 0.5em minus 0.4em\relax Cengage Learning, 2014.
 
 \bibitem{Saldana}
 M.~Saldana, ``Mpi as an abstraction for software-hardware interaction for
@@ -137,9 +147,9 @@ S.~Y.~P. et~al, ``A multithreaded message-passing system for high performance
   distributed computing applications,'' pp. 258--265, 1998.
 
 \bibitem{Gropp}
-M.~Saldana, ``Mpi as an abstraction for software-hardware interaction for
-  hprcs,'' \emph{High-Performance Reconfigurable Computing Technology and
-  Applications}, pp. 1 -- 10, 2008.
+W.~Gropp and E.~Lusk, ``Reproducible measurements of mpi performance
+  characteristics,'' \emph{Proceedings of the PVM/MPI Users' Group Meeting
+  (LNCS 1697)}, pp. 11--18, 1999.
 
 \bibitem{Gallego}
 J.~A. R.-G. et~al, ``A pthreads-based mpi-1 implementation for mmu-less
@@ -165,6 +175,22 @@ J.~W. et~al, ``A reconfigurable cluster-on-chip architecture with mpi
   communication layer,'' \emph{Proceedings of the 14th Annual IEEE Symposium on
   `Field-Programmable Custom Computing Machines (FCCM'06)}, pp. 1 --6, 2006.
 
+\bibitem{MCAPI}
+\BIBentryALTinterwordspacing
+M.~Levy and S.~Brehmer, ``Multicore communications api working group.''
+  [Online]. Available:
+  \url{http://www.multicore-association.org/workgroup/mcapi.php}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Wolf}
+W.~W. et~al, ``Multiprocessor system-on-chip (mpsoc) technology,'' \emph{IEEE
+  Transactions on Computer-Aided Design of Integrated Circuits and Systems},
+  vol.~27, no.~10, pp. 1701--1713, 2008.
+
+\bibitem{Matilainen}
+L.~M. et~al, ``Multicore communications api (mcapi) implementation on an fpga
+  multiprocessor,'' pp. 286--293, 2011.
+
 \bibitem{Weglarz}
 E.~F. e.~a. Weglarz, ``Minimizing energy consumption for high-performance
   processing,'' \emph{Design Automation Conference, 2002. Proceedings of
@@ -176,5 +202,138 @@ V.~Rodriguez and M.~de~Alba, ``Embedded distributed systems: A case of study.''
   [Online]. Available:
   \url{https://www.overleaf.com/articles/embedded-distributed-systems-a-case-of-study-with-clear-linux-projectfor-intel-r-architecture/wpcgjhykxdmj/viewer.pdf}
 \BIBentrySTDinterwordspacing
+
+\bibitem{Victor-Marcos-elc}
+\BIBentryALTinterwordspacing
+V.~Rodriguez and M.~R. de~Alba, ``Embedded distributed systems: A case of study
+  with clear linux.'' [Online]. Available:
+  \url{http://events.linuxfoundation.org/sites/events/files/slides/ELC_Embedded_Distributed.pptx_.pdf}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Dongxu}
+D.~S. et~al, ``Effective throughput: a unified benchmark for pilot-aided
+  ofdm/sdma wireless communication systems,'' vol.~3, pp. 1603--1613 vol.3,
+  2003.
+
+\bibitem{Farhan}
+F.~B. Shaikh and S.~Haider, ``Security threats in cloud computing,''
+  \emph{Internet Technology and Secured Transactions (ICITST), 2011
+  International Conference for}, pp. 214--219, 2011.
+
+\bibitem{yocto-project}
+\BIBentryALTinterwordspacing
+S.~Rifenbark, ``Yocto project development manual.'' [Online]. Available:
+  \url{http://www.yoctoproject.org/docs/1.7/dev-manual/dev-manual.pdf}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Leppakoski}
+A.~L. et~al, ``Framework for industrial embedded system product development and
+  management,'' pp. 1--6, 2013.
+
+\bibitem{Coulouris}
+G.~C. et~al, \emph{Distributed systems concepts and design}, 5th~ed.\hskip 1em
+  plus 0.5em minus 0.4em\relax Pearson Education Limited, 2013.
+
+\bibitem{MPI-standard}
+\BIBentryALTinterwordspacing
+``Mpi: A message-passing interface standard version 3.1.'' [Online]. Available:
+  \url{http://www.mpi-forum.org/docs/mpi-3.1/mpi31-report.pdf}
+\BIBentrySTDinterwordspacing
+
+\bibitem{minnowboard}
+\BIBentryALTinterwordspacing
+``Minnowboard max.'' [Online]. Available:
+  \url{http://elinux.org/Minnowboard:MinnowMax}
+\BIBentrySTDinterwordspacing
+
+\bibitem{fedora}
+\BIBentryALTinterwordspacing
+``Fedora project.'' [Online]. Available: \url{https://getfedora.org/}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Calderon}
+A.~C. et~al, ``New techniques for collective communications in clusters: a case
+  study with mpi,'' pp. 185--192, 2001.
+
+\bibitem{Hoefler}
+T.~Hoefler, T.~Schneider, and A.~Lumsdaine, ``Accurately measuring collective
+  operations at massive scale,'' pp. 1--8, 2008.
+
+\bibitem{Grove}
+D.~A. Grove and P.~D. Coddington, ``Communication benchmarking and performance
+  modelling of mpi programs on cluster computers,'' pp. 249--, 2004.
+
+\bibitem{mpibench}
+\BIBentryALTinterwordspacing
+P.~J.~M. et~al, ``The mpbench report.'' [Online]. Available:
+  \url{cl.cs.utk.edu/~mucci/latest/pubs/mpbench.pdf}
+\BIBentrySTDinterwordspacing
+
+\bibitem{MPI-tutorial}
+\BIBentryALTinterwordspacing
+W.~Kendall, ``Mpi tutorial.'' [Online]. Available:
+  \url{http://mpitutorial.com/tutorials/}
+\BIBentrySTDinterwordspacing
+
+\bibitem{MPI-book}
+P.~Pacheco, \emph{Parallel Programming with MPI}.\hskip 1em plus 0.5em minus
+  0.4em\relax Morgan Kaufmann, 1996.
+
+\bibitem{E3825}
+\BIBentryALTinterwordspacing
+``Intel atom processor e3825.'' [Online]. Available:
+  \url{http://ark.intel.com/products/78474/Intel-Atom-Processor-E3825-1M-Cache-1_33-GHz}
+\BIBentrySTDinterwordspacing
+
+\bibitem{clear-linux}
+\BIBentryALTinterwordspacing
+``Clear linux project for intel\textregistered\ architecture.'' [Online].
+  Available: \url{https://clearlinux.org/}
+\BIBentrySTDinterwordspacing
+
+\bibitem{minnowmax-firmware}
+\BIBentryALTinterwordspacing
+``Minnowboard max firmwware.'' [Online]. Available:
+  \url{https://firmware.intel.com/projects/minnowboardmax}
+\BIBentrySTDinterwordspacing
+
+\bibitem{Bo}
+Z.~B. et~al, ``Dptsv: A dynamic priority task scheduling strategy for tss
+  deadlock based on value evaluation,'' \emph{China Communications}, vol.~13,
+  no.~1, pp. 161--175, 2016.
+
+\bibitem{Shen}
+S.~S. et~al, ``Multi-sensor fusion for robust autonomous flight in indoor and
+  outdoor environments with a rotorcraft mav,'' pp. 4974--4981, 2014.
+
+\bibitem{NUC}
+\BIBentryALTinterwordspacing
+``Intel\textregistered\ nuc d54250wyk.'' [Online]. Available:
+  \url{http://ark.intel.com/products/76977/Intel-NUC-Kit-D54250WYK}
+\BIBentrySTDinterwordspacing
+
+\bibitem{NUC-OS}
+\BIBentryALTinterwordspacing
+``Intel\textregistered\ nuc d54250wyk operating systems.'' [Online]. Available:
+  \url{http://www.intel.com/content/www/us/en/support/boards-and-kits/000005471.html?wapkw=-falske}
+\BIBentrySTDinterwordspacing
+
+\bibitem{phoronix-clear}
+\BIBentryALTinterwordspacing
+M.~Larabel, ``How ubuntu 16.04 is performing compared to five other linux
+  distributions,'' 2016. [Online]. Available:
+  \url{http://www.phoronix.com/scan.php?page=article&item=2016-feb-6way&num=1}
+\BIBentrySTDinterwordspacing
+
+\bibitem{topologies-intro}
+\BIBentryALTinterwordspacing
+B.~Mitchell, ``Introduction to computer network topology,'' 2005. [Online].
+  Available:
+  \url{http://compnetworking.about.com/od/networkdesign/a/topologies.htm}
+\BIBentrySTDinterwordspacing
+
+\bibitem{star-top}
+D.~Bird and M.~Hardwood, \emph{Network+ Training Guide}.\hskip 1em plus 0.5em
+  minus 0.4em\relax Paul Boger, 2003.
 
 \end{thebibliography}
